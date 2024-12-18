@@ -1,0 +1,53 @@
+<button id="theme-toggle-button"/>
+
+<style>
+#theme-toggle-button {
+    font-size: 20px;
+    width: 36px;
+    aspect-ratio: 1;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    line-height: 1;
+    background-color: var(--theme-toggle-button);
+    color: var(--theme-toggle-button-icon);
+    transition: background-color 0.2s, color 0.2s;
+}
+
+#theme-toggle-button:hover {
+    background-color: var(--theme-toggle-button-hover);
+}
+</style>
+
+<script>
+const button = document.getElementById("theme-toggle-button");
+
+function setTheme(theme) {
+  document.documentElement.setAttribute("data-theme", theme);
+  localStorage.setItem("theme", theme);
+  button.textContent = theme === "light" ? "🌞" : "🌜";
+}
+
+function toggleTheme() {
+  const currentTheme = document.documentElement.getAttribute("data-theme");
+  const newTheme = currentTheme === "light" ? "dark" : "light";
+  setTheme(newTheme);
+}
+
+if (import.meta.env.SSR === false) {
+  const storedTheme = localStorage.getItem("theme");
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+
+  if (storedTheme) {
+    setTheme(storedTheme);
+  } else {
+    setTheme(prefersDark.matches ? "dark" : "light");
+  }
+
+  button.addEventListener("click", toggleTheme);
+}
+
+setTimeout(() => {
+  document.documentElement.classList.remove("no-transition");
+}, 100);
+</script>

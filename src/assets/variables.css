@@ -1,0 +1,44 @@
+:root {
+    --text: #000;
+    --muted-text: #000;
+    --bg: #f7fbff;
+    --link: var(--text);
+    --sep: #cecece;
+    --card: #fff;
+    --bg-alternate: #fff;
+    --footer-bg: #f9fafb;
+    --footer-text: #000;
+    --modal: #fff;
+    --button-primary: #1e90ff;
+    --button-primary-hover: #4169e1;
+    --button-primary-text: #fff;
+    --button-primary-variant-secondary: #3151b0;
+    --button-primary-variant-secondary-hover: #1f3c92;
+    --button-primary-variant-black: #000;
+    --button-primary-variant-black-hover: var(--button-primary);
+    --theme-toggle-button: #f8f8f8;
+    --theme-toggle-button-hover: #b9b9b9;
+    --theme-toggle-button-icon: #d8d8d8;
+    --sponsor: #fff;
+    --sponsor-text: #000;
+    --font-family: "Noto Sans", "Segoe UI", "Inter", sans-serif;
+}
+
+:root[data-theme="dark"] {
+    --text: #c9d1d9;
+    --muted-text: #797979;
+    --bg: #0d1117;
+    --link: var(--text);
+    --sep: #0f1115;
+    --card: #161b22;
+    --bg-alternate: #161b22;
+    --footer-bg: #000;
+    --footer-text: #aeaeae;
+    --modal: #2c2c2c;
+    --button-primary: #1e90ff;
+    --button-primary-hover: #4169e1;
+    --button-primary-text: #fff;
+    --theme-toggle-button: #44484d;
+    --theme-toggle-button-hover: #191d21;
+    --theme-toggle-button-icon: #d8d8d8;
+}

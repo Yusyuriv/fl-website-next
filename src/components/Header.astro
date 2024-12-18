@@ -1,0 +1,62 @@
+---
+import ThemeToggle from '@/components/ThemeToggle.astro';
+import { Picture } from 'astro:assets';
+import Logo from '@/assets/logo.png';
+import PrimaryButton from '@/components/PrimaryButton.astro';
+import MaxWidthContainer from "@/components/MaxWidthContainer.astro";
+---
+
+<header class="header">
+  <MaxWidthContainer class="inner">
+    <a href="/">
+      <Picture src={Logo} formats={['avif', 'webp']} densities={[1, 1.5, 2]} alt="Flow Launcher logo" height="18"/>
+    </a>
+
+    <nav class="nav">
+      <a href="#">Plugins</a>
+      <a href="#">Docs</a>
+      <a href="#">GitHub</a>
+      <PrimaryButton id="download-button">Download</PrimaryButton>
+      <ThemeToggle />
+    </nav>
+  </MaxWidthContainer>
+</header>
+
+<style>
+.header {
+    height: 72px;
+    background-color: var(--bg-alternate);
+    transition: background-color 0.2s;
+    position: sticky;
+    top: 0;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    font-weight: 500;
+}
+
+.nav a {
+    border-bottom: 2px solid transparent;
+    transition: border-bottom-color 0.2s;
+    font-size: 18px;
+}
+
+.nav a:hover {
+    border-bottom-color: var(--text);
+}
+
+#download-button {
+    margin-left: 10px;
+}
+</style>

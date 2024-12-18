@@ -1,0 +1,37 @@
+---
+import MaxWidthContainer from "@/components/MaxWidthContainer.astro";
+
+interface Props {
+  padding?: number;
+  even?: boolean;
+  backgroundColor?: string;
+  class?: string;
+}
+
+const {
+  padding = 14,
+  even = false,
+  backgroundColor = "transparent",
+  class: className = "",
+  ...rest
+} = Astro.props;
+---
+<section class:list={["section", className, {even, "with-bg-color": !!backgroundColor}]} {...rest}>
+  <MaxWidthContainer>
+    <slot/>
+  </MaxWidthContainer>
+</section>
+
+<style define:vars={{padding, backgroundColor}}>
+.section {
+    padding: calc(var(--padding) * 1px) 30px;
+}
+
+.with-bg-color {
+    background-color: var(--backgroundColor);
+}
+
+.even {
+    background-color: var(--bg-alternate);
+}
+</style>

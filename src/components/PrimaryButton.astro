@@ -1,0 +1,96 @@
+---
+interface Props {
+  variant?: "default" | "black" | "secondary";
+  shape?: "pill" | "rounded" | "rectangle";
+  href?: string;
+}
+
+const {
+  variant = "default",
+  shape = "pill",
+  href,
+  ...rest
+} = Astro.props;
+---
+
+{!href
+  ?
+<button class:list={["primary-button", `variant-${variant}`, `shape-${shape}`]} {...rest}>
+  {!Astro.slots.has("second-line")
+    ?
+    <slot/>
+    :
+    <div class="two-line">
+      <div class="line-1"><slot/></div>
+      <div class="line-2"><slot name="second-line"/></div>
+    </div>
+  }
+</button>
+  : <a {href} class:list={["primary-button", `variant-${variant}`, `shape-${shape}`]} {...rest}>
+  {!Astro.slots.has("second-line")
+    ?
+    <slot/>
+    :
+    <div class="two-line">
+      <div class="line-1"><slot/></div>
+      <div class="line-2"><slot name="second-line"/></div>
+    </div>
+  }
+</a>
+  }
+
+<style>
+.primary-button {
+    background-color: var(--button-primary);
+    transition: background-color 0.2s;
+    padding: 9px 30px;
+    font-size: 16px;
+    color: var(--button-primary-text);
+    cursor: pointer;
+    text-align: center;
+}
+
+.primary-button:hover {
+    background-color: var(--button-primary-hover);
+}
+
+.variant-black {
+    background-color: var(--button-primary-variant-black);
+}
+
+.variant-black:hover {
+    background-color: var(--button-primary-variant-black-hover);
+}
+
+.variant-secondary {
+    background-color: var(--button-primary-variant-secondary);
+}
+
+.variant-secondary:hover {
+    background-color: var(--button-primary-variant-secondary-hover);
+}
+
+.shape-pill {
+    border-radius: 1000px;
+}
+
+.shape-rounded {
+    border-radius: 6px;
+}
+
+.shape-rectangle {
+    border-radius: 0;
+}
+
+.two-line {
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+}
+
+.two-line > :last-child {
+    font-size: 12px;
+}
+</style>

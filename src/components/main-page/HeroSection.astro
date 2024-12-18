@@ -1,0 +1,94 @@
+---
+import {Picture} from "astro:assets";
+import SectionHeader from "@/components/SectionHeader.astro";
+import PrimaryButton from "@/components/PrimaryButton.astro";
+import Sponsor from "@/components/Sponsor.astro";
+import Header from "@/components/Header.astro";
+import Section from "@/components/main-page/Section.astro";
+import SectionSubheader from "@/components/SectionSubheader.astro";
+import SmallText from "@/components/SmallText.astro";
+---
+
+<Section padding="55">
+  <div class="grid">
+    <div class="left-column">
+      <SectionHeader>Flow Launcher</SectionHeader>
+      <SectionSubheader>Quick File Search & App Launcher for Windows</SectionSubheader>
+      <PrimaryButton shape="rounded">
+        <div>⬇️ Download</div>
+        <div slot="second-line">v1.19.4 - 6 Nov 2024</div>
+      </PrimaryButton>
+    </div>
+    <div class="screenshot-container">
+      <Picture src="https://www.flowlauncher.com/public/images/dark_screenshot.png" alt="Flow Launcher screenshot"
+               width="620" height="349" class="dark screenshot"/>
+      <Picture src="https://www.flowlauncher.com/public/images/light_screenshot.png" alt="Flow Launcher screenshot"
+               width="620" height="349" class="light screenshot"/>
+    </div>
+  </div>
+
+  <SmallText muted centered class="sponsored-by">
+    Sponsored by
+  </SmallText>
+
+  <div class="sponsors">
+    <Sponsor href="https://appwrite.io/" src="https://flowlauncher.com/public/images/sponsors/appwrite_light.png"
+             alt="Appwrite"/>
+    <Sponsor href="https://coderabbit.ai/" src="https://www.flowlauncher.com/public/images/sponsors/coderabbit.svg"
+             alt="CodeRabbit"/>
+    <Sponsor href="https://github.com/TheBestPessimist"
+             src="https://www.flowlauncher.com/public/images/sponsors/TheBestPessimist.png" alt="TheBestPessimist"
+             label="TheBestPessimist"/>
+  </div>
+</Section>
+
+<style>
+.grid {
+    display: grid;
+    align-items: center;
+    gap: 120px;
+    grid-template-columns: 3.5fr 6fr;
+}
+
+.left-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+}
+
+.screenshot-container {
+    background: url('https://flowlauncher.com/public/images/screenshot_bg.png') no-repeat center center;
+    background-size: contain;
+    padding: 20px;
+    width: 100%;
+}
+
+.screenshot {
+    display: none;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 620 / 349 !important;
+}
+
+html[data-theme="dark"] .dark {
+    display: block;
+}
+
+html[data-theme="light"] .light {
+    display: block;
+}
+
+.sponsored-by {
+    margin-top: 88px;
+    margin-bottom: 16px;
+}
+
+.sponsors {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+</style>

@@ -1,0 +1,47 @@
+---
+interface Props {
+  alt: string;
+  src: string;
+  href: string;
+  label?: string;
+}
+
+const {
+  alt,
+  src,
+  href,
+  label,
+} = Astro.props;
+---
+
+<a {href} target="_blank" class="sponsor">
+  <img {src} {alt} class:list={["img", {square: !!label}]} />
+  {label ? <span>{label}</span> : null}
+</a>
+
+<style>
+.sponsor {
+    display: inline-flex;
+    border: 1px solid var(--sep);
+    width: 170px;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    background-color: var(--sponsor);
+    gap: 4px;
+    color: var(--sponsor-text);
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.img {
+    height: 26px;
+    object-fit: contain;
+}
+
+.square {
+    width: 34px;
+    height: 34px;
+}
+</style>

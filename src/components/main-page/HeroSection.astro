@@ -42,28 +42,6 @@ import SmallText from "@/components/SmallText.astro";
   </div>
 </Section>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const latestVersion = document.querySelectorAll('.latest-version');
-
-  fetch('https://api.github.com/repos/Flow-Launcher/Flow.Launcher/releases/latest')
-    .then(response => response.json())
-    .then(v => {
-      const date = new Date(v.published_at);
-      const version = v.tag_name;
-      const formattedDate = new Intl.DateTimeFormat('en-US', {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric'
-      }).format(date);
-
-      latestVersion.forEach(el => {
-        el.textContent = `${version} - ${formattedDate}`;
-      });
-    });
-});
-</script>
-
 <style>
 .grid {
     display: grid;
@@ -114,3 +92,25 @@ html[data-theme="light"] .light {
     flex-wrap: wrap;
 }
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const latestVersion = document.querySelectorAll('.latest-version');
+
+  fetch('https://api.github.com/repos/Flow-Launcher/Flow.Launcher/releases/latest')
+    .then(response => response.json())
+    .then(v => {
+      const date = new Date(v.published_at);
+      const version = v.tag_name;
+      const formattedDate = new Intl.DateTimeFormat('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+      }).format(date);
+
+      latestVersion.forEach(el => {
+        el.textContent = `${version} - ${formattedDate}`;
+      });
+    });
+});
+</script>

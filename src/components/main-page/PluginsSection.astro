@@ -1,0 +1,27 @@
+---
+import Section from "@/components/main-page/Section.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import SectionSubheader from "@/components/SectionSubheader.astro";
+import Swiper from "@/components/Swiper.astro";
+import Plugin from "@/components/main-page/Plugin.astro";
+---
+<Section>
+  <SectionHeader>Community-made plugins</SectionHeader>
+  <SectionSubheader>Write your own plugins in C#, F#, Python, JavaScript, or TypeScript.</SectionSubheader>
+
+  <Swiper>
+    <Plugin color="#1ed760" title="Spotify Premium" subtitle="Control your Spotify directly from Flow Launcher"
+            author="fow5040" icon="https://www.flowlauncher.com/public/images/screenshots/icon_sp.png"
+            image="https://www.flowlauncher.com/public/images/screenshots/bs_sp.png"/>
+    <Plugin color="#3a3a3a" title="Steam Search" subtitle="Search your Steam game library and launch the games"
+            author="Garulf" icon="https://www.flowlauncher.com/public/images/screenshots/icon_st.png"
+            image="https://www.flowlauncher.com/public/images/screenshots/bs_st.png"/>
+    <Plugin color="#4e3ba4" title="Obsidian Notes" subtitle="Search through your Obsidian notes" author="Garulf"
+            icon="https://www.flowlauncher.com/public/images/screenshots/icon_op.png"
+            image="https://www.flowlauncher.com/public/images/screenshots/bs_op.png"/>
+    <Plugin color="#c1e1df" title="Github Notifications"
+            subtitle="View your GitHub notifications directly ffrom Flow Launcher" author="Garulf"
+            icon="https://www.flowlauncher.com/public/images/screenshots/icon_gh.png"
+            image="https://www.flowlauncher.com/public/images/screenshots/bs_gn.png"/>
+  </Swiper>
+</Section>

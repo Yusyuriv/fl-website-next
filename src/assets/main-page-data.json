@@ -1,4 +1,22 @@
 {
+  "sponsors": [
+    {
+      "href": "https://appwrite.io/",
+      "src": "https://flowlauncher.com/public/images/sponsors/appwrite_light.png",
+      "alt": "Appwrite"
+    },
+    {
+      "href": "https://coderabbit.ai/",
+      "src": "https://www.flowlauncher.com/public/images/sponsors/coderabbit.svg",
+      "alt": "CodeRabbit"
+    },
+    {
+      "href": "https://github.com/TheBestPessimist",
+      "src": "https://www.flowlauncher.com/public/images/sponsors/TheBestPessimist.png",
+      "alt": "",
+      "label": "TheBestPessimist"
+    }
+  ],
   "features": [
     {
       "title": "Open Apps",

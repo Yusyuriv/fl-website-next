@@ -7,6 +7,7 @@ import Header from "@/components/Header.astro";
 import Section from "@/components/main-page/Section.astro";
 import SectionSubheader from "@/components/SectionSubheader.astro";
 import SmallText from "@/components/SmallText.astro";
+import MainPageData from "@/assets/main-page-data.json";
 ---
 
 <Section>
@@ -32,13 +33,14 @@ import SmallText from "@/components/SmallText.astro";
   </SmallText>
 
   <div class="sponsors">
-    <Sponsor href="https://appwrite.io/" src="https://flowlauncher.com/public/images/sponsors/appwrite_light.png"
-             alt="Appwrite"/>
-    <Sponsor href="https://coderabbit.ai/" src="https://www.flowlauncher.com/public/images/sponsors/coderabbit.svg"
-             alt="CodeRabbit"/>
-    <Sponsor href="https://github.com/TheBestPessimist"
-             src="https://www.flowlauncher.com/public/images/sponsors/TheBestPessimist.png" alt="TheBestPessimist"
-             label="TheBestPessimist"/>
+    {MainPageData.sponsors.map(v =>
+      <Sponsor
+        href={v.href}
+        src={v.src}
+        alt={v.alt}
+        label={v.label}
+      />,
+    )}
   </div>
 </Section>
 
@@ -94,18 +96,18 @@ html[data-theme="light"] .light {
 </style>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const latestVersion = document.querySelectorAll('.latest-version');
+document.addEventListener("DOMContentLoaded", () => {
+  const latestVersion = document.querySelectorAll(".latest-version");
 
-  fetch('https://api.github.com/repos/Flow-Launcher/Flow.Launcher/releases/latest')
+  fetch("https://api.github.com/repos/Flow-Launcher/Flow.Launcher/releases/latest")
     .then(response => response.json())
     .then(v => {
       const date = new Date(v.published_at);
       const version = v.tag_name;
-      const formattedDate = new Intl.DateTimeFormat('en-US', {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric'
+      const formattedDate = new Intl.DateTimeFormat("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
       }).format(date);
 
       latestVersion.forEach(el => {

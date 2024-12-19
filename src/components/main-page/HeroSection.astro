@@ -1,5 +1,5 @@
 ---
-import {Picture} from "astro:assets";
+import {Picture, getImage} from "astro:assets";
 import SectionHeader from "@/components/SectionHeader.astro";
 import PrimaryButton from "@/components/PrimaryButton.astro";
 import Sponsor from "@/components/Sponsor.astro";
@@ -10,6 +10,12 @@ import SmallText from "@/components/SmallText.astro";
 import MainPageData from "@/assets/main-page-data.json";
 import ScreenshotDark from "@/assets/main-page/dark_screenshot.png";
 import ScreenshotLight from "@/assets/main-page/light_screenshot.png";
+import ScreenshotBackground from "@/assets/main-page/screenshot_bg.png";
+
+const screenshotBackground = await getImage({
+  src: ScreenshotBackground,
+  format: 'webp',
+} as any);
 
 const sponsors = [
   {
@@ -65,7 +71,7 @@ const sponsors = [
   </div>
 </Section>
 
-<style>
+<style define:vars={{ screenshotBackground: `url(${screenshotBackground.src})` }}>
 .grid {
     display: grid;
     align-items: center;
@@ -82,7 +88,7 @@ const sponsors = [
 }
 
 .screenshot-container {
-    background: url('https://flowlauncher.com/public/images/screenshot_bg.png') no-repeat center center;
+    background: var(--screenshotBackground) no-repeat center center;
     background-size: contain;
     padding: 20px;
     width: 100%;

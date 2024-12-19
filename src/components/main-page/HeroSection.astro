@@ -8,6 +8,29 @@ import Section from "@/components/main-page/Section.astro";
 import SectionSubheader from "@/components/SectionSubheader.astro";
 import SmallText from "@/components/SmallText.astro";
 import MainPageData from "@/assets/main-page-data.json";
+import ScreenshotDark from "@/assets/main-page/dark_screenshot.png";
+import ScreenshotLight from "@/assets/main-page/light_screenshot.png";
+
+const sponsors = [
+  {
+    href: "https://appwrite.io/",
+    src: import("@/assets/main-page/sponsor_appwrite.png"),
+    alt: "Appwrite",
+    label: undefined
+  },
+  {
+    href: "https://coderabbit.ai/",
+    src: import("@/assets/main-page/sponsor_coderabbit.svg"),
+    alt: "CodeRabbit",
+    label: undefined
+  },
+  {
+    href: "https://github.com/TheBestPessimist",
+    src: import("@/assets/main-page/sponsor_TheBestPessimist.png"),
+    alt: "",
+    label: "TheBestPessimist"
+  }
+];
 ---
 
 <Section>
@@ -21,10 +44,8 @@ import MainPageData from "@/assets/main-page-data.json";
       </PrimaryButton>
     </div>
     <div class="screenshot-container">
-      <Picture src="https://www.flowlauncher.com/public/images/dark_screenshot.png" alt="Flow Launcher screenshot"
-               width="620" height="349" class="dark screenshot"/>
-      <Picture src="https://www.flowlauncher.com/public/images/light_screenshot.png" alt="Flow Launcher screenshot"
-               width="620" height="349" class="light screenshot"/>
+      <Picture src={ScreenshotDark} alt="Flow Launcher screenshot" formats={["avif", "webp"]} class="dark screenshot"/>
+      <Picture src={ScreenshotLight} alt="Flow Launcher screenshot" formats={["avif", "webp"]} class="light screenshot"/>
     </div>
   </div>
 
@@ -33,7 +54,7 @@ import MainPageData from "@/assets/main-page-data.json";
   </SmallText>
 
   <div class="sponsors">
-    {MainPageData.sponsors.map(v =>
+    {sponsors.map(v =>
       <Sponsor
         href={v.href}
         src={v.src}

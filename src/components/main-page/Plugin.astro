@@ -1,11 +1,11 @@
 ---
-import {Picture} from "astro:assets";
+import {type LocalImageProps, Picture} from "astro:assets";
 
 interface Props {
   title: string;
   subtitle: string;
-  image: string;
-  icon: string;
+  image: LocalImageProps | Promise<LocalImageProps>;
+  icon: LocalImageProps | Promise<LocalImageProps>;
   iconBackground?: string;
   author: string;
   color: string;
@@ -13,11 +13,11 @@ interface Props {
 
 const {title, subtitle, image, color, icon, iconBackground = "var(--plugin-icon-background)", author} = Astro.props;
 ---
-<div class="feature swiper-slide">
+<div class="plugin swiper-slide">
   <div class="img-container">
-    <Picture alt="" src={image} width="907" height="619" class="img"/>
+    <Picture alt="" src={image} formats={["avif", "webp"]} class="img"/>
     <div class="icon-container">
-      <Picture src={icon} alt="" class="icon" width="128" height="128"/>
+      <Picture src={icon} alt="" class="icon" formats={["avif", "webp"]}/>
     </div>
   </div>
   <div class="title">
@@ -28,7 +28,7 @@ const {title, subtitle, image, color, icon, iconBackground = "var(--plugin-icon-
 </div>
 
 <style define:vars={{color, iconBackground}}>
-.feature {
+.plugin {
     border-radius: 8px;
     overflow: hidden;
     display: flex;

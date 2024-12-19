@@ -1,4 +1,6 @@
 ---
+import {Picture} from "astro:assets";
+
 interface Props {
   alt: string;
   src: string;
@@ -15,7 +17,7 @@ const {
 ---
 
 <a {href} target="_blank" class="sponsor">
-  <img {src} {alt} class:list={["img", {square: !!label}]} />
+  <Picture {src} {alt} class:list={["img", {square: !!label}]} formats={["avif", "webp"]} />
   {label ? <span>{label}</span> : null}
 </a>
 

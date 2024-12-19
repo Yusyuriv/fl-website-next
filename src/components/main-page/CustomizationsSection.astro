@@ -3,6 +3,8 @@ import Section from "@/components/main-page/Section.astro";
 import SectionHeader from "@/components/SectionHeader.astro";
 import SectionSubheader from "@/components/SectionSubheader.astro";
 import {Picture} from "astro:assets";
+import ImageTheme from "@/assets/main-page/cm_theme.png";
+import ImageModern from "@/assets/main-page/cm_modern.png";
 ---
 <Section even class="customizations-section">
   <SectionHeader>Customizations</SectionHeader>
@@ -10,12 +12,10 @@ import {Picture} from "astro:assets";
 
   <div class="grid">
     <div>
-      <Picture src="https://www.flowlauncher.com/public/images/screenshots/cm_modern.png" alt="modern"
-               formats={["avif", "webp"]} densities={[1, 1.5, 2]} width="992" height="632" class="grid-image"/>
+      <Picture src={ImageModern} alt="modern" formats={["avif", "webp"]} class="grid-image"/>
     </div>
     <div>
-      <Picture src="https://www.flowlauncher.com/public/images/screenshots/cm_theme.png" alt="themeable"
-               formats={["avif", "webp"]} densities={[1, 1.5, 2]} width="992" height="628" class="grid-image"/>
+      <Picture src={ImageTheme} alt="themeable" formats={["avif", "webp"]} class="grid-image"/>
     </div>
   </div>
 </Section>

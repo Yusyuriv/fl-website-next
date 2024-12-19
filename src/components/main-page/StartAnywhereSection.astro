@@ -4,14 +4,16 @@ import SectionHeader from "@/components/SectionHeader.astro";
 import SectionSubheader from "@/components/SectionSubheader.astro";
 import SmallText from "@/components/SmallText.astro";
 import {Picture} from "astro:assets";
+import ImageTaskbar from "@/assets/main-page/taskbar_bg.png";
 ---
 <Section even>
   <div class="grid">
     <div class="gif-container">
-      <img alt="Flow Launcher start anywhere gif" src="https://www.flowlauncher.com/public/images/flow-launcher.gif"
-               width="1047" height="678" class="gif"/>
-      <img alt="" src="https://www.flowlauncher.com/public/images/taskbar_bg.png" width="1114" height="87"
-               class="taskbar"/>
+      <picture>
+        <source srcset="/flow-launcher.webp" type="image/webp"/>
+        <img alt="Flow Launcher start anywhere gif" src="/flow-launcher.gif" class="gif" />
+      </picture>
+      <Picture alt="" src={ImageTaskbar} formats={["avif", "webp"]} class="taskbar" />
     </div>
     <div class="text">
       <SectionHeader>Start Flow Launcher anytime, anywhere.</SectionHeader>

@@ -16,7 +16,7 @@ import SmallText from "@/components/SmallText.astro";
       <SectionSubheader>Quick File Search & App Launcher for Windows</SectionSubheader>
       <PrimaryButton shape="rounded">
         <div>⬇️ Download</div>
-        <div slot="second-line">v1.19.4 - 6 Nov 2024</div>
+        <div class="latest-version" slot="second-line"></div>
       </PrimaryButton>
     </div>
     <div class="screenshot-container">
@@ -41,6 +41,28 @@ import SmallText from "@/components/SmallText.astro";
              label="TheBestPessimist"/>
   </div>
 </Section>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const latestVersion = document.querySelectorAll('.latest-version');
+
+  fetch('https://api.github.com/repos/Flow-Launcher/Flow.Launcher/releases/latest')
+    .then(response => response.json())
+    .then(v => {
+      const date = new Date(v.published_at);
+      const version = v.tag_name;
+      const formattedDate = new Intl.DateTimeFormat('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+      }).format(date);
+
+      latestVersion.forEach(el => {
+        el.textContent = `${version} - ${formattedDate}`;
+      });
+    });
+});
+</script>
 
 <style>
 .grid {

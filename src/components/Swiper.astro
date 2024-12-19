@@ -39,9 +39,12 @@ const {class: className = "", ...rest} = Astro.props;
 </style>
 
 <script>
-import Swiper from "swiper/bundle";
+import Swiper from "swiper";
+import {Navigation, Pagination} from "swiper/modules";
 import type {SwiperOptions} from "swiper/types";
-import 'swiper/css/bundle';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 const swipers = document.querySelectorAll(`.swiper`);
 
@@ -63,6 +66,8 @@ for (const swiper of swipers) {
         spaceBetween: 30,
       },
     },
+
+    modules: [Navigation, Pagination],
 
     pagination: {
       el: swiper.parentNode.querySelector('.swiper-pagination'),

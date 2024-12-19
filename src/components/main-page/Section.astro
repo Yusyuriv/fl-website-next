@@ -9,7 +9,7 @@ interface Props {
 }
 
 const {
-  padding = 14,
+  padding = 45,
   even = false,
   backgroundColor = "transparent",
   class: className = "",
@@ -25,6 +25,10 @@ const {
 <style define:vars={{padding, backgroundColor}}>
 .section {
     padding: calc(var(--padding) * 1px) 30px;
+}
+
+.section + .section {
+    border-top: 1px solid var(--sep);
 }
 
 .with-bg-color {

@@ -1,0 +1,70 @@
+<div class="swiper-container">
+  <div class="swiper">
+    <div class="swiper-wrapper">
+      <slot/>
+    </div>
+  </div>
+
+  <div class="swiper-button-prev"/>
+  <div class="swiper-button-next"/>
+
+  <div class="swiper-pagination"/>
+</div>
+
+<style>
+.swiper-container {
+    position: relative;
+    padding: 10px 50px 40px;
+    --swiper-navigation-top-offset: calc(50% - 40px);
+}
+
+.swiper {
+    border-radius: 8px;
+}
+</style>
+
+<style is:global>
+.swiper-pagination-bullet {
+    background-color: var(--button-primary) !important;
+    transition: opacity 0.2s !important;
+}
+</style>
+
+<script>
+import Swiper from "swiper/bundle";
+import type {SwiperOptions} from "swiper/types";
+import 'swiper/css/bundle';
+
+const swipers = document.querySelectorAll(`.swiper`);
+
+for (const swiper of swipers) {
+  new Swiper(swiper, {
+    loop: true,
+
+    grabCursor: true,
+
+    slidesPerView: 1,
+    spaceBetween: 10,
+    breakpoints: {
+      640: {
+        slidesPerView: 2,
+        spaceBetween: 20,
+      },
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 30,
+      },
+    },
+
+    pagination: {
+      el: swiper.parentNode.querySelector('.swiper-pagination'),
+      bulletClass: 'swiper-pagination-bullet',
+    },
+
+    navigation: {
+      nextEl: swiper.parentNode.querySelector('.swiper-button-next'),
+      prevEl: swiper.parentNode.querySelector('.swiper-button-prev'),
+    },
+  } as SwiperOptions);
+}
+</script>

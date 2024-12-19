@@ -1,0 +1,56 @@
+---
+import {Picture} from "astro:assets";
+
+interface Props {
+  title: string;
+  subtitle: string;
+  image: string;
+  color: string;
+}
+
+const {title, subtitle, image, color} = Astro.props;
+---
+<div class="feature swiper-slide">
+  <div class="img-container">
+    <Picture alt="" src={image} width="907" height="619" class="img"/>
+  </div>
+  <div class="title">{title}</div>
+  <div class="subtitle">{subtitle}</div>
+</div>
+
+<style define:vars={{color}}>
+.feature {
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    background-color: var(--bg-alternate);
+    border: 1px solid var(--sep);
+    box-sizing: border-box;
+}
+
+.img-container {
+    padding: 10px;
+    background-color: var(--color);
+}
+
+.img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 907 / 619;
+}
+
+.title {
+    margin: 20px 20px 0;
+    font-size: 18px;
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+.subtitle {
+    margin: 0 20px 20px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+</style>

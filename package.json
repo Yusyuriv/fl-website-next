@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "dependencies": {
     "astro": "^5.0.5",
+    "swiper": "^11.1.15",
     "typescript": "^5.7.2"
   },
   "scripts": {

@@ -2,36 +2,20 @@
 import Section from "@/components/main-page/Section.astro";
 import SectionHeader from "@/components/SectionHeader.astro";
 import Feature from "@/components/main-page/Feature.astro";
-
 import Swiper from "@/components/Swiper.astro";
+import MainPageData from "@/assets/main-page-data.json";
 ---
 <Section>
   <SectionHeader>Features</SectionHeader>
 
   <Swiper>
-    <Feature title="Open Apps" subtitle="Search and launch apps quickly." color="#e7d8e1"
-             image="https://www.flowlauncher.com/public/images/screenshots/bs_apps.png"/>
-    <Feature title="Search Files" subtitle="Use Everything or Windows Search to find files and file contents"
-             color="#f4dab1"
-             image="https://www.flowlauncher.com/public/images/screenshots/bs_files.png"/>
-    <Feature title="Web Searches" subtitle="Browse the Internet with your favorite search engine." color="#d0e7ed"
-             image="https://www.flowlauncher.com/public/images/screenshots/bs_websearch.png"/>
-    <Feature title="Search Bookmarks" subtitle="Quickly find bookmarks from different browsers." color="#ede4cc"
-             image="https://www.flowlauncher.com/public/images/screenshots/bs_bookmark.png"/>
-    <Feature title="System Commands"
-             subtitle="Restart, Sleep or shutdown, manage your computer with a couple of keystrokes." color="#d7d3dc"
-             image="https://www.flowlauncher.com/public/images/screenshots/bs_system.png"/>
-    <Feature title="Shell Commands"
-             subtitle="Easily run batch and PowerShell commands as Administrator or another user." color="#b9b9b9"
-             image="https://www.flowlauncher.com/public/images/screenshots/bs_cli.png"/>
-    <Feature title="Calculator" subtitle="Do mathematical calculations then copy the result to clipboard for later use."
-             color="#c1e1df"
-             image="https://www.flowlauncher.com/public/images/screenshots/bs_calc.png"/>
-    <Feature title="Windows Settings" subtitle="Search for Windows & Control Panel settings." color="#dddfc9"
-             image="https://www.flowlauncher.com/public/images/screenshots/bs_windowssettings.png"/>
-    <Feature title="Plugin Store"
-             subtitle="Browse and install many different types of plugins to add new search capabilities."
-             color="#b09cd0"
-             image="https://www.flowlauncher.com/public/images/screenshots/bs_store.png"/>
+    {MainPageData.features.map(v =>
+      <Feature
+        image={v.image}
+        subtitle={v.subtitle}
+        title={v.title}
+        color={v.color}
+      />
+    )}
   </Swiper>
 </Section>

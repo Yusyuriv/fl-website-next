@@ -1,8 +1,9 @@
 ---
 id: 8BE6E623BC294D4684F86A47CA797742
 slug: fake-data
-carousel:
-  - https://www.youtube.com/watch?v=E2Rj2gQAyPA&pp=ygULbGluZSBhcmNhbmU%3D
+videos:
+  - https://www.youtube.com/watch?v=E2Rj2gQAyPA
+images:
   - categories.png
   - date-past.png
   - lorem.png

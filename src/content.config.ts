@@ -18,10 +18,11 @@ const blog = defineCollection({
 
 const plugins = defineCollection({
   loader: glob({ pattern: ["*.md", "*/*.md"], base: "./src/data/plugins" }),
-  schema: z.object({
+  schema: ({ image }) => z.object({
     id: z.string().min(10),
     slug: z.string().min(1),
-    carousel: z.array(z.string()).optional(),
+    videos: z.array(z.string()).optional(),
+    images: z.array(image()).optional(),
     tags: z.array(z.string()).optional(),
     draft: z.boolean().optional(),
   }).strict(),

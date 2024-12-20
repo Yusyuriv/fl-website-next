@@ -48,16 +48,8 @@ if (pluginLanguage === "javascript" || pluginLanguage === "javascript_v2") {
 
 const sourceCodeLabel = plugin.sourceCodeUrl.startsWith("https://github.com/") ? "GitHub" : "Source Code";
 
-let carousel: ({youtube: string} | {image: LocalImageProps | Promise<LocalImageProps>})[] = [];
-if (pluginContent?.data?.carousel) {
-  carousel = pluginContent.data.carousel.map(v => {
-    if (v.startsWith("http:") || v.startsWith("https:")) {
-      return { youtube: v };
-    }
-    const filePath = path.join(process.cwd(), pluginContent.filePath, "..", v);
-    return { image: import(filePath) };
-  }).filter(v => !!v);
-}
+const videos = pluginContent?.data?.videos ?? [];
+const images = pluginContent?.data?.images ?? [];
 
 const pluginBlog = await getCollection("pluginBlog", v => v.data.id === plugin.id);
 const hasMoreThanTwoPosts = pluginBlog.length > 2;
@@ -76,10 +68,8 @@ const viewAllBlogPostsLink = `/plugins/${plugin.slug}/blog`;
     </div>
 
     <Swiper noLoop class="swiper-outer">
-      {carousel.map(v => 'youtube' in v
-        ? <div class="swiper-slide"><YouTubeEmbed video={v.youtube} fullWidth/></div>
-        : <div class="swiper-slide"><Picture alt="" src={v.image} formats={["avif", "webp"]}/></div>
-      )}
+      {videos.map(v => <div class="swiper-slide"><YouTubeEmbed video={v} fullWidth/></div>)}
+      {images.map(v => <div class="swiper-slide"><Picture alt="" src={v} formats={["avif", "webp"]}/></div>)}
     </Swiper>
   </Section>
 

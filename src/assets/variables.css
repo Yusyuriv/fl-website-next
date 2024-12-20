@@ -1,7 +1,8 @@
 :root {
     --text: #000;
-    --muted-text: #000;
+    --muted-text: #888888;
     --bg: #f7fbff;
+    --bg-hover: #edf2f5;
     --link: var(--text);
     --sep: #cecece;
     --card: #fff;
@@ -29,6 +30,7 @@
     --text: #c9d1d9;
     --muted-text: #797979;
     --bg: #0d1117;
+    --bg-hover: #10151c;
     --link: var(--text);
     --sep: #0f1115;
     --card: #161b22;

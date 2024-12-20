@@ -1,11 +1,12 @@
 ---
-import MaxWidthContainer from "@/components/MaxWidthContainer.astro";
+import MaxWidthContainer from "./MaxWidthContainer.astro";
 
 interface Props {
   padding?: number;
   even?: boolean;
   backgroundColor?: string;
   class?: string;
+  containerClass?: string;
 }
 
 const {
@@ -13,11 +14,12 @@ const {
   even = false,
   backgroundColor = "transparent",
   class: className = "",
+  containerClass = "",
   ...rest
 } = Astro.props;
 ---
 <section class:list={["section", className, {even, "with-bg-color": !!backgroundColor}]} {...rest}>
-  <MaxWidthContainer>
+  <MaxWidthContainer class={containerClass} {...rest}>
     <slot/>
   </MaxWidthContainer>
 </section>

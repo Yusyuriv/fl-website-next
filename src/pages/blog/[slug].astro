@@ -1,17 +1,77 @@
 ---
-import {getCollection, getEntry} from "astro:content";
+import {getCollection, getEntry, render} from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Section from "@/components/Section.astro";
+import {formatDate} from "@/utils";
 
 export async function getStaticPaths() {
   const allBlogPosts = await getCollection("blog");
   return allBlogPosts.map(v => ({
     params: {
-      slug: v.data.slug
-    }
+      slug: v.data.slug,
+    },
   }));
 }
 
-const { slug } = Astro.params;
+const {slug} = Astro.params;
 
 const blog = await getEntry("blog", slug);
+const title = `${blog.data.title} | Flow Launcher`;
+const {Content} = await render(blog);
 ---
-{blog.data.title}
+<Layout {title} description={blog.data.summary}>
+  <Section padding="0" containerClass="blog-header">
+    <h1>{blog.data.title}</h1>
+    <div class="post-data">
+      <span class="muted">by</span>
+      {blog.data.author}
+      <span class="muted">on</span>
+      <time datetime={blog.data.date}>{formatDate(blog.data.date)}</time>
+    </div>
+  </Section>
+  <Section even padding="18" class="blog-content">
+    <Content />
+  </Section>
+</Layout>
+
+<style is:global>
+.blog-content h1:has(+ *),
+.blog-content h2:has(+ *),
+.blog-content h3:has(+ *),
+.blog-content h4:has(+ *),
+.blog-content h5:has(+ *),
+.blog-content h6:has(+ *) {
+    margin-bottom: 0.5em;
+}
+
+.blog-content p:has(+ *) {
+    margin-bottom: 2em;
+}
+
+.blog-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+</style>
+
+<style>
+.post-data {
+    margin: 16px 0 0;
+    font-size: 14px;
+}
+
+.muted {
+    color: var(--muted-text);
+    opacity: 0.9;
+}
+
+.blog-header {
+    padding: 55px 0 55px;
+}
+
+.blog-content {
+    flex-grow: 1;
+}
+</style>

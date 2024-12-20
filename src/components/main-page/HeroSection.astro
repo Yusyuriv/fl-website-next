@@ -4,7 +4,7 @@ import SectionHeader from "@/components/SectionHeader.astro";
 import PrimaryButton from "@/components/PrimaryButton.astro";
 import Sponsor from "@/components/Sponsor.astro";
 import Header from "@/components/Header.astro";
-import Section from "@/components/main-page/Section.astro";
+import Section from "@/components/Section.astro";
 import SectionSubheader from "@/components/SectionSubheader.astro";
 import SmallText from "@/components/SmallText.astro";
 import MainPageData from "@/assets/main-page-data.json";
@@ -123,6 +123,8 @@ html[data-theme="light"] .light {
 </style>
 
 <script>
+import {formatDate} from "@/utils";
+
 document.addEventListener("DOMContentLoaded", () => {
   const latestVersion = document.querySelectorAll(".latest-version");
 
@@ -131,11 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(v => {
       const date = new Date(v.published_at);
       const version = v.tag_name;
-      const formattedDate = new Intl.DateTimeFormat("en-US", {
-        year: "numeric",
-        month: "short",
-        day: "numeric",
-      }).format(date);
+      const formattedDate = formatDate(date);
 
       latestVersion.forEach(el => {
         el.textContent = `${version} - ${formattedDate}`;

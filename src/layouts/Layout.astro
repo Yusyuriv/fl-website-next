@@ -1,4 +1,6 @@
 ---
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
 interface Props {
 	title?: string;
 	description?: string;
@@ -14,6 +16,17 @@ const {
 <!doctype html>
 <html lang="en" class="no-transition">
 	<head>
+<!--		<script>
+		const storedTheme = localStorage.getItem("theme");
+		const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+
+		if (storedTheme) {
+			document.documentElement.setAttribute("data-theme", storedTheme);
+		} else {
+			document.documentElement.setAttribute("data-theme", prefersDark.matches ? "dark" : "light");
+		}
+		</script>-->
+
 		<!-- Meta -->
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -49,7 +62,11 @@ const {
 		<meta property="twitter:image" content={image}/>
 	</head>
 	<body>
-		<slot />
+		<Header />
+		<main class="main-content">
+			<slot />
+		</main>
+		<Footer />
 	</body>
 </html>
 
@@ -58,10 +75,18 @@ const {
 @import '../assets/variables.css';
 @import '../assets/utils.css';
 
+
 html {
 	background-color: var(--bg);
 	color: var(--text);
 	font-family: var(--font-family), sans-serif;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	min-height: 100dvh;
 }
 
 h1 {
@@ -86,11 +111,18 @@ p {
 
 a {
 	color: var(--link);
-	text-decoration: none;
 }
 
 button {
 	border: none;
 	font-family: var(--font-family), sans-serif;
+}
+</style>
+
+<style>
+.main-content {
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
 }
 </style>

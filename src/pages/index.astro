@@ -1,7 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
-import Section from "@/components/main-page/Section.astro";
+import Section from "../components/Section.astro";
 import PrimaryButton from "@/components/PrimaryButton.astro";
 import SectionHeader from "@/components/SectionHeader.astro";
 import SectionSubheader from "@/components/SectionSubheader.astro";
@@ -17,12 +17,10 @@ import CustomizationsSection from "@/components/main-page/CustomizationsSection.
 import PluginsSection from "../components/main-page/PluginsSection.astro";
 ---
 <Layout>
-  <Header/>
   <HeroSection/>
   <StartAnywhereSection/>
   <FeaturesSection/>
   <CustomizationsSection/>
   <PluginsSection/>
   <SponsorSection/>
-  <Footer/>
 </Layout>

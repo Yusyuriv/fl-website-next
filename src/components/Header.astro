@@ -4,23 +4,23 @@ import { Picture } from 'astro:assets';
 import Logo from '@/assets/logo.png';
 import PrimaryButton from '@/components/PrimaryButton.astro';
 import MaxWidthContainer from "@/components/MaxWidthContainer.astro";
+import Section from '@/components/Section.astro';
 ---
 
-<header class="header">
-  <MaxWidthContainer class="inner">
-    <a href="/">
-      <Picture src={Logo} formats={['avif', 'webp']} densities={[1, 1.5, 2]} alt="Flow Launcher logo" height="18"/>
-    </a>
+<Section class="header" containerClass="inner" padding="0">
+  <a href="/">
+    <Picture src={Logo} formats={['avif', 'webp']} densities={[1, 1.5, 2]} alt="Flow Launcher logo" height="18"/>
+  </a>
 
-    <nav class="nav">
-      <a href="/plugins">Plugins</a>
-      <a href="https://www.flowlauncher.com/docs/">Docs</a>
-      <a href="https://github.com/Flow-Launcher/Flow.Launcher">GitHub</a>
-      <PrimaryButton id="download-button">Download</PrimaryButton>
-      <ThemeToggle />
-    </nav>
-  </MaxWidthContainer>
-</header>
+  <nav class="nav">
+    <a href="/plugins">Plugins</a>
+    <a href="https://www.flowlauncher.com/docs/">Docs</a>
+    <a href="/blog">Blog</a>
+    <a href="https://github.com/Flow-Launcher/Flow.Launcher">GitHub</a>
+    <PrimaryButton id="download-button">Download</PrimaryButton>
+    <ThemeToggle />
+  </nav>
+</Section>
 
 <style>
 .header {
@@ -51,6 +51,7 @@ import MaxWidthContainer from "@/components/MaxWidthContainer.astro";
     border-bottom: 2px solid transparent;
     transition: border-bottom-color 0.2s;
     font-size: 18px;
+    text-decoration: none;
 }
 
 .nav a:hover {

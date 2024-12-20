@@ -1,0 +1,54 @@
+---
+import {Picture} from "astro:assets";
+import PrimaryButton from "@/components/PrimaryButton.astro";
+import {formatDate} from "@/utils";
+interface Props {
+  title: string;
+  summary: string;
+  date: string;
+  slug: string;
+}
+
+const {title, summary, date, slug} = Astro.props;
+const formattedDate = formatDate(date);
+const path = `/blog/${slug}`;
+---
+<a class="blog-post" href={path}>
+  <h1 class="post-title" href={path}>{title}</h1>
+  <p class="post-summary">{summary}</p>
+  <time class="post-date" datetime={date}>{formattedDate}</time>
+</a>
+
+<style>
+.blog-post {
+    border-radius: 8px;
+    background-color: var(--bg);
+    border: 1px solid var(--bg);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.blog-post:hover {
+    background-color: var(--bg-hover);
+}
+
+.post-title {
+    font-size: 32px;
+    font-weight: 500;
+    color: var(--text);
+}
+
+.post-date {
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--muted-text);
+}
+
+.read-post {
+    align-self: flex-start;
+}
+</style>

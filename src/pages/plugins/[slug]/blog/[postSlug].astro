@@ -1,0 +1,89 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import {GET} from "@/pages/plugins.json";
+import {ExtendedPlugin} from "@/pages/plugins/_types";
+import {getCollection, getEntry, render} from "astro:content";
+import SectionSubheader from "@/components/SectionSubheader.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import Section from "@/components/Section.astro";
+import {formatDate} from "@/utils";
+
+interface Props {
+  plugin: ExtendedPlugin;
+  post: any;
+}
+
+export async function getStaticPaths() {
+  const plugins = await GET().then(v => v.json()) as ExtendedPlugin[];
+  const data = await getCollection("pluginBlog");
+  return data.map((v: any) => {
+    const plugin = plugins.find(p => p.id === v.data.id);
+    return {
+      params: {
+        slug: plugin.slug,
+        postSlug: v.data.slug,
+      },
+      props: {
+        plugin,
+        post: v,
+      },
+    };
+  });
+}
+
+const {plugin, post} = Astro.props;
+const {Content} = await render(post);
+---
+<Layout>
+  <Section>
+    <div class="header">
+      <img src={plugin.icon} alt="" class="plugin-icon"/>
+
+      <div class="title">
+        <SectionHeader>{plugin.name} Plugin Blog</SectionHeader>
+        <SectionSubheader>{post.data.title}</SectionSubheader>
+        <div class="author-date">
+          <span class="muted">by</span>
+          {post.data.author}
+          <span class="muted">on</span>
+          <time datetime={post.data.date}>{formatDate(post.data.date)}</time>
+        </div>
+      </div>
+    </div>
+  </Section>
+  <Section even padding="18" class="blog-content">
+    <Content />
+  </Section>
+</Layout>
+
+<style>
+.header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.plugin-icon {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.author-date {
+    font-size: 14px;
+}
+
+.muted {
+    opacity: 0.5;
+}
+
+.blog-content {
+    flex-grow: 1;
+}
+</style>

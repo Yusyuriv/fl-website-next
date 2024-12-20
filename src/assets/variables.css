@@ -7,6 +7,7 @@
     --sep: #cecece;
     --card: #fff;
     --bg-alternate: #fff;
+    --bg-alternate-hover: #edf2f5;
     --footer-bg: #f9fafb;
     --footer-text: #000;
     --modal: #fff;
@@ -35,6 +36,7 @@
     --sep: #0f1115;
     --card: #161b22;
     --bg-alternate: #161b22;
+    --bg-alternate-hover: #1b2029;
     --footer-bg: #000;
     --footer-text: #aeaeae;
     --modal: #2c2c2c;

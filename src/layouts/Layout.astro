@@ -117,6 +117,52 @@ button {
 	border: none;
 	font-family: var(--font-family), sans-serif;
 }
+
+.blog-content {
+	line-height: 1.25;
+}
+
+.blog-content h1:has(+ *),
+.blog-content h2:has(+ *),
+.blog-content h3:has(+ *),
+.blog-content h4:has(+ *),
+.blog-content h5:has(+ *),
+.blog-content h6:has(+ *) {
+	margin-bottom: 0.5em;
+}
+
+.blog-content p:has(+ *),
+.blog-content ul:has(+ *),
+.blog-content ol:has(+ *),
+.blog-content pre:has(+ *) {
+	margin-bottom: 1em;
+}
+
+.blog-content * + pre {
+	margin-top: 1em;
+}
+
+.blog-content pre {
+	padding: 16px;
+}
+
+.blog-content pre:last-child {
+	margin-bottom: 1em;
+}
+
+.blog-content img {
+	max-width: 100%;
+	max-height: 50vh;
+	height: auto;
+	display: block;
+	object-fit: contain;
+}
+
+.blog-content ul,
+.blog-content ol {
+	padding-left: revert;
+	list-style: revert;
+}
 </style>
 
 <style>

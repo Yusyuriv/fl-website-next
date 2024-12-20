@@ -1,13 +1,12 @@
 ---
 import {Picture, getImage} from "astro:assets";
 import SectionHeader from "@/components/SectionHeader.astro";
-import PrimaryButton from "@/components/PrimaryButton.astro";
+import Button from "@/components/Button.astro";
 import Sponsor from "@/components/Sponsor.astro";
 import Header from "@/components/Header.astro";
 import Section from "@/components/Section.astro";
 import SectionSubheader from "@/components/SectionSubheader.astro";
 import SmallText from "@/components/SmallText.astro";
-import MainPageData from "@/assets/main-page-data.json";
 import ScreenshotDark from "@/assets/main-page/dark_screenshot.png";
 import ScreenshotLight from "@/assets/main-page/light_screenshot.png";
 import ScreenshotBackground from "@/assets/main-page/screenshot_bg.png";
@@ -44,10 +43,10 @@ const sponsors = [
     <div class="left-column">
       <SectionHeader bigger>Flow Launcher</SectionHeader>
       <SectionSubheader>Quick File Search & App Launcher for Windows</SectionSubheader>
-      <PrimaryButton shape="rounded">
+      <Button shape="rounded">
         <div>⬇️ Download</div>
         <div class="latest-version" slot="second-line"></div>
-      </PrimaryButton>
+      </Button>
     </div>
     <div class="screenshot-container">
       <Picture src={ScreenshotDark} alt="Flow Launcher screenshot" formats={["avif", "webp"]} class="dark screenshot"/>

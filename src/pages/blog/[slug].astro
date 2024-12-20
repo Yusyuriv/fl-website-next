@@ -34,28 +34,6 @@ const {Content} = await render(blog);
   </Section>
 </Layout>
 
-<style is:global>
-.blog-content h1:has(+ *),
-.blog-content h2:has(+ *),
-.blog-content h3:has(+ *),
-.blog-content h4:has(+ *),
-.blog-content h5:has(+ *),
-.blog-content h6:has(+ *) {
-    margin-bottom: 0.5em;
-}
-
-.blog-content p:has(+ *) {
-    margin-bottom: 2em;
-}
-
-.blog-content img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    object-fit: contain;
-}
-</style>
-
 <style>
 .post-data {
     margin: 16px 0 0;

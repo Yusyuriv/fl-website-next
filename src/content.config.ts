@@ -1,8 +1,10 @@
 import { defineCollection, z } from "astro:content";
 import { glob } from 'astro/loaders';
 
+const DATE_NAME_PATTERN = "**/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]_*";
+
 const blog = defineCollection({
-  loader: glob({ pattern: "**/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]_*.md", base: "./src/data/blog" }),
+  loader: glob({ pattern: `${DATE_NAME_PATTERN}.md`, base: "./src/data/blog" }),
   schema: z.object({
     slug: z.string().min(1),
     title: z.string().min(3),
@@ -14,6 +16,32 @@ const blog = defineCollection({
   }).strict(),
 });
 
+const plugins = defineCollection({
+  loader: glob({ pattern: ["*.md", "*/*.md"], base: "./src/data/plugins" }),
+  schema: z.object({
+    id: z.string().min(10),
+    slug: z.string().min(1),
+    carousel: z.array(z.string()).optional(),
+    tags: z.array(z.string()).optional(),
+    draft: z.boolean().optional(),
+  }).strict(),
+});
+
+const pluginBlog = defineCollection({
+  loader: glob({ pattern: [`*/blog/${DATE_NAME_PATTERN}.md`, `*/blog/${DATE_NAME_PATTERN}/*.md`], base: "./src/data/plugins" }),
+  schema: z.object({
+    id: z.string().min(10),
+    slug: z.string().min(1),
+    title: z.string().min(3),
+    summary: z.string().min(5),
+    date: z.date(),
+    author: z.string(),
+    draft: z.boolean().optional(),
+  }).strict(),
+});
+
 export const collections = {
   blog,
+  plugins,
+  pluginBlog,
 };

@@ -1,17 +1,18 @@
 ---
 import {Picture} from "astro:assets";
-import PrimaryButton from "@/components/PrimaryButton.astro";
+import Button from "@/components/Button.astro";
 import {formatDate} from "@/utils";
 interface Props {
   title: string;
   summary: string;
   date: string;
   slug: string;
+  pluginSlug?: string;
 }
 
-const {title, summary, date, slug} = Astro.props;
+const {title, summary, date, slug, pluginSlug} = Astro.props;
 const formattedDate = formatDate(date);
-const path = `/blog/${slug}`;
+const path = pluginSlug ? `/plugins/${pluginSlug}/blog/${slug}` : `/blog/${slug}`;
 ---
 <a class="blog-post" href={path}>
   <h1 class="post-title" href={path}>{title}</h1>

@@ -1,0 +1,82 @@
+---
+import {GET} from "@/pages/plugins.json";
+import Plugin from "@/components/plugins/Plugin.astro";
+import Layout from "@/layouts/Layout.astro";
+import Section from "@/components/Section.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import SectionSubheader from "@/components/SectionSubheader.astro";
+import {getCollection, getEntry} from "astro:content";
+import BlogArticleCard from "@/components/blog/BlogArticleCard.astro";
+
+export {getStaticPaths} from "@/pages/plugins/[slug]/_static-paths";
+
+const {slug} = Astro.params;
+const {plugin} = Astro.props;
+const pluginBlogs = await getCollection("pluginBlog", v => v.data.id === plugin.id);
+---
+
+<Layout
+  title="Flow Launcher Plugins"
+  description="Explore and discover a variety of plugins for Flow Launcher, enhancing your productivity and customizing your experience."
+>
+  <Section>
+    <div class="header">
+      <img src={plugin.icon} alt="" class="plugin-icon"/>
+
+      <div class="title">
+        <SectionHeader>{plugin.name} Plugin Blog</SectionHeader>
+        <SectionSubheader>{plugin.description}</SectionSubheader>
+      </div>
+    </div>
+  </Section>
+
+  <Section even class="blog-grid-container">
+    <div class="blog-grid">
+      {pluginBlogs.map(v =>
+        <BlogArticleCard
+          date={v.data.date}
+          slug={v.data.slug}
+          summary={v.data.summary}
+          title={v.data.title}
+          pluginSlug={plugin.slug}
+        />)}
+    </div>
+  </Section>
+</Layout>
+
+<style>
+.plugin-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 24px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.plugin-icon {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.blog-grid-container {
+    flex: 1;
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+</style>

@@ -1,16 +1,16 @@
 ---
 import Section from "@/components/Section.astro";
-import SectionHeader from "../SectionHeader.astro";
-import SectionSubheader from "../SectionSubheader.astro";
-import PrimaryButton from "../PrimaryButton.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import SectionSubheader from "@/components/SectionSubheader.astro";
+import Button from "@/components/Button.astro";
 ---
-<Section even padding="130" class="sponsor-section">
+<Section padding="130" class="sponsor-section">
   <SectionHeader>Flow Launcher is a free and open-source software</SectionHeader>
   <SectionSubheader>Support this project.</SectionSubheader>
-  <PrimaryButton variant="black" href="https://github.com/sponsors/Flow-Launcher?frequency=one-time"
+  <Button variant="black" href="https://github.com/sponsors/Flow-Launcher?frequency=one-time"
                  class="sponsor-button">
     Become A Sponsor
-  </PrimaryButton>
+  </Button>
 </Section>
 
 <style>

@@ -1,0 +1,85 @@
+---
+import Tag from "@/components/plugins/Tag.astro";
+import type {ExtendedPlugin} from "@/pages/plugins/_types";
+
+interface Props {
+  plugin: ExtendedPlugin;
+}
+
+const {plugin} = Astro.props;
+const href = `/plugins/${plugin.slug}`;
+---
+
+<a class="plugin" {href}>
+  <div class="header">
+    <img alt="" src={plugin.icon} class="icon" loading="lazy"/>
+    <div class="title">
+      <div class="name">{plugin.name}</div>
+      <div class="author">by {plugin.author}</div>
+    </div>
+  </div>
+
+  <p class="description">
+    {plugin.description}
+  </p>
+
+  {plugin.tags.length > 0 ? (
+    <div class="tags">
+      {plugin.tags.sort().map(tag => <Tag>{tag}</Tag>)}
+    </div>
+  ) : null}
+</a>
+
+<style>
+.plugin {
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    background-color: var(--bg-alternate);
+    border: 1px solid var(--sep);
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+.plugin:hover {
+    background-color: var(--bg-alternate-hover);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px;
+    border-bottom: 1px solid var(--sep);
+}
+
+.icon {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.name {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.author {
+    font-size: 14px;
+}
+
+.description {
+    padding: 12px 16px;
+}
+
+.tags {
+    border-top: 1px solid var(--sep);
+    padding: 12px 16px;
+}
+</style>

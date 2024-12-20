@@ -1,13 +1,18 @@
 ---
 interface Props {
   class?: string;
+  noLoop?: boolean;
 }
 
-const {class: className = "", ...rest} = Astro.props;
+const {
+  class: className = "",
+  noLoop = false,
+  ...rest
+} = Astro.props;
 ---
 
 <div class:list={["swiper-container", className]} {...rest}>
-  <div class="swiper">
+  <div class="swiper" data-no-loop={noLoop}>
     <div class="swiper-wrapper">
       <slot/>
     </div>
@@ -23,7 +28,6 @@ const {class: className = "", ...rest} = Astro.props;
 .swiper-container {
     position: relative;
     padding: 10px 50px 40px;
-    --swiper-navigation-top-offset: calc(50% - 40px);
 }
 
 .swiper {
@@ -50,7 +54,7 @@ const swipers = document.querySelectorAll(`.swiper`);
 
 for (const swiper of swipers) {
   new Swiper(swiper, {
-    loop: true,
+    loop: swiper.dataset.noLoop !== "true",
 
     grabCursor: true,
 

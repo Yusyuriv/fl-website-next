@@ -1,5 +1,6 @@
 import { defineCollection, z } from "astro:content";
 import { glob } from 'astro/loaders';
+import { TAGS } from "@/constants";
 
 const DATE_NAME_PATTERN = "**/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]_*";
 
@@ -23,7 +24,7 @@ const plugins = defineCollection({
     slug: z.string().min(1),
     videos: z.array(z.string()).optional(),
     images: z.array(image()).optional(),
-    tags: z.array(z.string()).optional(),
+    tags: z.array(z.enum(TAGS)).optional(),
     draft: z.boolean().optional(),
   }).strict(),
 });

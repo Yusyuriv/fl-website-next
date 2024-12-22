@@ -5,6 +5,7 @@
     --bg-hover: #edf2f5;
     --link: var(--text);
     --sep: #cecece;
+    --card-sep: #cecece;
     --card: #fff;
     --bg-alternate: #fff;
     --bg-alternate-hover: #edf2f5;
@@ -34,6 +35,7 @@
     --bg-hover: #10151c;
     --link: var(--text);
     --sep: #0f1115;
+    --card-sep: #242933;
     --card: #161b22;
     --bg-alternate: #161b22;
     --bg-alternate-hover: #1b2029;

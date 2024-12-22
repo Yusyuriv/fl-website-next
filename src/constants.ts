@@ -1,10 +1,11 @@
 export const TAGS = [
+  "Automation",
   "Development Tools",
-  "Utilities",
   "Documentation",
-  "Programming",
-  "System",
-  "Search",
-  "Multimedia",
   "Gaming",
+  "Multimedia",
+  "Programming",
+  "Search",
+  "System",
+  "Utilities",
 ] as const;

@@ -5,6 +5,14 @@ import Logo from '@/assets/logo.png';
 import Button from '@/components/Button.astro';
 import MaxWidthContainer from "@/components/MaxWidthContainer.astro";
 import Section from '@/components/Section.astro';
+
+const navLinks = [
+  { href: '/plugins', text: 'Plugins' },
+  { href: 'https://www.flowlauncher.com/docs/', text: 'Docs' },
+  // Disable the blog for now. Maybe sometime in the future, when we have more time.
+  // { href: '/blog', text: 'Blog' },
+  { href: 'https://github.com/Flow-Launcher/Flow.Launcher', text: 'GitHub' },
+];
 ---
 
 <Section class="header" containerClass="inner" padding="0">
@@ -13,10 +21,7 @@ import Section from '@/components/Section.astro';
   </a>
 
   <nav class="nav">
-    <a href="/plugins">Plugins</a>
-    <a href="https://www.flowlauncher.com/docs/">Docs</a>
-    <a href="/blog">Blog</a>
-    <a href="https://github.com/Flow-Launcher/Flow.Launcher">GitHub</a>
+    {navLinks.map(navLink => <a href={navLink.href}>{navLink.text}</a>)}
     <Button id="download-button">Download</Button>
     <ThemeToggle />
   </nav>

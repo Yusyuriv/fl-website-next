@@ -67,13 +67,21 @@ const viewAllBlogPostsLink = `/plugins/${plugin.slug}/blog`;
     </div>
 
     <Swiper noLoop class="swiper-outer">
-      {videos.map(v => <div class="swiper-slide"><YouTubeEmbed video={v} fullWidth/></div>)}
-      {images.map(v => <div class="swiper-slide"><Picture alt="" src={v} formats={["avif", "webp"]}/></div>)}
+      {videos.map(v => <div class="swiper-slide">
+        <a href={v} data-fslightbox="plugin-carousel">
+          <YouTubeEmbed video={v} fullWidth imageOnly />
+        </a>
+      </div>)}
+      {images.map(v => <div class="swiper-slide">
+        <a data-fslightbox="plugin-carousel" href={v.src}>
+          <Picture alt="" src={v} formats={["avif", "webp"]}/>
+        </a>
+      </div>)}
     </Swiper>
   </Section>
 
-  <Section even containerClass="blog-content blog-grid">
-    <div>
+  <Section even containerClass="blog-grid">
+    <div class="blog-content">
       {Content ? <Content/> : plugin.description}
     </div>
 
@@ -158,3 +166,10 @@ const viewAllBlogPostsLink = `/plugins/${plugin.slug}/blog`;
     text-align: right;
 }
 </style>
+
+<script>
+import 'fslightbox';
+import {addLightboxToBlogPostImages} from "@/utils";
+
+addLightboxToBlogPostImages();
+</script>

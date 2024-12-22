@@ -1,10 +1,11 @@
 ---
 interface Props {
   video: string;
+  imageOnly?: boolean;
   fullWidth?: boolean;
 }
 
-const { video, fullWidth } = Astro.props;
+const {video, imageOnly, fullWidth} = Astro.props;
 
 let id = video;
 if (video.startsWith("http:") || video.startsWith("https:")) {
@@ -15,20 +16,36 @@ if (video.startsWith("http:") || video.startsWith("https:")) {
   id = url.pathname.slice(1);
 }
 
-const src = `https://www.youtube.com/embed/${id}`;
+const src = !imageOnly ? `https://www.youtube.com/embed/${id}` : `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
 ---
-<iframe
+{imageOnly ? <div class="yt-thumbnail-container">
+  <img src={src} alt="" class:list={{fullWidth}}/>
+  <div class="yt-thumbnail-play-icon-container" style="">▶️</div>
+</div> : <iframe
   {src}
   class:list={{fullWidth}}
   frameborder="0"
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
   referrerpolicy="strict-origin-when-cross-origin"
   allowfullscreen
-></iframe>
+></iframe>}
 
 <style>
+.yt-thumbnail-container {
+    position: relative;
+}
+
+.yt-thumbnail-play-icon-container {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-size: 48px;
+}
+
 .fullWidth {
     width: 100%;
     aspect-ratio: 16 / 9;
+    object-fit: contain;
 }
 </style>

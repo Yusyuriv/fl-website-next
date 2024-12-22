@@ -7,8 +7,14 @@ import SectionHeader from "@/components/SectionHeader.astro";
 import SectionSubheader from "@/components/SectionSubheader.astro";
 import LabelValue from "@/components/plugins/LabelValue.astro";
 import {TAGS} from "@/constants";
+import featuredPluginIds from "@/data/featured-plugins.yml";
+import builtInPluginIds from "@/data/built-in-plugins.yml";
+import type { ExtendedPlugin } from "./_types";
 
-const plugins = await GET().then(v => v.json());
+const plugins = await GET().then(v => v.json()) as ExtendedPlugin[];
+const featured = plugins
+  .filter(v => featuredPluginIds.includes(v.id))
+  .sort((a, b) => featuredPluginIds.indexOf(a.id) - featuredPluginIds.indexOf(b.id));
 ---
 
 <Layout
@@ -18,6 +24,15 @@ const plugins = await GET().then(v => v.json());
   <Section>
     <SectionHeader>Plugins</SectionHeader>
     <SectionSubheader>Extend Flow Launcher's functionality</SectionSubheader>
+  </Section>
+  <Section even>
+    <SectionHeader>Featured plugins</SectionHeader>
+    <div class="plugin-grid">
+      {featured.map(v => <Plugin plugin={v}/>)}
+    </div>
+  </Section>
+  <Section>
+    <SectionHeader>All plugins</SectionHeader>
     <div class="controls">
       <LabelValue label="Search">
         <input type="text" aria-label="Search" id="search" />
@@ -30,7 +45,7 @@ const plugins = await GET().then(v => v.json());
         </select>
       </LabelValue>
     </div>
-    <div class="plugin-grid">
+    <div id="store" class="plugin-grid">
       {plugins.map(v => <Plugin plugin={v}/>)}
     </div>
     <SectionSubheader>
@@ -70,11 +85,11 @@ const plugins = await GET().then(v => v.json());
 <script>
 import {TAGS} from "@/constants";
 
-const searchInput: HTMLInputElement = document.querySelector("#search");
-const tagsSelect: HTMLSelectElement = document.querySelector("#tags");
-const notFound: HTMLElement = document.querySelector("#not-found");
+const searchInput = document.querySelector("#search") as HTMLInputElement;
+const tagsSelect = document.querySelector("#tags") as HTMLSelectElement;
+const notFound = document.querySelector("#not-found") as HTMLElement;
 
-const plugins = document.querySelectorAll(".plugin");
+const plugins = document.querySelectorAll("#store > .plugin") as NodeListOf<HTMLElement>;
 
 searchInput.addEventListener("input", filterPlugins);
 tagsSelect.addEventListener("change", filterPlugins);
@@ -82,7 +97,7 @@ tagsSelect.addEventListener("change", filterPlugins);
 const url = new URL(window.location.href);
 
 const searchParam = url.searchParams.get("search") ?? "";
-let tagsParam = url.searchParams.get("tags") ?? "";
+let tagsParam: any = url.searchParams.get("tags") ?? "";
 
 if (!TAGS.includes(tagsParam)) {
   tagsParam = "";
@@ -115,9 +130,9 @@ function filterPlugins(): void {
   history.replaceState(null, "", url);
 
   for (const plugin of plugins) {
-    const title = plugin.querySelector(".name").textContent.toLowerCase();
-    const author = plugin.querySelector(".author").textContent.toLowerCase();
-    const description = plugin.querySelector(".description").textContent.toLowerCase();
+    const title = plugin.querySelector(".name")!.textContent!.toLowerCase();
+    const author = plugin.querySelector(".author")!.textContent!.toLowerCase();
+    const description = plugin.querySelector(".description")!.textContent!.toLowerCase();
     const tags = plugin.querySelector(".tags")?.textContent;
 
     const found = (

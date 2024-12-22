@@ -14,7 +14,10 @@ const href = `/plugins/${plugin.slug}`;
   <div class="header">
     <img alt="" src={plugin.icon} class="icon" loading="lazy"/>
     <div class="title">
-      <div class="name">{plugin.name}</div>
+      <div class="name">
+        {plugin.name}
+        {plugin.isBuiltIn ? <span class="built-in" title="A built-in plugin maintained by the core team">⭐</span> : null}
+      </div>
       <div class="author">by {plugin.author}</div>
     </div>
   </div>
@@ -66,8 +69,16 @@ const href = `/plugins/${plugin.slug}`;
 }
 
 .name {
+    display: flex;
+    align-items: center;
+    gap: 4px;
     font-size: 18px;
     font-weight: 500;
+}
+
+.built-in {
+    font-size: 12px;
+    cursor: default;
 }
 
 .author {

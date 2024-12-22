@@ -11,4 +11,5 @@ export interface ExtendedPlugin {
   author: string;
   version: string;
   language: string;
-};
+  isBuiltIn: boolean;
+}

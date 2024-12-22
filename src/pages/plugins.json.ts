@@ -1,5 +1,6 @@
 import {getCollection} from "astro:content";
 import {slugify} from "@/utils.ts";
+import builtInPluginIds from "@/data/built-in-plugins.yml";
 
 interface FP {
   ID: string;
@@ -36,6 +37,7 @@ export async function GET() {
       author: v.Author,
       version: v.Version,
       language: v.Language,
+      isBuiltIn: builtInPluginIds.includes(v.ID),
       ...(plugin?.data ?? {}),
     }
   })

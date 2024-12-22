@@ -10,6 +10,7 @@ import SmallText from "@/components/SmallText.astro";
 import ScreenshotDark from "@/assets/main-page/dark_screenshot.png";
 import ScreenshotLight from "@/assets/main-page/light_screenshot.png";
 import ScreenshotBackground from "@/assets/main-page/screenshot_bg.png";
+import {formatDate} from "../../utils";
 
 const screenshotBackground = await getImage({
   src: ScreenshotBackground,
@@ -36,6 +37,14 @@ const sponsors = [
     label: "TheBestPessimist"
   }
 ];
+
+const latestVersion = await fetch("https://api.github.com/repos/Flow-Launcher/Flow.Launcher/releases/latest").then(response => response.json());
+
+const date = new Date(latestVersion.published_at);
+const version = latestVersion.tag_name;
+const formattedDate = formatDate(date);
+
+const formattedDateWithVersion = `${version} - ${formattedDate}`;
 ---
 
 <Section>
@@ -45,7 +54,7 @@ const sponsors = [
       <SectionSubheader>Quick File Search & App Launcher for Windows</SectionSubheader>
       <Button shape="rounded">
         <div>⬇️ Download</div>
-        <div class="latest-version" slot="second-line"></div>
+        <div class="latest-version" slot="second-line">{formattedDateWithVersion}</div>
       </Button>
     </div>
     <div class="screenshot-container">
@@ -120,23 +129,3 @@ html[data-theme="light"] .light {
     flex-wrap: wrap;
 }
 </style>
-
-<script>
-import {formatDate} from "@/utils";
-
-document.addEventListener("DOMContentLoaded", () => {
-  const latestVersion = document.querySelectorAll(".latest-version");
-
-  fetch("https://api.github.com/repos/Flow-Launcher/Flow.Launcher/releases/latest")
-    .then(response => response.json())
-    .then(v => {
-      const date = new Date(v.published_at);
-      const version = v.tag_name;
-      const formattedDate = formatDate(date);
-
-      latestVersion.forEach(el => {
-        el.textContent = `${version} - ${formattedDate}`;
-      });
-    });
-});
-</script>

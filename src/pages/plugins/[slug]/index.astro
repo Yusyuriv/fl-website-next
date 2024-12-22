@@ -52,7 +52,6 @@ const videos = pluginContent?.data?.videos ?? [];
 const images = pluginContent?.data?.images ?? [];
 
 const pluginBlog = await getCollection("pluginBlog", v => v.data.id === plugin.id);
-const hasMoreThanTwoPosts = pluginBlog.length > 2;
 const latestPosts = pluginBlog.slice(0, 2).map(v => v.data);
 const viewAllBlogPostsLink = `/plugins/${plugin.slug}/blog`;
 ---
@@ -75,8 +74,7 @@ const viewAllBlogPostsLink = `/plugins/${plugin.slug}/blog`;
 
   <Section even containerClass="blog-content blog-grid">
     <div>
-      {Content ?
-        <Content/> : plugin.description}
+      {Content ? <Content/> : plugin.description}
     </div>
 
     <aside class="plugin-info">
@@ -86,9 +84,11 @@ const viewAllBlogPostsLink = `/plugins/${plugin.slug}/blog`;
       <LabelValue label="Source Code">
         <a href={plugin.sourceCodeUrl}>{sourceCodeLabel}</a>
       </LabelValue>
-      <LabelValue label="Categories">
-        <Tags tags={plugin.tags}/>
-      </LabelValue>
+      {plugin.tags?.length > 0 ?
+        <LabelValue label="Categories">
+          <Tags tags={plugin.tags}/>
+        </LabelValue>
+        : null}
       {latestPosts.length > 0 ?
         <LabelValue label="Latest blog posts">
           {latestPosts.map(post => (
@@ -100,9 +100,7 @@ const viewAllBlogPostsLink = `/plugins/${plugin.slug}/blog`;
               pluginSlug={plugin.slug}
             />
           ))}
-          {!hasMoreThanTwoPosts ?
-            <a href={viewAllBlogPostsLink} class="view-all-blog-posts">View all blog posts</a>
-            : null}
+          <a href={viewAllBlogPostsLink} class="view-all-blog-posts">View all blog posts</a>
         </LabelValue>
         : null}
     </aside>

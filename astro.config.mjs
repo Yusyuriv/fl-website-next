@@ -1,12 +1,14 @@
 // @ts-check
 import {defineConfig} from 'astro/config';
 import yaml from '@rollup/plugin-yaml';
-import {getBaseUrl} from "@/utils";
+import process from "node:process";
+
+const baseUrl = "/" + (process.env.WEBSITE_BASE?.split('/')?.slice(1)?.join('/') ?? "");
 
 // https://astro.build/config
 export default defineConfig({
   site: process.env.WEBSITE_HOST,
-  base: getBaseUrl(),
+  base: baseUrl,
 
   vite: {
     resolve: {

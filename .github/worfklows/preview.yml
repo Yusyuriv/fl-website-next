@@ -13,8 +13,8 @@ permissions:
   id-token: write
 
 env:
-  - WEBSITE_HOST: https://${{ github.repository_owner }}.github.io
-  - WEBSITE_BASE: ${{ github.repository_name }}
+  WEBSITE_HOST: https://${{ github.repository_owner }}.github.io
+  WEBSITE_BASE: ${{ github.repository_name }}
 
 jobs:
   build:

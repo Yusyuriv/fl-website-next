@@ -1,6 +1,8 @@
 ---
+import process from "node:process";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
+
 interface Props {
 	title?: string;
 	description?: string;
@@ -13,7 +15,8 @@ const {
 	image = "/flowlauncher_large.jpg",
 } = Astro.props;
 
-const base = "/" + (process.env.WEBSITE_BASE ?? "");
+declare const a: string | undefined;;
+const base = "/" + (process.env.WEBSITE_BASE?.split('/')?.slice(1)?.join('/') ?? "");
 ---
 <!doctype html>
 <html lang="en" class="no-transition">

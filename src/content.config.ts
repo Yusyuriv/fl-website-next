@@ -17,7 +17,7 @@ const blog = defineCollection({
 });
 
 const plugins = defineCollection({
-  loader: glob({ pattern: ["*.md", "*/*.md"], base: "./src/data/plugins" }),
+  loader: glob({ pattern: ["*/*.md"], base: "./src/data/plugins" }),
   schema: ({ image }) => z.object({
     id: z.string().min(10),
     slug: z.string().min(1),
@@ -29,7 +29,7 @@ const plugins = defineCollection({
 });
 
 const pluginBlog = defineCollection({
-  loader: glob({ pattern: [`*/blog/${DATE_NAME_PATTERN}.md`, `*/blog/${DATE_NAME_PATTERN}/*.md`], base: "./src/data/plugins" }),
+  loader: glob({ pattern: [`*/blog/${DATE_NAME_PATTERN}.md`], base: "./src/data/plugins" }),
   schema: z.object({
     slug: z.string().min(1),
     title: z.string().min(3),

@@ -15,7 +15,7 @@ permissions:
   id-token: write
 
 env:
-  WEBSITE_HOST: ${{ github.repository == 'Flow-Launcher/flowlauncher.github.io' && 'https://www.flowlauncher.com' || 'https://' + github.repository_owner + '.github.io' }}
+  WEBSITE_HOST: ${{ github.repository == 'Flow-Launcher/flowlauncher.github.io' && 'https://www.flowlauncher.com' || format('https://{0}.github.io', github.repository_owner) }}
   WEBSITE_BASE: ${{ github.repository == 'Flow-Launcher/flowlauncher.github.io' && '' || github.repository }}
 
 jobs:

@@ -1,7 +1,7 @@
 // @ts-check
 import {defineConfig} from 'astro/config';
 import yaml from '@rollup/plugin-yaml';
-import {getBaseUrl} from "@/utils.js";
+import {getBaseUrl} from "@/utils";
 
 // https://astro.build/config
 export default defineConfig({

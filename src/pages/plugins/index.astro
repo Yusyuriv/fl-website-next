@@ -15,6 +15,8 @@ const plugins = await GET().then(v => v.json()) as ExtendedPlugin[];
 const featured = plugins
   .filter(v => featuredPluginIds.includes(v.id))
   .sort((a, b) => featuredPluginIds.indexOf(a.id) - featuredPluginIds.indexOf(b.id));
+
+const hasFeaturedPlugins = featured.length > 0;
 ---
 
 <Layout
@@ -25,14 +27,14 @@ const featured = plugins
     <SectionHeader>Plugins</SectionHeader>
     <SectionSubheader>Extend Flow Launcher's functionality</SectionSubheader>
   </Section>
-  <Section even>
+  {hasFeaturedPlugins && <Section even>
     <SectionHeader>Featured plugins</SectionHeader>
     <div class="plugin-grid">
       {featured.map(v => <Plugin plugin={v}/>)}
     </div>
-  </Section>
+  </Section>}
   <Section>
-    <SectionHeader>All plugins</SectionHeader>
+    {hasFeaturedPlugins && <SectionHeader>All plugins</SectionHeader>}
     <div class="controls">
       <LabelValue label="Search">
         <input type="text" aria-label="Search" id="search" />

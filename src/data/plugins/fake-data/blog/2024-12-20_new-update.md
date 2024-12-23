@@ -1,5 +1,4 @@
 ---
-id: 8BE6E623BC294D4684F86A47CA797742
 slug: new-update
 title: New Update
 summary: This is a test post

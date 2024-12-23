@@ -7,6 +7,7 @@ import SectionSubheader from "@/components/SectionSubheader.astro";
 import SectionHeader from "@/components/SectionHeader.astro";
 import Section from "@/components/Section.astro";
 import {formatDate} from "@/utils";
+import path from "node:path";
 
 interface Props {
   plugin: ExtendedPlugin;
@@ -14,17 +15,25 @@ interface Props {
 }
 
 export async function getStaticPaths() {
-  const plugins = await GET().then(v => v.json()) as ExtendedPlugin[];
+  const pluginsManifest = await GET().then(v => v.json()) as ExtendedPlugin[];
+  const plugins = await getCollection("plugins");
+  console.log(plugins[0]);
   const data = await getCollection("pluginBlog");
   return data.map((v: any) => {
-    const plugin = plugins.find(p => p.id === v.data.id);
+    const plugin = plugins.find(p => {
+      const pluginPath = path.resolve(p.filePath, "..", "blog");
+      const postPath = path.resolve(v.filePath, "..");
+
+      return pluginPath === postPath;
+    });
+    const pluginManifest = pluginsManifest.find(p => p.slug === plugin.data.slug);
     return {
       params: {
-        slug: plugin.slug,
+        slug: plugin.data.slug,
         postSlug: v.data.slug,
       },
       props: {
-        plugin,
+        plugin: pluginManifest,
         post: v,
       },
     };

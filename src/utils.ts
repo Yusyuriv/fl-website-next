@@ -41,3 +41,13 @@ export function addLightboxToBlogPostImages(): void {
 export function getBaseUrl(): string {
   return "/" + (process.env.WEBSITE_BASE?.split('/')?.slice(1)?.join('/') ?? "");
 }
+
+const cache = new Map();
+
+export function setCache(key: string, value: any): void {
+  cache.set(key, value);
+}
+
+export function getCache(key: string): any {
+  return cache.get(key);
+}

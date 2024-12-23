@@ -1,7 +1,7 @@
 ---
-import process from "node:process";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
+import {getBaseUrl} from "@/utils";
 
 interface Props {
 	title?: string;
@@ -15,7 +15,7 @@ const {
 	image = "/flowlauncher_large.jpg",
 } = Astro.props;
 
-const base = "/" + (process.env.WEBSITE_BASE?.split('/')?.slice(1)?.join('/') ?? "");
+const base = getBaseUrl();
 ---
 <!doctype html>
 <html lang="en" class="no-transition">

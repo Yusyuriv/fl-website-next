@@ -1,3 +1,5 @@
+import process from 'node:process';
+
 export function formatDate(date: Date | string): string {
   return new Date(date).toLocaleDateString('en-US', {
     year: 'numeric',
@@ -34,4 +36,8 @@ export function addLightboxToBlogPostImages(): void {
   }
 
   refreshFsLightbox();
+}
+
+export function getBaseUrl(): string {
+  return "/" + (process.env.WEBSITE_BASE?.split('/')?.slice(1)?.join('/') ?? "");
 }

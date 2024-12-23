@@ -15,25 +15,32 @@ permissions:
   id-token: write
 
 env:
-  WEBSITE_HOST: ${{ github.repository == 'Flow-Launcher/flowlauncher.github.io' && 'https://www.flowlauncher.com' || format('https://{0}.github.io', github.repository_owner) }}
-  WEBSITE_BASE: ${{ github.repository == 'Flow-Launcher/flowlauncher.github.io' && '' || github.repository }}
+  WEBSITE_HOST: ${{ github.repository == 'Flow-Launcher/flow-launcher.github.io' && 'https://www.flowlauncher.com' || format('https://{0}.github.io', github.repository_owner) }}
+  WEBSITE_BASE: ${{ github.repository == 'Flow-Launcher/flow-launcher.github.io' && '/' || github.repository }}
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout your repository using git
-        uses: actions/checkout@v4
-      - name: Install, build, and upload your site
-        uses: withastro/action@v3
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Check env vars
+        run: |
+            echo "WEBSITE_HOST: $WEBSITE_HOST"
+            echo "WEBSITE_BASE: $WEBSITE_BASE"
+#  build:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout your repository using git
+#        uses: actions/checkout@v4
+#      - name: Install, build, and upload your site
+#        uses: withastro/action@v3
+#
+#  deploy:
+#    needs: build
+#    runs-on: ubuntu-latest
+#    environment:
+#      name: github-pages
+#      url: ${{ steps.deployment.outputs.page_url }}
+#    steps:
+#      - name: Deploy to GitHub Pages
+#        id: deployment
+#        uses: actions/deploy-pages@v4

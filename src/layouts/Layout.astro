@@ -15,7 +15,6 @@ const {
 	image = "/flowlauncher_large.jpg",
 } = Astro.props;
 
-declare const a: string | undefined;;
 const base = "/" + (process.env.WEBSITE_BASE?.split('/')?.slice(1)?.join('/') ?? "");
 ---
 <!doctype html>

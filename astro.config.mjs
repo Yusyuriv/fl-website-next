@@ -5,7 +5,6 @@ import yaml from '@rollup/plugin-yaml';
 // https://astro.build/config
 export default defineConfig({
   site: process.env.WEBSITE_HOST,
-  base: process.env.WEBSITE_BASE,
 
   vite: {
     resolve: {

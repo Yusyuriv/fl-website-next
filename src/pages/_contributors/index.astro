@@ -1,0 +1,56 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Section from "@/components/Section.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import {getCache, setCache} from "@/utils";
+
+interface Contributor {
+  id: number;
+  login: string;
+  avatar_url: string;
+  count?: number;
+}
+
+interface PullRequest {
+  state: "locked" | string & {};
+  merged_at: string;
+  user: Contributor;
+}
+
+let contributors: Contributor[] = getCache("contributors") ?? [];
+if (contributors.length === 0) {
+  let prs: PullRequest[] = [];
+  const contributorMap: Map<number, Contributor> = new Map();
+
+  let page = 1;
+  while (true) {
+    const response: PullRequest[] = await fetch(`https://api.github.com/repos/Flow-Launcher/Flow.Launcher/pulls?state=closed&per_page=100&page=${page}`)
+      .then(v => v.json());
+    prs.push(...response.filter(pr => pr.merged_at));
+    if (response.length < 100) {
+      break;
+    }
+    page++;
+  }
+
+  for (const pr of prs) {
+    const userId = pr.user.id;
+    if (contributorMap.has(userId)) {
+      contributorMap.get(userId)!.count++;
+    } else {
+      contributorMap.set(userId, {id: userId, login: pr.user.login, avatar_url: pr.user.avatar_url, count: 1});
+    }
+  }
+
+  contributors = Array.from(contributorMap.values()).sort((a, b) => b.count! - a.count!);
+  setCache("contributors", contributors);
+}
+---
+<Layout title="Contributors" description="Meet the contributors of Flow Launcher.">
+  <Section>
+    <SectionHeader>Contributors</SectionHeader>
+    <ul>
+      {contributors.map(contributor => <li>@{contributor.login} — {contributor.count} PR{contributor.count > 1 ? 's' : ''}</li>)}
+    </ul>
+  </Section>
+</Layout>

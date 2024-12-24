@@ -6,7 +6,7 @@ import {getCollection, getEntry, render} from "astro:content";
 import SectionSubheader from "@/components/SectionSubheader.astro";
 import SectionHeader from "@/components/SectionHeader.astro";
 import Section from "@/components/Section.astro";
-import {formatDate} from "@/utils";
+import {formatDate, getBaseUrl} from "@/utils";
 import path from "node:path";
 
 interface Props {
@@ -42,14 +42,19 @@ export async function getStaticPaths() {
 
 const {plugin, post} = Astro.props;
 const {Content} = await render(post);
+
+const pluginLink = getBaseUrl(true) + `/plugins/${plugin.slug}`;
+const pluginBlogLink = pluginLink + "/blog";
 ---
 <Layout>
   <Section>
     <div class="header">
-      <img src={plugin.icon} alt="" class="plugin-icon"/>
+      <a href={pluginLink}>
+        <img src={plugin.icon} alt="Plugin icon" class="plugin-icon"/>
+      </a>
 
       <div class="title">
-        <SectionHeader>{plugin.name} Plugin Blog</SectionHeader>
+        <SectionHeader><a href={pluginLink}>{plugin.name} Plugin</a> <a href={pluginBlogLink}>Blog</a></SectionHeader>
         <SectionSubheader>{post.data.title}</SectionSubheader>
         <div class="author-date">
           <span class="muted">by</span>

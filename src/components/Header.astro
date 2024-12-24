@@ -5,9 +5,12 @@ import Logo from '@/assets/logo.png';
 import Button from '@/components/Button.astro';
 import MaxWidthContainer from "@/components/MaxWidthContainer.astro";
 import Section from '@/components/Section.astro';
+import {getBaseUrl} from "@/utils";
+
+const urlPrefix = getBaseUrl(true);
 
 const navLinks = [
-  { href: '/plugins', text: 'Plugins' },
+  { href: urlPrefix + '/plugins', text: 'Plugins' },
   { href: 'https://www.flowlauncher.com/docs/', text: 'Docs' },
   // Disable the blog for now. Maybe sometime in the future, when we have more time.
   // { href: '/blog', text: 'Blog' },

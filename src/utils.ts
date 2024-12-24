@@ -38,8 +38,9 @@ export function addLightboxToBlogPostImages(): void {
   refreshFsLightbox();
 }
 
-export function getBaseUrl(): string {
-  return "/" + (process.env.WEBSITE_BASE?.split('/')?.slice(1)?.join('/') ?? "");
+export function getBaseUrl(emptyRoot = false): string {
+  const path = "/" + (process.env.WEBSITE_BASE?.split('/')?.slice(1)?.join('/') ?? "");
+  return emptyRoot && path === "/" ? "" : path;
 }
 
 const cache = new Map();

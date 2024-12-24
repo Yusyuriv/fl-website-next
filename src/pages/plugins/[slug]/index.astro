@@ -4,7 +4,7 @@ import {GET} from "@/pages/plugins.json";
 import Layout from "@/layouts/Layout.astro";
 import Section from "@/components/Section.astro";
 import SectionHeader from "@/components/SectionHeader.astro";
-import {formatDate} from "@/utils";
+import {formatDate, getBaseUrl} from "@/utils";
 import Tags from "@/components/plugins/Tags.astro";
 import LabelValue from "@/components/plugins/LabelValue.astro";
 import path from "node:path";
@@ -53,7 +53,7 @@ const images = pluginContent?.data?.images ?? [];
 
 const pluginBlog = await getCollection("pluginBlog", v => v.data.id === plugin.id);
 const latestPosts = pluginBlog.slice(0, 2).map(v => v.data);
-const viewAllBlogPostsLink = `/plugins/${plugin.slug}/blog`;
+const viewAllBlogPostsLink = getBaseUrl(true) + `/plugins/${plugin.slug}/blog`;
 ---
 <Layout {title} {description}>
   <Section>

@@ -7,12 +7,15 @@ import SectionHeader from "@/components/SectionHeader.astro";
 import SectionSubheader from "@/components/SectionSubheader.astro";
 import {getCollection, getEntry} from "astro:content";
 import BlogArticleCard from "@/components/blog/BlogArticleCard.astro";
+import {getBaseUrl} from "../../../../utils";
 
 export {getStaticPaths} from "@/pages/plugins/[slug]/_static-paths";
 
 const {slug} = Astro.params;
 const {plugin} = Astro.props;
 const pluginBlogs = await getCollection("pluginBlog", v => v.data.id === plugin.id);
+
+const pluginLink = getBaseUrl(true) + `/plugins/${plugin.slug}`;
 ---
 
 <Layout
@@ -21,10 +24,12 @@ const pluginBlogs = await getCollection("pluginBlog", v => v.data.id === plugin.
 >
   <Section>
     <div class="header">
-      <img src={plugin.icon} alt="" class="plugin-icon"/>
+      <a href={pluginLink}>
+        <img src={plugin.icon} alt="Plugin icon" class="plugin-icon"/>
+      </a>
 
       <div class="title">
-        <SectionHeader>{plugin.name} Plugin Blog</SectionHeader>
+        <SectionHeader><a href={pluginLink}>{plugin.name} Plugin</a> Blog</SectionHeader>
         <SectionSubheader>{plugin.description}</SectionSubheader>
       </div>
     </div>

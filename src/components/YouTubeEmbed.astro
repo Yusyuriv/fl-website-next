@@ -8,10 +8,10 @@ interface Props {
 const {video, imageOnly, fullWidth} = Astro.props;
 
 let id = video;
-if (video.startsWith("http:") || video.startsWith("https:")) {
+if (video.startsWith("https://youtube.com/") || video.startsWith("https://www.youtube.com/")) {
   const url = new URL(video);
   id = url.searchParams.get("v") || "";
-} else if (video.includes("youtu.be")) {
+} else if (video.startsWith("https://youtu.be/")) {
   const url = new URL(video);
   id = url.pathname.slice(1);
 }

@@ -21,7 +21,14 @@ const plugins = defineCollection({
   schema: ({ image }) => z.object({
     id: z.string().min(10),
     slug: z.string().min(1),
-    videos: z.array(z.string()).optional(),
+    videos: z.array(
+      z.string()
+        .refine(v =>
+          v.startsWith("https://youtube.com/watch") ||
+          v.startsWith("https://www.youtube.com/watch") ||
+          v.startsWith("https://youtu.be/")
+        ),
+    ).optional(),
     images: z.array(image()).optional(),
     tags: z.array(z.enum(TAGS)).optional(),
     draft: z.boolean().optional(),

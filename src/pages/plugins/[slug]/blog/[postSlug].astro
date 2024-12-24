@@ -47,21 +47,23 @@ const pluginLink = getBaseUrl(true) + `/plugins/${plugin.slug}`;
 const pluginBlogLink = pluginLink + "/blog";
 ---
 <Layout>
-  <Section>
+  <Section padding="16">
     <div class="header">
       <a href={pluginLink}>
         <img src={plugin.icon} alt="Plugin icon" class="plugin-icon"/>
       </a>
 
-      <div class="title">
-        <SectionHeader><a href={pluginLink}>{plugin.name} Plugin</a> <a href={pluginBlogLink}>Blog</a></SectionHeader>
-        <SectionSubheader>{post.data.title}</SectionSubheader>
-        <div class="author-date">
-          <span class="muted">by</span>
-          {post.data.author}
-          <span class="muted">on</span>
-          <time datetime={post.data.date}>{formatDate(post.data.date)}</time>
-        </div>
+      <SectionHeader><a href={pluginLink}>{plugin.name} Plugin</a> <a href={pluginBlogLink}>Blog</a></SectionHeader>
+    </div>
+  </Section>
+  <Section padding="32">
+    <div class="title">
+      <SectionHeader>{post.data.title}</SectionHeader>
+      <div class="author-date">
+        <span class="muted">by</span>
+        {post.data.author}
+        <span class="muted">on</span>
+        <time datetime={post.data.date}>{formatDate(post.data.date)}</time>
       </div>
     </div>
   </Section>

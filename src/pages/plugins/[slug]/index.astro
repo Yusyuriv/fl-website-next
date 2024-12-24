@@ -54,6 +54,7 @@ const images = pluginContent?.data?.images ?? [];
 const pluginBlog = await getCollection("pluginBlog", v => v.data.id === plugin.id);
 const latestPosts = pluginBlog.slice(0, 2).map(v => v.data);
 const viewAllBlogPostsLink = getBaseUrl(true) + `/plugins/${plugin.slug}/blog`;
+const hasCarousel = videos.length > 0 || images.length > 0;
 ---
 <Layout {title} {description}>
   <Section>
@@ -66,7 +67,7 @@ const viewAllBlogPostsLink = getBaseUrl(true) + `/plugins/${plugin.slug}/blog`;
       </div>
     </div>
 
-    {videos.length > 0 || images.length > 0 && <Swiper noLoop class="swiper-outer">
+    {hasCarousel && <Swiper noLoop class="swiper-outer">
       {videos.map(v => <div class="swiper-slide">
         <a href={v} data-fslightbox="plugin-carousel">
           <YouTubeEmbed video={v} fullWidth imageOnly />

@@ -7,6 +7,7 @@ interface Props {
   backgroundColor?: string;
   class?: string;
   containerClass?: string;
+  fullHeight?: boolean;
 }
 
 const {
@@ -15,10 +16,11 @@ const {
   backgroundColor = "transparent",
   class: className = "",
   containerClass = "",
+  fullHeight = false,
   ...rest
 } = Astro.props;
 ---
-<section class:list={["section", className, {even, "with-bg-color": !!backgroundColor}]} {...rest}>
+<section class:list={["section", className, {even, "with-bg-color": !!backgroundColor, spacer: fullHeight}]} {...rest}>
   <MaxWidthContainer class={containerClass} {...rest}>
     <slot/>
   </MaxWidthContainer>

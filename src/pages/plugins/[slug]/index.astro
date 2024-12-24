@@ -80,7 +80,7 @@ const viewAllBlogPostsLink = getBaseUrl(true) + `/plugins/${plugin.slug}/blog`;
     </Swiper>}
   </Section>
 
-  <Section even containerClass="blog-grid">
+  <Section even containerClass="blog-grid" fullHeight>
     <div class="blog-content">
       {Content ? <Content/> : plugin.description}
     </div>

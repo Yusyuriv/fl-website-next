@@ -35,7 +35,7 @@ const pluginLink = getBaseUrl(true) + `/plugins/${plugin.slug}`;
     </div>
   </Section>
 
-  <Section even class="blog-grid-container">
+  <Section even fullHeight>
     <div class="blog-grid">
       {pluginBlogs.map(v =>
         <BlogArticleCard
@@ -73,10 +73,6 @@ const pluginLink = getBaseUrl(true) + `/plugins/${plugin.slug}`;
     display: flex;
     flex-direction: column;
     gap: 4px;
-}
-
-.blog-grid-container {
-    flex: 1;
 }
 
 .blog-grid {

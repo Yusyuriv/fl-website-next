@@ -14,6 +14,7 @@ import Swiper from "@/components/Swiper.astro";
 import YouTubeEmbed from "@/components/YouTubeEmbed.astro";
 import BlogArticleCard from "@/components/blog/BlogArticleCard.astro";
 import {ExtendedPlugin} from "@/pages/plugins/_types";
+import {getPluginBlogPosts} from "./_get-plugin-blog-posts";
 
 export {getStaticPaths} from "@/pages/plugins/[slug]/_static-paths";
 
@@ -51,7 +52,7 @@ const sourceCodeLabel = plugin.sourceCodeUrl.startsWith("https://github.com/") ?
 const videos = pluginContent?.data?.videos ?? [];
 const images = pluginContent?.data?.images ?? [];
 
-const pluginBlog = await getCollection("pluginBlog", v => v.data.id === plugin.id);
+const pluginBlog = await getPluginBlogPosts(pluginContent.filePath);
 const latestPosts = pluginBlog.slice(0, 2).map(v => v.data);
 const viewAllBlogPostsLink = getBaseUrl(true) + `/plugins/${plugin.slug}/blog`;
 const hasCarousel = videos.length > 0 || images.length > 0;

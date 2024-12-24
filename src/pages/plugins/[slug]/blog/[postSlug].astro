@@ -17,7 +17,7 @@ interface Props {
 export async function getStaticPaths() {
   const pluginsManifest = await GET().then(v => v.json()) as ExtendedPlugin[];
   const plugins = await getCollection("plugins");
-  console.log(plugins[0]);
+
   const data = await getCollection("pluginBlog");
   return data.map((v: any) => {
     const plugin = plugins.find(p => {

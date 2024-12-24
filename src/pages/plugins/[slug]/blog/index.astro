@@ -8,12 +8,13 @@ import SectionSubheader from "@/components/SectionSubheader.astro";
 import {getCollection, getEntry} from "astro:content";
 import BlogArticleCard from "@/components/blog/BlogArticleCard.astro";
 import {getBaseUrl} from "@/utils";
+import {getPluginBlogPosts} from "../_get-plugin-blog-posts";
 
 export {getStaticPaths} from "@/pages/plugins/[slug]/_static-paths";
 
 const {slug} = Astro.params;
 const {plugin} = Astro.props;
-const pluginBlogs = await getCollection("pluginBlog", v => v.data.id === plugin.id);
+const pluginBlogs = await getPluginBlogPosts(plugin.slug, true);
 
 const pluginLink = getBaseUrl(true) + `/plugins/${plugin.slug}`;
 ---

@@ -52,7 +52,7 @@ const sourceCodeLabel = plugin.sourceCodeUrl.startsWith("https://github.com/") ?
 const videos = pluginContent?.data?.videos ?? [];
 const images = pluginContent?.data?.images ?? [];
 
-const pluginBlog = await getPluginBlogPosts(pluginContent.filePath);
+const pluginBlog = await getPluginBlogPosts(pluginContent?.filePath);
 const latestPosts = pluginBlog.slice(0, 2).map(v => v.data);
 const viewAllBlogPostsLink = getBaseUrl(true) + `/plugins/${plugin.slug}/blog`;
 const hasCarousel = videos.length > 0 || images.length > 0;

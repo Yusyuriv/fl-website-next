@@ -7,7 +7,7 @@
     --sep: #cecece;
     --card-sep: #cecece;
     --card: #fff;
-    --package-manager-name: #FCFF9B;
+    --package-manager-name: #5A4AB2;
     --dialog-backdrop: rgba(255, 255, 255, 0.2);
     --bg-alternate: #fff;
     --bg-alternate-hover: #edf2f5;
@@ -21,9 +21,9 @@
     --button-primary-variant-secondary-hover: #1f3c92;
     --button-primary-variant-black: #000;
     --button-primary-variant-black-hover: var(--button-primary);
-    --button-copy: #4f4f4f;
-    --button-copy-hover: #7e7e7e;
-    --button-copy-active: #131313;
+    --button-copy: #ccc;
+    --button-copy-hover: #ddd;
+    --button-copy-active: #bbb;
     --theme-toggle-button: #f8f8f8;
     --theme-toggle-button-hover: #b9b9b9;
     --theme-toggle-button-icon: #d8d8d8;
@@ -45,6 +45,7 @@
     --sep: #0f1115;
     --card-sep: #242933;
     --card: #161b22;
+    --package-manager-name: #FCFF9B;
     --dialog-backdrop: rgba(0, 0, 0, 0.2);
     --bg-alternate: #161b22;
     --bg-alternate-hover: #1b2029;
@@ -54,6 +55,9 @@
     --button-primary: #1e90ff;
     --button-primary-hover: #4169e1;
     --button-primary-text: #fff;
+    --button-copy: #444;
+    --button-copy-hover: #555;
+    --button-copy-active: #333;
     --theme-toggle-button: #44484d;
     --theme-toggle-button-hover: #191d21;
     --theme-toggle-button-icon: #d8d8d8;

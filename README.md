@@ -16,6 +16,7 @@ following these steps:
    `www.flowlauncher.com/plugins/cool-feature-plus` or
    `www.flowlauncher.com/plugins/cool-feature-plus/blog/exciting-new-update`. The slug will also be used as the name of
    the directory your plugin's files are stored in in this repository.
+
 > [!NOTE]
 > We might have pre-created the folder and the file for you in order to add tags for your plugin. If you'd like to
 > change it, feel free to rename the folder, the file, and the slug field in the file.
@@ -107,7 +108,7 @@ following these steps:
    npm run dev
    ```
    This will start a local development server that you can access at `http://localhost:4321`.
- 
+
    Alternatively, if you don't want to run it locally but still want to see how your changes will look, you can use the
    GitHub Actions workflow to build the website and preview it. To do this, go to your fork's Actions tab on GitHub and
    press "I understand my workflows, go ahead and enable them", then commit your changes to the `master` branch and push
@@ -116,3 +117,13 @@ following these steps:
 
 6. Once you're happy with your changes, commit them and open a pull request. A maintainer will review your changes and
    merge them if everything looks good. Your changes should be live on the website shortly after they are merged.
+
+## Licensing Notice
+
+This project is licensed under the MIT License. However, it includes Font Awesome Free icons, which are subject to their
+own license.
+
+- Font Awesome Free License: https://fontawesome.com/license/free
+
+The Font Awesome Free icons used in this project are provided under the Creative Commons Attribution 4.0 International (
+CC BY 4.0) license. See the link above for details.

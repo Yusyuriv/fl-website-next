@@ -7,11 +7,11 @@ import PackageManagerCommand from "./PackageManagerCommand.astro";
 const data = await getGitHubReleaseData();
 ---
 <dialog id="download-dialog">
-  <div class="dialog-content dialog-content-flex">
+  <div class="dialog-header">
     <div class="dialog-title">
       Downloads
     </div>
-    <button type="button">
+    <button type="button" id="close-dialog-btn" aria-label="Close download dialog">
       X
     </button>
   </div>
@@ -20,7 +20,7 @@ const data = await getGitHubReleaseData();
     <SmallText smaller class="content-flex">
       {data.tagName} - {data.formattedPublishedAt}
 
-      <a href="#" target="_blank">Release Notes</a>
+      <a href={data.pageLink} target="_blank">Release Notes</a>
     </SmallText>
 
     <Button href={data.installer.url} shape="rounded" centered class="download-button">
@@ -69,11 +69,29 @@ const data = await getGitHubReleaseData();
     backdrop-filter: blur(50px);
 }
 
+.dialog-header {
+    display: flex;
+    align-items: center;
+    padding: 16px 36px;
+    border-bottom: 1px solid var(--sep);
+}
+
 .dialog-title {
     font-size: 21px;
     font-weight: 700;
     line-height: 1.5;
     flex: 1;
+}
+
+#close-dialog-btn {
+    color: var(--text);
+    background-color: transparent;
+    width: 32px;
+    aspect-ratio: 1;
+    cursor: pointer;
+    border-radius: 50%;
+    margin-right: -16px;
+    outline: none;
 }
 
 .dialog-content {
@@ -102,7 +120,14 @@ const data = await getGitHubReleaseData();
 </style>
 
 <script>
-const d = document.querySelector("#download-dialog") as HTMLDialogElement;
+const dialog = document.querySelector("#download-dialog") as HTMLDialogElement;
 
-d.showModal();
+dialog.querySelector("#close-dialog-btn").addEventListener("click", () => {
+  dialog.close();
+});
+
+dialog.addEventListener("click", e => {
+  if (e.target !== dialog) return;
+  dialog.close();
+});
 </script>

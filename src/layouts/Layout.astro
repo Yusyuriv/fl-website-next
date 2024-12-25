@@ -2,6 +2,7 @@
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import {getBaseUrl} from "@/utils";
+import DownloadDialog from "@/components/DownloadDIalog.astro";
 
 interface Props {
 	title?: string;
@@ -62,6 +63,7 @@ const favIconLink = `${base === '/' ? '' : base}/favicon.ico`;
 			<slot />
 		</main>
 		<Footer />
+		<DownloadDialog />
 	</body>
 </html>
 

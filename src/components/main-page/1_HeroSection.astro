@@ -47,7 +47,7 @@ const latestVersion = await getGitHubReleaseData();
     <div class="left-column">
       <SectionHeader bigger>Flow Launcher</SectionHeader>
       <SectionSubheader>Quick File Search & App Launcher for Windows</SectionSubheader>
-      <Button shape="rounded">
+      <Button shape="rounded" id="hero-download-button">
         ⬇️ Download
         <div slot="second-line">
           {latestVersion.tagName}
@@ -128,3 +128,9 @@ html[data-theme="light"] .light {
     flex-wrap: wrap;
 }
 </style>
+
+<script>
+import {setupButtonToOpenDownloadDialog} from "@/utils";
+
+setupButtonToOpenDownloadDialog("#hero-download-button");
+</script>

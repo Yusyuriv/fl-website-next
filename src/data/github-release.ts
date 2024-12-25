@@ -1,6 +1,7 @@
 import {formatBytes, formatDate} from "@/utils.ts";
 
 interface GHReleaseData {
+  html_url: string;
   published_at: string;
   tag_name: string;
   assets: GHReleaseAsset[];
@@ -13,6 +14,7 @@ interface GHReleaseAsset {
 }
 
 interface CachedReleaseData {
+  pageLink: string;
   tagName: string;
   publishedAt: string;
   formattedPublishedAt: string;
@@ -35,6 +37,7 @@ export async function getGitHubReleaseData(): Promise<CachedReleaseData> {
   const data: GHReleaseData = await fetch("https://api.github.com/repos/Flow-Launcher/Flow.Launcher/releases/latest").then(response => response.json());
 
   cachedReleaseData = {
+    pageLink: data.html_url,
     tagName: data.tag_name,
     publishedAt: data.published_at,
     formattedPublishedAt: formatDate(data.published_at),

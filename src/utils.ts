@@ -62,3 +62,12 @@ export function formatBytes(bytes: number): string {
   }
   return `${bytes.toFixed(2)} ${SIZE_UNITS[unitIndex]}`;
 }
+
+export function setupButtonToOpenDownloadDialog(buttonSelector: string): void {
+  const dialog = document.querySelector('#download-dialog') as HTMLDialogElement;
+
+  document.querySelector(buttonSelector)?.addEventListener('click', () => {
+    dialog.showModal();
+    dialog.focus();
+  });
+}

@@ -1,4 +1,12 @@
-<button id="theme-toggle-button"/>
+---
+import IconMoon from "@/components/icons/Moon.svg";
+import IconSun from "@/components/icons/Sun.svg";
+---
+
+<button id="theme-toggle-button">
+  <IconMoon data-moon />
+  <IconSun data-sun />
+</button>
 
 <style>
 #theme-toggle-button {
@@ -12,20 +20,37 @@
     background-color: var(--theme-toggle-button);
     color: var(--theme-toggle-button-icon);
     transition: background-color 0.2s, color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #theme-toggle-button:hover {
     background-color: var(--theme-toggle-button-hover);
 }
+
+#theme-toggle-button:active {
+    background-color: var(--theme-toggle-button-active);
+}
+
+#theme-toggle-button svg {
+    display: none;
+    width: calc(100% - 12px);
+    aspect-ratio: 1;
+}
 </style>
 
 <script>
-const button = document.getElementById("theme-toggle-button");
+const button = document.getElementById("theme-toggle-button") as HTMLButtonElement;
+const moon = button.querySelector("[data-moon]") as SVGSVGElement;
+const sun = button.querySelector("[data-sun]") as SVGSVGElement;
 
 function setTheme(theme) {
   document.documentElement.setAttribute("data-theme", theme);
   localStorage.setItem("theme", theme);
-  button.textContent = theme === "light" ? "🌞" : "🌜";
+  const isDark = theme === "dark";
+  moon.style.display = isDark ? "block" : "none";
+  sun.style.display = isDark ? "none" : "block";
 }
 
 function toggleTheme() {

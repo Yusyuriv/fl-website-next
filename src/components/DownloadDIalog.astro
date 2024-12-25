@@ -3,6 +3,8 @@ import {getGitHubReleaseData} from "../data/github-release";
 import SmallText from "./SmallText.astro";
 import Button from "./Button.astro";
 import PackageManagerCommand from "./PackageManagerCommand.astro";
+import IconDownload from "@/components/icons/Download.svg";
+import IconZip from "@/components/icons/Zip.svg";
 
 const data = await getGitHubReleaseData();
 ---
@@ -24,14 +26,16 @@ const data = await getGitHubReleaseData();
     </SmallText>
 
     <Button href={data.installer.url} shape="rounded" centered class="download-button">
-      ⬇️ Installer
+      <IconDownload class="icon" />
+      Installer
       <div slot="second-line">
         EXE, {data.installer.formattedSize}
       </div>
     </Button>
 
     <Button href={data.portable.url} variant="secondary" shape="rounded" centered class="download-button">
-      ⬇️ Portable
+      <IconZip class="icon" />
+      Portable
       <div slot="second-line">
         ZIP, {data.portable.formattedSize}
       </div>
@@ -116,6 +120,11 @@ const data = await getGitHubReleaseData();
 .download-button {
     padding-top: 20px;
     padding-bottom: 20px;
+}
+
+.icon {
+    width: 16px;
+    aspect-ratio: 1;
 }
 </style>
 

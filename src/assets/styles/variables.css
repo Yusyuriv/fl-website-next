@@ -24,9 +24,10 @@
     --button-copy: #ccc;
     --button-copy-hover: #ddd;
     --button-copy-active: #bbb;
-    --theme-toggle-button: #f8f8f8;
-    --theme-toggle-button-hover: #b9b9b9;
-    --theme-toggle-button-icon: #d8d8d8;
+    --theme-toggle-button: #fff;
+    --theme-toggle-button-hover: #ddd;
+    --theme-toggle-button-active: #bbb;
+    --theme-toggle-button-icon: #333;
     --sponsor: #fff;
     --sponsor-text: #000;
     --plugin-icon-background: #ededed;
@@ -58,8 +59,9 @@
     --button-copy: #444;
     --button-copy-hover: #555;
     --button-copy-active: #333;
-    --theme-toggle-button: #44484d;
-    --theme-toggle-button-hover: #191d21;
+    --theme-toggle-button: transparent;
+    --theme-toggle-button-hover: #262f3b;
+    --theme-toggle-button-active: #364354;
     --theme-toggle-button-icon: #d8d8d8;
     --plugin-official-background: #594504;
     --plugin-official-text: #f2bd0c;

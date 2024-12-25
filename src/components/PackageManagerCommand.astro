@@ -9,9 +9,11 @@ const { packageManager, command } = Astro.props;
 const fullCommand = `${packageManager} ${command}`;
 ---
 <div class="package-manager-command">
-  <span class="prompt">&gt;</span>
-  <span class="package-manager">{packageManager}</span>
-  <span class="command">{command}</span>
+  <div class="command">
+    <span class="prompt">&gt; </span>
+    <span class="package-manager">{packageManager}</span>
+    {command}
+  </div>
   <button type="button" class="copy-package-manager-command" data-copy-text={fullCommand}>
     Copy
   </button>
@@ -20,7 +22,7 @@ const fullCommand = `${packageManager} ${command}`;
 <style>
 .package-manager-command {
     display: grid;
-    grid-template-columns: auto auto 1fr auto;
+    grid-template-columns: 1fr auto;
     align-items: center;
     gap: 8px;
     background-color: var(--bg);

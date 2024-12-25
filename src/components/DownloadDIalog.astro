@@ -1,0 +1,108 @@
+---
+import {getGitHubReleaseData} from "../data/github-release";
+import SmallText from "./SmallText.astro";
+import Button from "./Button.astro";
+import PackageManagerCommand from "./PackageManagerCommand.astro";
+
+const data = await getGitHubReleaseData();
+---
+<dialog id="download-dialog">
+  <div class="dialog-content dialog-content-flex">
+    <div class="dialog-title">
+      Downloads
+    </div>
+    <button type="button">
+      X
+    </button>
+  </div>
+
+  <div class="dialog-content column">
+    <SmallText smaller class="content-flex">
+      {data.tagName} - {data.formattedPublishedAt}
+
+      <a href="#" target="_blank">Release Notes</a>
+    </SmallText>
+
+    <Button href={data.installer.url} shape="rounded" centered class="download-button">
+      ⬇️ Download
+      <div slot="second-line">
+        EXE, {data.installer.formattedSize}
+      </div>
+    </Button>
+
+    <Button href={data.portable.url} variant="secondary" shape="rounded" centered class="download-button">
+      ⬇️ Portable
+      <div slot="second-line">
+        ZIP, {data.portable.formattedSize}
+      </div>
+    </Button>
+  </div>
+
+  <div class="dialog-content column">
+    Windows Package Manager
+
+    <PackageManagerCommand packageManager="winget" command="install 'Flow Launcher'" />
+    <PackageManagerCommand packageManager="scoop" command="install Flow-Launcher" />
+    <PackageManagerCommand packageManager="choco" command="install Flow-Launcher" />
+  </div>
+
+  <SmallText class="dialog-content" smallest centered>
+    Supports Windows 7+ / Downloads via GitHub
+  </SmallText>
+</dialog>
+
+<style>
+#download-dialog {
+    color: var(--text);
+    width: 100%;
+    max-width: 450px;
+    border-radius: 6px;
+    margin-top: 130px;
+    border: none;
+    padding: 0;
+    background-color: var(--modal);
+    box-shadow: rgba(0, 0, 0, 0.16) 0 10px 36px 0, rgba(0, 0, 0, 0.06) 0 0 0 1px;
+}
+
+#download-dialog::backdrop {
+    background-color: var(--dialog-backdrop);
+    backdrop-filter: blur(50px);
+}
+
+.dialog-title {
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.5;
+    flex: 1;
+}
+
+.dialog-content {
+    padding: 18px 36px;
+}
+
+.dialog-content + .dialog-content {
+    border-top: 1px solid var(--sep);
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.content-flex {
+    display: flex;
+    gap: 16px;
+}
+
+.download-button {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+</style>
+
+<script>
+const d = document.querySelector("#download-dialog") as HTMLDialogElement;
+
+d.showModal();
+</script>

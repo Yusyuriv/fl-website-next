@@ -1,0 +1,94 @@
+---
+interface Props {
+  packageManager: string;
+  command: string;
+}
+
+const { packageManager, command } = Astro.props;
+
+const fullCommand = `${packageManager} ${command}`;
+---
+<div class="package-manager-command">
+  <span class="prompt">&gt;</span>
+  <span class="package-manager">{packageManager}</span>
+  <span class="command">{command}</span>
+  <button type="button" class="copy-package-manager-command" data-copy-text={fullCommand}>
+    Copy
+  </button>
+</div>
+
+<style>
+.package-manager-command {
+    display: grid;
+    grid-template-columns: auto auto 1fr auto;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--bg);
+    padding: 9px 9px 9px 18px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.prompt {
+    user-select: none;
+}
+
+.package-manager {
+    color: var(--package-manager-name);
+}
+
+.command {
+    font-family: var(--font-family-mono), monospace;
+}
+
+.copy-package-manager-command {
+    font-size: 11px;
+    color: var(--text);
+    background-color: var(--button-copy);
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background-color 0.1s;
+}
+
+.copy-package-manager-command:hover {
+    background-color: var(--button-copy-hover);
+}
+
+.copy-package-manager-command:active {
+    background-color: var(--button-copy-active);
+}
+</style>
+
+<script>
+const buttons = document.querySelectorAll(".copy-package-manager-command") as HTMLButtonElement[];
+
+for (const button of buttons) {
+  button.addEventListener("click", copyCommand);
+}
+
+async function copyCommand(e: MouseEvent): Promise<void> {
+  const button = e.currentTarget as HTMLButtonElement;
+  const text = button.dataset.copyText;
+
+  if (!text) {
+    return;
+  }
+
+  await navigator.clipboard.writeText(text);
+
+  copySuccess(button);
+}
+
+function copySuccess(btn: HTMLButtonElement): void {
+  if (btn.dataset.timerId) {
+    clearTimeout(btn.dataset.timerId);
+  }
+
+  btn.textContent = "Copied!";
+
+  btn.dataset.timerId = setTimeout(() => {
+    btn.textContent = "Copy";
+    delete btn.dataset.timerId;
+  }, 1000).toString();
+}
+</script>

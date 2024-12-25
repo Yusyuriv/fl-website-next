@@ -7,6 +7,8 @@
     --sep: #cecece;
     --card-sep: #cecece;
     --card: #fff;
+    --package-manager-name: #FCFF9B;
+    --dialog-backdrop: rgba(255, 255, 255, 0.2);
     --bg-alternate: #fff;
     --bg-alternate-hover: #edf2f5;
     --footer-bg: #f9fafb;
@@ -19,6 +21,9 @@
     --button-primary-variant-secondary-hover: #1f3c92;
     --button-primary-variant-black: #000;
     --button-primary-variant-black-hover: var(--button-primary);
+    --button-copy: #4f4f4f;
+    --button-copy-hover: #7e7e7e;
+    --button-copy-active: #131313;
     --theme-toggle-button: #f8f8f8;
     --theme-toggle-button-hover: #b9b9b9;
     --theme-toggle-button-icon: #d8d8d8;
@@ -26,6 +31,7 @@
     --sponsor-text: #000;
     --plugin-icon-background: #ededed;
     --font-family: "Noto Sans", "Segoe UI", "Inter", sans-serif;
+    --font-family-mono: "Source Code Pro", "JetBrains Mono", "Fira Code", "Roboto Mono", monospace;
 }
 
 :root[data-theme="dark"] {
@@ -37,6 +43,7 @@
     --sep: #0f1115;
     --card-sep: #242933;
     --card: #161b22;
+    --dialog-backdrop: rgba(0, 0, 0, 0.2);
     --bg-alternate: #161b22;
     --bg-alternate-hover: #1b2029;
     --footer-bg: #000;

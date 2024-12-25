@@ -30,6 +30,8 @@
     --sponsor: #fff;
     --sponsor-text: #000;
     --plugin-icon-background: #ededed;
+    --plugin-official-background: #f2bd0c;
+    --plugin-official-text: #594504;
     --font-family: "Noto Sans", "Segoe UI", "Inter", sans-serif;
     --font-family-mono: "Source Code Pro", "JetBrains Mono", "Fira Code", "Roboto Mono", monospace;
 }
@@ -55,4 +57,6 @@
     --theme-toggle-button: #44484d;
     --theme-toggle-button-hover: #191d21;
     --theme-toggle-button-icon: #d8d8d8;
+    --plugin-official-background: #594504;
+    --plugin-official-text: #f2bd0c;
 }

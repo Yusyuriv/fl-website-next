@@ -17,7 +17,7 @@ const href = getBaseUrl(true) + `/plugins/${plugin.slug}`;
     <div class="title">
       <div class="name">
         {plugin.name}
-        {plugin.isBuiltIn ? <span class="built-in" title="A built-in plugin maintained by the core team">⭐</span> : null}
+        {plugin.isBuiltIn ? <span class="built-in" title="A built-in plugin maintained by the core team">Official</span> : null}
       </div>
       <div class="author">by {plugin.author}</div>
     </div>
@@ -80,6 +80,11 @@ const href = getBaseUrl(true) + `/plugins/${plugin.slug}`;
 .built-in {
     font-size: 12px;
     cursor: default;
+    padding: 4px;
+    border-radius: 4px;
+    background-color: var(--plugin-official-background);
+    color: var(--plugin-official-text);
+    margin-left: 4px;
 }
 
 .author {

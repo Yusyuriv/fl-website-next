@@ -3,7 +3,7 @@ import process from 'node:process';
 export function formatDate(date: Date | string): string {
   return new Date(date).toLocaleDateString('en-US', {
     year: 'numeric',
-    month: 'long',
+    month: 'short',
     day: 'numeric'
   });
 }
@@ -51,4 +51,14 @@ export function setCache(key: string, value: any): void {
 
 export function getCache(key: string): any {
   return cache.get(key);
+}
+
+const SIZE_UNITS = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+export function formatBytes(bytes: number): string {
+  let unitIndex = 0;
+  while (bytes >= 1024) {
+    bytes /= 1024;
+    unitIndex++;
+  }
+  return `${bytes.toFixed(2)} ${SIZE_UNITS[unitIndex]}`;
 }

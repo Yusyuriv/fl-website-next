@@ -11,6 +11,7 @@ import ScreenshotDark from "@/assets/main-page/dark_screenshot.png";
 import ScreenshotLight from "@/assets/main-page/light_screenshot.png";
 import ScreenshotBackground from "@/assets/main-page/screenshot_bg.png";
 import {formatDate} from "@/utils";
+import {getGitHubReleaseData} from "@/data/github-release";
 
 const screenshotBackground = await getImage({
   src: ScreenshotBackground,
@@ -38,13 +39,7 @@ const sponsors = [
   }
 ];
 
-const latestVersion = await fetch("https://api.github.com/repos/Flow-Launcher/Flow.Launcher/releases/latest").then(response => response.json());
-
-const date = new Date(latestVersion.published_at);
-const version = latestVersion.tag_name;
-const formattedDate = formatDate(date);
-
-const formattedDateWithVersion = `${version} - ${formattedDate}`;
+const latestVersion = await getGitHubReleaseData();
 ---
 
 <Section>
@@ -53,8 +48,12 @@ const formattedDateWithVersion = `${version} - ${formattedDate}`;
       <SectionHeader bigger>Flow Launcher</SectionHeader>
       <SectionSubheader>Quick File Search & App Launcher for Windows</SectionSubheader>
       <Button shape="rounded">
-        <div>⬇️ Download</div>
-        <div class="latest-version" slot="second-line">{formattedDateWithVersion}</div>
+        ⬇️ Download
+        <div slot="second-line">
+          {latestVersion.tagName}
+          -
+          {latestVersion.formattedPublishedAt}
+        </div>
       </Button>
     </div>
     <div class="screenshot-container">

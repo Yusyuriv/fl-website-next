@@ -1,6 +1,9 @@
 {
   "name": "flow-launcher-website",
   "version": "0.0.1",
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "dependencies": {
     "@astrojs/svelte": "^7.0.2",
     "astro": "^5.1.0",

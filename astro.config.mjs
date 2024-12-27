@@ -2,6 +2,7 @@
 import {defineConfig} from 'astro/config';
 import yaml from '@rollup/plugin-yaml';
 import process from "node:process";
+import svelte from '@astrojs/svelte';
 
 const baseUrl = "/" + (process.env.WEBSITE_BASE?.split('/')?.slice(1)?.join('/') ?? "");
 
@@ -23,4 +24,6 @@ export default defineConfig({
     contentIntellisense: true,
     svg: true,
   },
+
+  integrations: [svelte()],
 });

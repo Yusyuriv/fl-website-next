@@ -1,0 +1,11 @@
+---
+import ThemeBuilder from "@/components/theme-builder/ThemeBuilder.svelte";
+import Layout from "@/layouts/Layout.astro";
+import Section from "@/components/Section.astro";
+---
+
+<Layout>
+  <Section>
+    <ThemeBuilder client:load/>
+  </Section>
+</Layout>

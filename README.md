@@ -125,5 +125,5 @@ own license.
 
 - Font Awesome Free License: https://fontawesome.com/license/free
 
-The Font Awesome Free icons used in this project are provided under the Creative Commons Attribution 4.0 International (
-CC BY 4.0) license. See the link above for details.
+The Font Awesome Free icons used in this project are provided under the Creative Commons Attribution 4.0 International
+(CC BY 4.0) license. See the link above for details.

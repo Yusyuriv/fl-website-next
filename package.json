@@ -9,6 +9,8 @@
     "astro": "^5.1.0",
     "fslightbox": "^3.4.2",
     "svelte": "^5.16.0",
+    "svelte-awesome-color-picker": "^3.1.4",
+    "svelte-awesome-slider": "^1.1.2",
     "swiper": "^11.1.15",
     "typescript": "^5.7.2"
   },
@@ -20,7 +22,10 @@
   },
   "type": "module",
   "devDependencies": {
+    "@astrojs/language-server": "^2.15.4",
     "@rollup/plugin-yaml": "^4.1.2",
-    "@types/node": "^22.10.2"
+    "@types/node": "^22.10.2",
+    "svelte-language-server": "^0.17.8",
+    "typescript-svelte-plugin": "^0.3.45"
   }
 }

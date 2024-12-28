@@ -24,6 +24,7 @@ const {
     {:else}
     <div />
   {/if}
+  <div class="bullet" />
   <div class="result-text">
     <div class="result-title">{@render title?.()}</div>
     <div class="result-subtitle">{@render subtitle?.()}</div>
@@ -42,6 +43,7 @@ const {
     margin-left: var(--result-margin-left);
     margin-right: var(--result-margin-right);
     border-radius: var(--result-border-radius);
+    position: relative;
 }
 
 .result.active {
@@ -60,7 +62,7 @@ const {
 
 .result-text :global(i) {
     color: var(--result-highlighted-text-color);
-    font-weight: var(--result-highlighted-font-weight);
+    font-weight: var(--result-highlighted-text-weight);
 }
 
 .result-title {
@@ -92,5 +94,23 @@ const {
 .result-shortcut {
     color: var(--result-shortcut-color);
     font-size: 12px;
+}
+
+.bullet {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--result-bullet-color);
+    width: var(--result-bullet-width);
+    height: var(--result-bullet-height);
+    border-radius: var(--result-bullet-border-radius);
+}
+
+.result.active .bullet {
+    --result-bullet-color: var(--result-active-bullet-color);
+    --result-bullet-width: var(--result-active-bullet-width);
+    --result-bullet-height: var(--result-active-bullet-height);
+    --result-bullet-border-radius: var(--result-active-bullet-border-radius);
 }
 </style>

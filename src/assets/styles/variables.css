@@ -13,6 +13,11 @@
     --bg-alternate-hover: #edf2f5;
     --footer-bg: #f9fafb;
     --footer-text: #000;
+    --input-bg: #ddd;
+    --checkbox-bg: #f7fbff;
+    --checkbox-bg-hover: #dfe2e6;
+    --checkbox-bg-active: #c6c9cc;
+    --checkbox-color: #000;
     --modal: #fff;
     --button-primary: #1e90ff;
     --button-primary-hover: #4169e1;
@@ -52,6 +57,11 @@
     --bg-alternate-hover: #1b2029;
     --footer-bg: #000;
     --footer-text: #aeaeae;
+    --input-bg: #222;
+    --checkbox-bg: #0d1117;
+    --checkbox-bg-hover: #2b374a;
+    --checkbox-bg-active: #394a63;
+    --checkbox-color: #c9d1d9;
     --modal: #2c2c2c;
     --button-primary: #1e90ff;
     --button-primary-hover: #4169e1;

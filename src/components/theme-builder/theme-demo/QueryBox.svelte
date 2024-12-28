@@ -6,8 +6,8 @@ const { settings }: { settings: SettingsState; } = $props();
 
 let interval: number | null = null;
 
-let date = "";
-let time = "";
+let date = $state("");
+let time = $state("");
 
 const dateFormatter = new Intl.DateTimeFormat("en-US", {
   year: "numeric",
@@ -111,9 +111,10 @@ onMount(() => {
 
 .datetime {
     position: absolute;
-    right: calc((var(--search-icon-width) + 12px) * var(--search-icon-visible) + 18px);
+    right: 0;
     top: 0;
     bottom: 0;
+    margin: var(--datetime-margins);
     display: flex;
     flex-direction: column;
     align-items: flex-end;

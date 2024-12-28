@@ -40,6 +40,7 @@ const images = [
   class="demo"
   class:noProgressBar={!state.settings.progressBar}
   class:noCaret={!state.settings.caret}
+  class:hasBackgrounds={state.settings.backgrounds}
   style={state.toCssPropertiesAsString()}
 >
   {#if state.settings.backgrounds}
@@ -83,9 +84,12 @@ const images = [
 }
 
 .demo {
-    padding: 48px;
     position: sticky;
     top: 88px;
+}
+
+.demo.hasBackgrounds {
+    padding: 48px;
 }
 
 .window {
@@ -102,7 +106,6 @@ const images = [
     position: absolute;
     inset: 0;
     background-color: var(--background);
-    opacity: var(--background-opacity);
     z-index: -1;
 }
 

@@ -56,7 +56,6 @@ function toggleCollapse() {
     display: grid;
     grid-template-rows: 1fr;
     transition: grid-template-rows var(--duration), margin var(--duration);
-    overflow: hidden;
     margin: 16px;
 }
 
@@ -70,6 +69,7 @@ function toggleCollapse() {
 .isCollapsed .section-content-container {
     grid-template-rows: 0fr;
     margin: 0 16px;
+    overflow: hidden;
 }
 
 .isCollapsed .section-header {

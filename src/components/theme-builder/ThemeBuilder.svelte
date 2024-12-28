@@ -4,6 +4,11 @@ import Section from "./ui/Section.svelte";
 import Field from "./ui/Field.svelte";
 import Collapsible from "./ui/Collapsible.svelte";
 import { state } from "./state/AllState.svelte.ts";
+import ColorPicker from "./ui/inputs/ColorPicker.svelte";
+import Checkbox from "./ui/inputs/Checkbox.svelte";
+import RadioGroup from "./ui/inputs/RadioGroup.svelte";
+
+const FONT_WEIGHTS = ["Normal", "Bold"];
 </script>
 
 <div class="theme-builder">
@@ -11,33 +16,15 @@ import { state } from "./state/AllState.svelte.ts";
 
   <div class="sections">
     <Section title="Preview Settings">
-      <label>
-        <input type="checkbox" bind:checked={state.settings.backgrounds}/>
-        Backgrounds
-      </label>
-
-      <label>
-        <input type="checkbox" bind:checked={state.settings.progressBar}/>
-        Progress Bar
-      </label>
-
-      <label>
-        <input type="checkbox" bind:checked={state.settings.caret}/>
-        Caret
-      </label>
-
-      <label>
-        <input type="checkbox" bind:checked={state.settings.datetime}/>
-        Display date and time
-      </label>
+      <Checkbox label="Backgrounds" bind:value={state.settings.backgrounds} />
+      <Checkbox label="Progress Bar" bind:value={state.settings.progressBar} />
+      <Checkbox label="Caret" bind:value={state.settings.caret} />
+      <Checkbox label="Date and time" bind:value={state.settings.datetime} />
 
       <Field title="Active Results">
         <div class="active-results-checkboxes">
           {#each state.settings.activeResults as _, i}
-            <label>
-              <input type="checkbox" bind:checked={state.settings.activeResults[i]}/>
-              {i + 1}
-            </label>
+            <Checkbox label={i + 1} bind:value={state.settings.activeResults[i]} inline />
           {/each}
         </div>
       </Field>
@@ -52,49 +39,20 @@ import { state } from "./state/AllState.svelte.ts";
         <input type="number" bind:value={state.window.border.radius}/>
       </Field>
 
-      <Field title="Border Color">
-        <input type="color" bind:value={state.window.border.color}/>
-      </Field>
+      <ColorPicker label="Border Color" bind:value={state.window.border.color} alpha />
+      <ColorPicker label="Background Color" bind:value={state.window.background.color} alpha />
 
-      <Field title="Background Color">
-        <input type="color" bind:value={state.window.background.color}/>
-      </Field>
-
-      <Field title="Background Opacity">
-        <input type="range" min="0" max="1" step="0.01" bind:value={state.window.background.opacity}/>
-      </Field>
-
-      <Field title="Backdrop Blur">
-        <label>
-          <input type="checkbox" bind:checked={state.window.background.blur}/>
-          Enable
-        </label>
-      </Field>
+      <Checkbox label="Backdrop Blur" bind:value={state.window.background.blur} />
     </Section>
 
     <Section title="Query Box Style">
-      <Field title="Suggestion Text Color">
-        <input type="color" bind:value={state.queryBox.suggestionColor}/>
-      </Field>
+      <ColorPicker label="Suggestion Text Color" bind:value={state.queryBox.suggestionColor} alpha />
+      <ColorPicker label="Text Color" bind:value={state.queryBox.textColor} alpha />
+      <ColorPicker label="Caret Color" bind:value={state.queryBox.caretColor} alpha />
 
-      <Field title="Text Color">
-        <input type="color" bind:value={state.queryBox.textColor}/>
-      </Field>
-
-      <Field title="Caret Color">
-        <input type="color" bind:value={state.queryBox.caretColor}/>
-      </Field>
-
-      <Field title="Search Icon Visibility">
-        <label>
-          <input type="checkbox" bind:checked={state.queryBox.icon.visible}/>
-          Visible
-        </label>
-
+      <Field title="Search Icon Visibility" bind:value={state.queryBox.icon.visible}>
         <Collapsible visible={state.queryBox.icon.visible} topMargin>
-          <Field title="Search Icon Color">
-            <input type="color" bind:value={state.queryBox.icon.color}/>
-          </Field>
+          <ColorPicker label="Search Icon Color" bind:value={state.queryBox.icon.color} alpha />
 
           <Field title="Search Icon Size">
             <div class="margin-inputs">
@@ -105,24 +63,15 @@ import { state } from "./state/AllState.svelte.ts";
         </Collapsible>
       </Field>
 
-      <Field title="Progress Bar Color">
-        <input type="color" bind:value={state.queryBox.progressBar.color}/>
-      </Field>
+      <ColorPicker label="Progress Bar Color" bind:value={state.queryBox.progressBar.color} alpha />
 
       <Field title="Progress Bar Size">
         <input type="number" bind:value={state.queryBox.progressBar.height}/>
       </Field>
 
-      <Field title="Separator Visibility">
-        <label>
-          <input type="checkbox" bind:checked={state.separator.visible}/>
-          Visible
-        </label>
-
+      <Field title="Separator Visibility" bind:value={state.separator.visible}>
         <Collapsible visible={state.separator.visible} topMargin>
-          <Field title="Separator Color">
-            <input type="color" bind:value={state.separator.color}/>
-          </Field>
+          <ColorPicker label="Separator Color" bind:value={state.separator.color} alpha />
 
           <Field title="Separator Margins">
             <div class="margin-inputs">
@@ -139,45 +88,32 @@ import { state } from "./state/AllState.svelte.ts";
         </Collapsible>
       </Field>
 
+      <Field title="Date & Time Margins">
+        <div class="margin-inputs">
+          <input type="number" bind:value={state.queryBox.datetimeMargins.top}/>
+          <input type="number" bind:value={state.queryBox.datetimeMargins.right}/>
+          <input type="number" bind:value={state.queryBox.datetimeMargins.bottom}/>
+          <input type="number" bind:value={state.queryBox.datetimeMargins.left}/>
+        </div>
+      </Field>
+
       <Field title="Date Font Size">
         <input type="number" bind:value={state.queryBox.date.size}/>
       </Field>
 
-      <Field title="Date Color">
-        <input type="color" bind:value={state.queryBox.date.color}/>
-      </Field>
-
-      <Field title="Date Font Weight">
-        <select bind:value={state.queryBox.date.weight}>
-          <option value="Normal">Normal</option>
-          <option value="Bold">Bold</option>
-        </select>
-      </Field>
+      <ColorPicker label="Date Color" bind:value={state.queryBox.date.color} alpha />
+      <RadioGroup label="Date Font Weight" options={FONT_WEIGHTS} bind:value={state.queryBox.date.weight} />
 
       <Field title="Time Font Size">
         <input type="number" bind:value={state.queryBox.time.size}/>
       </Field>
 
-      <Field title="Time Color">
-        <input type="color" bind:value={state.queryBox.time.color}/>
-      </Field>
-
-      <Field title="Time Font Weight">
-        <select bind:value={state.queryBox.time.weight}>
-          <option value="Normal">Normal</option>
-          <option value="Bold">Bold</option>
-        </select>
-      </Field>
+      <ColorPicker label="Time Color" bind:value={state.queryBox.time.color} alpha />
+      <RadioGroup label="Time Font Weight" options={FONT_WEIGHTS} bind:value={state.queryBox.time.weight} />
     </Section>
 
     <Section title="Result Item Style">
-      <Field title="Active Background Color">
-        <input type="color" bind:value={state.result.active.background.color}/>
-      </Field>
-
-      <Field title="Active Background Opacity">
-        <input type="range" min="0" max="1" step="0.01" bind:value={state.result.active.background.opacity}/>
-      </Field>
+      <ColorPicker label="Active Background Color" bind:value={state.result.active.background} alpha />
 
       <Field title="Result List Margins">
         <div class="margin-inputs">
@@ -199,48 +135,17 @@ import { state } from "./state/AllState.svelte.ts";
         <input type="number" bind:value={state.result.borderRadius}/>
       </Field>
 
-      <Field title="Shortcut Color">
-        <input type="color" bind:value={state.result.regular.shortcut}/>
-      </Field>
+      <ColorPicker label="Shortcut Color" bind:value={state.result.regular.shortcut} alpha />
+      <ColorPicker label="Shortcut Active Color" bind:value={state.result.active.shortcut} alpha />
+      <ColorPicker label="Title Color" bind:value={state.result.regular.title} alpha />
+      <ColorPicker label="Title Active Color" bind:value={state.result.active.title} alpha />
+      <ColorPicker label="Subtitle Color" bind:value={state.result.regular.subtitle} alpha />
+      <ColorPicker label="Subtitle Active Color" bind:value={state.result.active.subtitle} alpha />
+      <ColorPicker label="Glyph Color" bind:value={state.result.regular.glyph} alpha />
+      <ColorPicker label="Glyph Active Color" bind:value={state.result.active.glyph} alpha />
+      <ColorPicker label="Highlited Text Color" bind:value={state.result.highlightedText.color} alpha />
 
-      <Field title="Shortcut Active Color">
-        <input type="color" bind:value={state.result.active.shortcut}/>
-      </Field>
-
-      <Field title="Title Color">
-        <input type="color" bind:value={state.result.regular.title}/>
-      </Field>
-
-      <Field title="Title Active Color">
-        <input type="color" bind:value={state.result.active.title}/>
-      </Field>
-
-      <Field title="Subtitle Color">
-        <input type="color" bind:value={state.result.regular.subtitle}/>
-      </Field>
-
-      <Field title="Subtitle Active Color">
-        <input type="color" bind:value={state.result.active.subtitle}/>
-      </Field>
-
-      <Field title="Glyph Color">
-        <input type="color" bind:value={state.result.regular.glyph}/>
-      </Field>
-
-      <Field title="Glyph Active Color">
-        <input type="color" bind:value={state.result.active.glyph}/>
-      </Field>
-
-      <Field title="Highlighted Text Color">
-        <input type="color" bind:value={state.result.highlightedText.color}/>
-      </Field>
-
-      <Field title="Highlighted Font Weight">
-        <select bind:value={state.result.highlightedText.weight}>
-          <option value="Normal">Normal</option>
-          <option value="Bold">Bold</option>
-        </select>
-      </Field>
+      <RadioGroup label="Highlighted Font Weight" options={FONT_WEIGHTS} bind:value={state.result.highlightedText.weight} />
     </Section>
 
     <Section title="Scrollbar Style">
@@ -248,9 +153,7 @@ import { state } from "./state/AllState.svelte.ts";
         <input type="number" bind:value={state.scrollbar.width}/>
       </Field>
 
-      <Field title="Color">
-        <input type="color" bind:value={state.scrollbar.color}/>
-      </Field>
+      <ColorPicker label="Color" bind:value={state.scrollbar.color} alpha />
 
       <Field title="Border Radius">
         <input type="number" bind:value={state.scrollbar.borderRadius}/>

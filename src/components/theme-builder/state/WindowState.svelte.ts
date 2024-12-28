@@ -9,7 +9,6 @@ export class WindowState implements IState {
 
   background = $state({
     color: "#303840",
-    opacity: 1,
     blur: false,
   });
 
@@ -19,7 +18,6 @@ export class WindowState implements IState {
       '--border-color': this.border.color,
       '--border-radius': `${this.border.radius}px`,
       '--background': this.background.color,
-      '--background-opacity': `${this.background.opacity}`,
       '--backdrop-blur': this.background.blur ? 'blur(30px)' : 'none',
     }
   }

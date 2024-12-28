@@ -23,8 +23,11 @@ const {
     display: grid;
     grid-template-rows: 0fr;
     transition: grid-template-rows 0.3s, margin-top 0.3s;
-    overflow: hidden;
     margin-top: 0;
+}
+
+.collapsible:not(.visible) {
+    overflow: hidden;
 }
 
 .collapsible.visible {

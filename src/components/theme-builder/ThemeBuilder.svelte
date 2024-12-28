@@ -39,9 +39,9 @@ setContext("state", state);
 
     <Section title="Window Style">
       <Group title="Border">
+        <ColorPicker label="Color" bind:value={state.window.border.color} alpha/>
         <NumberInput label="Thickness" bind:value={state.window.border.thickness}/>
         <NumberInput label="Radius" bind:value={state.window.border.radius}/>
-        <ColorPicker label="Color" bind:value={state.window.border.color} alpha/>
       </Group>
       <Group title="Background">
         <ColorPicker label="Color" bind:value={state.window.background.color} alpha/>

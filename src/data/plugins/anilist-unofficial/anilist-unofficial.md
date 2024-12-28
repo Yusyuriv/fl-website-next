@@ -1,4 +1,4 @@
-﻿---
+---
 id: 08AF784C-A014-4A03-822F-6C2F3665A843
 slug: anilist-unofficial
 images:

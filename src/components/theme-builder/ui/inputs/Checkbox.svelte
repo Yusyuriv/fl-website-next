@@ -25,7 +25,7 @@ let {
     display: flex;
     align-items: center;
     gap: 12px;
-    padding-left: 6px;
+    padding: 0 6px;
     cursor: pointer;
 }
 
@@ -62,7 +62,7 @@ let {
     stroke: var(--checkbox-color);
     stroke-width: 4px;
     stroke-dasharray: 33.700706481933594;
-    stroke-dashoffset: 33.700706481933594;
+    stroke-dashoffset: -33.700706481933594;
     transition: stroke-dashoffset 0.2s;
 }
 

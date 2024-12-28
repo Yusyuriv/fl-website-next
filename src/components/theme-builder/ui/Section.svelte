@@ -31,7 +31,7 @@ function toggleCollapse() {
 
 <style>
 .section {
-    background-color: var(--bg-alternate);
+    background-color: var(--group-bg);
     border-radius: 8px;
     border: 1px solid var(--sep);
     --duration: 0.3s;

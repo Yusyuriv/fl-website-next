@@ -1,4 +1,5 @@
 <script lang="ts">
+import { getContext } from "svelte";
 import Backgrounds from "./Backgrounds.svelte";
 import Result from "./Result.svelte";
 import QueryBox from "./QueryBox.svelte";
@@ -6,7 +7,7 @@ import Collapsible from "../ui/Collapsible.svelte";
 import type { AllState } from "../state/AllState.svelte";
 import Scrollbar from "@/components/theme-builder/theme-demo/Scrollbar.svelte";
 
-const { state }: { state: AllState } = $props();
+const state: AllState = getContext("state");
 
 const images = [
   {
@@ -65,11 +66,13 @@ const images = [
       <Result shortcut={3} image="/favicon.ico" active={state.settings.activeResults[2]}>
         {#snippet title()}<i>Hel</i>lo from the theme creator :){/snippet}
       </Result>
-      <Result shortcut={4} image="/favicon.ico" active={state.settings.activeResults[3]}>
+      <Result shortcut={4} glyph="W" active={state.settings.activeResults[3]}>
         {#snippet title()}<i>Hel</i>lo everyone{/snippet}
+        {#snippet subtitle()}This result has a glyph{/snippet}
       </Result>
       <Result shortcut={5} glyph="H" active={state.settings.activeResults[4]}>
-        {#snippet title()}<i>Hel</i>lo with a glyph{/snippet}
+        {#snippet title()}<i>Hel</i>lo everyone again{/snippet}
+        {#snippet subtitle()}This result also has a glyph{/snippet}
       </Result>
 
       <Scrollbar />

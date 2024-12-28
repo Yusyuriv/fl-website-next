@@ -1,4 +1,9 @@
 <script lang="ts">
+import {getContext} from "svelte";
+import type {AllState} from "../state/AllState.svelte.ts";
+
+const state: AllState = getContext("state");
+
 const {
   image,
   glyph,
@@ -14,6 +19,11 @@ const {
   shortcut: number;
   active?: boolean;
 } = $props();
+
+const displayBullet = $derived(
+  (!active && state.bullet.regular.visible) ||
+  (active && state.bullet.active.visible)
+);
 </script>
 
 <div class="result" class:active>
@@ -21,10 +31,12 @@ const {
     <img src={image} alt="" class="result-icon"/>
   {:else if glyph}
     <div class="result-glyph">{glyph}</div>
-    {:else}
+  {:else}
     <div />
   {/if}
-  <div class="bullet" />
+  {#if displayBullet}
+    <div class="bullet" />
+  {/if}
   <div class="result-text">
     <div class="result-title">{@render title?.()}</div>
     <div class="result-subtitle">{@render subtitle?.()}</div>
@@ -101,16 +113,16 @@ const {
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    background-color: var(--result-bullet-color);
-    width: var(--result-bullet-width);
-    height: var(--result-bullet-height);
-    border-radius: var(--result-bullet-border-radius);
+    background-color: var(--bullet-regular-color);
+    width: var(--bullet-regular-width);
+    height: var(--bullet-regular-height);
+    border-radius: var(--bullet-regular-border-radius);
 }
 
 .result.active .bullet {
-    --result-bullet-color: var(--result-active-bullet-color);
-    --result-bullet-width: var(--result-active-bullet-width);
-    --result-bullet-height: var(--result-active-bullet-height);
-    --result-bullet-border-radius: var(--result-active-bullet-border-radius);
+    --bullet-regular-color: var(--bullet-active-color);
+    --bullet-regular-width: var(--bullet-active-width);
+    --bullet-regular-height: var(--bullet-active-height);
+    --bullet-regular-border-radius: var(--bullet-active-border-radius);
 }
 </style>

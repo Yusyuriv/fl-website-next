@@ -26,7 +26,7 @@ let {
     --cp-bg-color: var(--card);
     --cp-border-color: var(--card-sep);
     --cp-text-color: var(--text);
-    --cp-input-color: var(--input-bg);
+    --cp-input-color: var(--color-picker-input-bg);
     --cp-button-hover-color: var(--button-copy-active);
     --focus-color: var(--sep);
 }

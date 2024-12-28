@@ -4,7 +4,7 @@ let {
   options,
   value = $bindable(),
 }: {
-  label: string;
+  label?: string;
   options: ({ label: string; value: string } | string)[];
   value: string;
 } = $props();
@@ -14,7 +14,9 @@ const groupName = `radio-group-${crypto.randomUUID()}`;
 </script>
 
 <div class="radio-group">
+  {#if label}
   <div class="label">{label}</div>
+  {/if}
   <div class="buttons">
   {#each optionObjects as { label, value: optionValue }}
     <label class="radio-label">
@@ -27,11 +29,9 @@ const groupName = `radio-group-${crypto.randomUUID()}`;
 </div>
 
 <style>
-.radio-group {
-}
-
 .buttons {
     margin-top: 4px;
+    margin-left: 6px;
     display: flex;
     gap: 24px;
 }

@@ -5,6 +5,7 @@ import {QueryBoxState} from "./QueryBoxState.svelte.ts";
 import {SeparatorState} from "./SeparatorState.svelte.ts";
 import {ResultState} from "./ResultState.svelte.ts";
 import {ScrollbarState} from "./ScrollbarState.svelte.ts";
+import {BulletState} from "./BulletState.svelte.ts";
 
 export class AllState implements IState {
   settings = new SettingsState();
@@ -13,6 +14,7 @@ export class AllState implements IState {
   scrollbar = new ScrollbarState();
   separator = new SeparatorState();
   result = new ResultState();
+  bullet = new BulletState();
 
   toCssProperties(): Record<string, string> {
     return {
@@ -21,6 +23,7 @@ export class AllState implements IState {
       ...this.scrollbar.toCssProperties(),
       ...this.separator.toCssProperties(),
       ...this.result.toCssProperties(),
+      ...this.bullet.toCssProperties(),
     };
   }
 
@@ -36,6 +39,8 @@ export class AllState implements IState {
       ${this.queryBox.toXamlString()}
       ${this.separator.toXamlString()}
       ${this.result.toXamlString()}
+      ${this.scrollbar.toXamlString()}
+      ${this.bullet.toXamlString()}
     `;
   }
 }

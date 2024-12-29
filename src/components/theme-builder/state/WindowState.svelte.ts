@@ -1,4 +1,5 @@
 import type {IState} from "./IState";
+import {normalizeBooleanForWpf, normalizeHexColorForWpf} from "@/utils.ts";
 
 export class WindowState implements IState {
   border = $state({
@@ -23,6 +24,28 @@ export class WindowState implements IState {
   }
 
   toXamlString(): string {
-    throw new Error("Method not implemented.");
+    return `
+    <!-- Blur behind the window -->
+    <system:Boolean x:Key="ThemeBlurEnabled">${normalizeBooleanForWpf(this.background.blur)}</system:Boolean>
+    
+    <!-- Main window background -->
+    <Style
+        x:Key="WindowBorderStyle"
+        BasedOn="{StaticResource BaseWindowBorderStyle}"
+        TargetType="{x:Type Border}">
+        <Setter Property="BorderThickness" Value="${this.border.thickness}" />
+        <Setter Property="BorderBrush" Value="${normalizeHexColorForWpf(this.border.color)}" />
+        <Setter Property="Background" Value="${normalizeHexColorForWpf(this.background.color)}"/>
+        <Setter Property="CornerRadius" Value="${this.border.radius}" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+    </Style>
+    
+    <Style
+        x:Key="WindowStyle"
+        BasedOn="{StaticResource BaseWindowStyle}"
+        TargetType="{x:Type Window}" />
+        
+    <Style x:Key="WindowRadius" TargetType="{x:Type Border}" />
+    `;
   }
 }

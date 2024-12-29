@@ -61,9 +61,17 @@ const displayBullet = $derived(
 .result.active {
     background-color: var(--result-active-background-color);
     --result-title-color: var(--result-title-active-color);
+    --result-title-font-style: var(--result-title-active-font-style);
+    --result-title-font-weight: var(--result-title-active-font-weight);
     --result-subtitle-color: var(--result-subtitle-active-color);
+    --result-subtitle-font-style: var(--result-subtitle-active-font-style);
+    --result-subtitle-font-weight: var(--result-subtitle-active-font-weight);
     --result-glyph-color: var(--result-glyph-active-color);
     --result-shortcut-color: var(--result-shortcut-active-color);
+    --result-glyph-font-size: var(--result-glyph-active-font-size);
+    --result-shortcut-font-size: var(--result-shortcut-active-font-size);
+    --result-shortcut-font-style: var(--result-shortcut-active-font-style);
+    --result-shortcut-font-weight: var(--result-shortcut-active-font-weight);
 }
 
 .result-text {
@@ -79,11 +87,15 @@ const displayBullet = $derived(
 
 .result-title {
     color: var(--result-title-color);
+    font-style: var(--result-title-font-style);
+    font-weight: var(--result-title-font-weight);
     font-size: 16px;
 }
 
 .result-subtitle {
     color: var(--result-subtitle-color);
+    font-style: var(--result-subtitle-font-style);
+    font-weight: var(--result-subtitle-font-weight);
     font-size: 14px;
 }
 
@@ -94,18 +106,20 @@ const displayBullet = $derived(
 }
 
 .result-glyph {
-    width: 32px;
+    width: var(--result-glyph-font-size);
     aspect-ratio: 1;
     display: grid;
     place-items: center;
-    font-size: 32px;
+    font-size: var(--result-glyph-font-size);
     line-height: 1;
     color: var(--result-glyph-color);
 }
 
 .result-shortcut {
     color: var(--result-shortcut-color);
-    font-size: 12px;
+    font-size: var(--result-shortcut-font-size);
+    font-style: var(--result-shortcut-font-style);
+    font-weight: var(--result-shortcut-font-weight);
 }
 
 .bullet {

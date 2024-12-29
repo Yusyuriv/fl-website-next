@@ -71,3 +71,33 @@ export function setupButtonToOpenDownloadDialog(buttonSelector: string): void {
     dialog.focus();
   });
 }
+
+export function normalizeHexColorForWpf(hexColor: string): string {
+  hexColor = hexColor.toUpperCase();
+
+  if (hexColor.length === 4) {
+    return `#FF${hexColor[1]}${hexColor[1]}${hexColor[2]}${hexColor[2]}${hexColor[3]}${hexColor[3]}`;
+  }
+
+  if (hexColor.length === 5) {
+    return `#${hexColor[4]}${hexColor[4]}${hexColor[1]}${hexColor[1]}${hexColor[2]}${hexColor[2]}${hexColor[3]}${hexColor[3]}`;
+  }
+
+  if (hexColor.length === 7) {
+    return `#FF${hexColor.substring(1)}`;
+  }
+
+  if (hexColor.length === 9) {
+    return `#${hexColor.substring(7)}${hexColor.substring(1, 7)}`;
+  }
+
+  return hexColor;
+}
+
+export function normalizeMarginsForWpf(margins: { top: number; right: number; bottom: number; left: number }): string {
+  return `${margins.left} ${margins.top} ${margins.right} ${margins.bottom}`;
+}
+
+export function normalizeBooleanForWpf(value: boolean): string {
+  return value ? "True" : "False";
+}

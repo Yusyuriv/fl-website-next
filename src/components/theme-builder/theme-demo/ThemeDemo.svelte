@@ -86,11 +86,6 @@ const images = [
     transition: all 0.2s;
 }
 
-.demo {
-    position: sticky;
-    top: 88px;
-}
-
 .demo.hasBackgrounds {
     padding: 48px;
 }

@@ -26,6 +26,7 @@
     --code-bg: #eee;
     --button-primary: #1e90ff;
     --button-primary-hover: #4169e1;
+    --button-primary-active: #3a5dc7;
     --button-primary-text: #fff;
     --button-primary-variant-secondary: #3151b0;
     --button-primary-variant-secondary-hover: #1f3c92;
@@ -75,6 +76,7 @@
     --code-bg: #24292e;
     --button-primary: #1e90ff;
     --button-primary-hover: #4169e1;
+    --button-primary-active: #3a5dc7;
     --button-primary-text: #fff;
     --button-copy: #444;
     --button-copy-hover: #555;

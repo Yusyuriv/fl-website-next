@@ -6,6 +6,7 @@ import {SeparatorState} from "./SeparatorState.svelte.ts";
 import {ResultState} from "./ResultState.svelte.ts";
 import {ScrollbarState} from "./ScrollbarState.svelte.ts";
 import {BulletState} from "./BulletState.svelte.ts";
+import {normalizeBooleanForWpf} from "@/utils.ts";
 
 export class AllState implements IState {
   settings = new SettingsState();
@@ -35,13 +36,30 @@ export class AllState implements IState {
 
   toXamlString(): string {
     return `
-      ${this.window.toXamlString()}
-      ${this.queryBox.toXamlString()}
-      ${this.separator.toXamlString()}
-      ${this.result.toXamlString()}
-      ${this.scrollbar.toXamlString()}
-      ${this.bullet.toXamlString()}
-    `;
+<!--
+    Name: ${this.settings.name}
+    IsDark: ${normalizeBooleanForWpf(this.settings.dark)}
+    HasBlur: ${normalizeBooleanForWpf(this.window.background.blur)}
+-->
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:m="http://schemas.modernwpf.com/2019"
+    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/Themes/Base.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    
+    ${this.window.toXamlString()}
+    ${this.queryBox.toXamlString()}
+    ${this.separator.toXamlString()}
+    ${this.result.toXamlString()}
+    ${this.bullet.toXamlString()}
+    ${this.scrollbar.toXamlString()}
+    
+</ResourceDictionary>
+    `.trim();
   }
 }
 

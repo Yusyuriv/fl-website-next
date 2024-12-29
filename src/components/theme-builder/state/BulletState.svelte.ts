@@ -1,4 +1,5 @@
 import type {IState} from "./IState";
+import {normalizeHexColorForWpf} from "@/utils.ts";
 
 export class BulletState implements IState {
   regular = $state({
@@ -31,6 +32,35 @@ export class BulletState implements IState {
   }
 
   toXamlString(): string {
-    throw new Error("Method not implemented.");
+    return `
+    <!-- Bullets -->
+    <Style
+        x:Key="BulletStyle"
+        BasedOn="{StaticResource BaseBulletStyle}"
+        TargetType="{x:Type Border}">
+        ${this.getBulletStyleContent(this.regular)}
+    </Style>
+    
+    <Style
+        x:Key="ItemBulletSelectedStyle"
+        BasedOn="{StaticResource BaseBulletStyle}"
+        TargetType="{x:Type Border}">
+        ${this.getBulletStyleContent(this.active)}
+    </Style>
+    `;
+  }
+
+  private getBulletStyleContent(bullet: typeof this.regular): string {
+    if (bullet.visible) {
+      return `
+        <Setter Property="Width" Value="${bullet.width}" />
+        <Setter Property="Height" Value="${bullet.height}" />
+        <Setter Property="CornerRadius" Value="${bullet.borderRadius}" />
+        <Setter Property="Background" Value="${normalizeHexColorForWpf(bullet.color)}" />
+      `.trim();
+    }
+    return `
+        <Setter Property="Visibility" Value="Collapsed" />
+    `.trim();
   }
 }

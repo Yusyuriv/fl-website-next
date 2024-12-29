@@ -1,4 +1,5 @@
 import type {IState} from "./IState";
+import {normalizeHexColorForWpf, normalizeMarginsForWpf} from "@/utils.ts";
 
 export class SeparatorState implements IState {
   visible = $state(true);
@@ -20,6 +21,19 @@ export class SeparatorState implements IState {
   }
 
   toXamlString(): string {
-    throw new Error("Method not implemented.");
+    const color = this.visible ? normalizeHexColorForWpf(this.color) : "Transparent";
+    const height = this.visible ? this.size : 0;
+    const margin = this.visible ? normalizeMarginsForWpf(this.margins) : "0";
+    return `
+    <!-- Separator between the query box and the results -->
+    <Style
+        x:Key="SeparatorStyle"
+        BasedOn="{StaticResource BaseSeparatorStyle}"
+        TargetType="{x:Type Rectangle}">
+        <Setter Property="Fill" Value="${color}" />
+        <Setter Property="Height" Value="${height}" />
+        <Setter Property="Margin" Value="${margin}" />
+    </Style>
+    `;
   }
 }

@@ -26,4 +26,13 @@ export default defineConfig({
   },
 
   integrations: [svelte()],
+
+  markdown: {
+    shikiConfig: {
+      themes: {
+        light: 'github-light',
+        dark: 'github-dark',
+      },
+    },
+  },
 });

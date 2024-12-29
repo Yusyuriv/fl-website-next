@@ -23,6 +23,7 @@
     --group-bg: #f7fbff;
     --group-bg-alternate: #edf2f5;
     --modal: #fff;
+    --code-bg: #eee;
     --button-primary: #1e90ff;
     --button-primary-hover: #4169e1;
     --button-primary-text: #fff;
@@ -71,6 +72,7 @@
     --group-bg: #2b374a;
     --group-bg-alternate: #3b4b64;
     --modal: #2c2c2c;
+    --code-bg: #24292e;
     --button-primary: #1e90ff;
     --button-primary-hover: #4169e1;
     --button-primary-text: #fff;

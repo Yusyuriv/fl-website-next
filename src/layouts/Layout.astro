@@ -156,6 +156,23 @@ button {
 	margin-bottom: 1em;
 }
 
+.blog-content code {
+	font-family: 'Source Code Pro', 'Fira Code', 'JetBrains Mono', monospace;
+	background-color: var(--code-bg);
+	padding: 0.1em 0.3em;
+	border-radius: 4px;
+}
+
+.astro-code,
+.astro-code span {
+	background-color: var(--code-bg) !important;
+}
+
+.blog-content pre > code {
+	padding: 0;
+	background-color: transparent;
+}
+
 .blog-content img {
 	width: 100%;
 	max-width: 100%;
@@ -169,6 +186,11 @@ button {
 .blog-content ol {
 	padding-left: revert;
 	list-style: revert;
+}
+
+[data-theme="dark"] .astro-code,
+[data-theme="dark"] .astro-code span {
+	color: var(--shiki-dark) !important;
 }
 </style>
 

@@ -94,8 +94,13 @@ export function normalizeHexColorForWpf(hexColor: string): string {
   return hexColor;
 }
 
-export function normalizeMarginsForWpf(margins: { top: number; right: number; bottom: number; left: number }): string {
-  return `${margins.left} ${margins.top} ${margins.right} ${margins.bottom}`;
+export function normalizeMarginsForWpf({top = 0, right = 0, bottom = 0, left = 0}: {
+  top?: number;
+  right?: number;
+  bottom?: number;
+  left?: number
+}): string {
+  return `${left} ${top} ${right} ${bottom}`;
 }
 
 export function normalizeBooleanForWpf(value: boolean): string {

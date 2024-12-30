@@ -7,6 +7,7 @@ import {ResultState} from "./ResultState.svelte.ts";
 import {ScrollbarState} from "./ScrollbarState.svelte.ts";
 import {BulletState} from "./BulletState.svelte.ts";
 import {normalizeBooleanForWpf} from "@/utils.ts";
+import {compressSync, decompressSync} from "fflate";
 
 export class AllState implements IState {
   settings = new SettingsState();
@@ -60,6 +61,53 @@ export class AllState implements IState {
     
 </ResourceDictionary>
     `.trim();
+  }
+
+  fromJSON(json: Record<any, any>): void {
+    const sectionKeys = Object.getOwnPropertyNames(state.toJSON());
+
+    for (const sectionKey of sectionKeys) {
+      const section = (state as any)[sectionKey];
+
+      const subsectionKeys = Object.getOwnPropertyNames(Object.getPrototypeOf(section));
+
+      for (const subsectionKey of subsectionKeys) {
+        if (json[sectionKey]?.[subsectionKey] != null) {
+          section[subsectionKey] = json[sectionKey][subsectionKey];
+        }
+      }
+    }
+  }
+
+  fromEncodedJSON(encodedJson: string): void {
+    try {
+      const decoded = Uint8Array.from(atob(encodedJson), c => c.charCodeAt(0));
+      const decompressed = new TextDecoder().decode(decompressSync(decoded));
+      const json = JSON.parse(decompressed);
+      this.fromJSON(json);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  toJSON(): Record<string, any> {
+    return {
+      settings: this.settings,
+      window: this.window,
+      queryBox: this.queryBox,
+      scrollbar: this.scrollbar,
+      separator: this.separator,
+      result: this.result,
+      bullet: this.bullet,
+    };
+  }
+
+  toEncodedJSON(): string {
+    const jsonString = JSON.stringify(this);
+    const compressed = compressSync(new TextEncoder().encode(jsonString), {
+      level: 9,
+    });
+    return btoa(String.fromCharCode(...compressed));
   }
 }
 

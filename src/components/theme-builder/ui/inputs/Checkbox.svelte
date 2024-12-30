@@ -1,23 +1,52 @@
 <script lang="ts">
 let {
   label,
+  description,
   inline = false,
-  value: checked = $bindable(),
+  value = $bindable(),
+  offValue,
+  onValue,
 }: {
   label: string;
+  description?: string;
   inline?: boolean;
-  value: boolean;
+  value: any;
+  offValue?: any;
+  onValue?: any;
 } = $props();
+
+const checked = $derived.by<boolean>(() => {
+  if (offValue != null && onValue != null) {
+    return value === onValue;
+  }
+  return value;
+});
+
+function onchange(e: Event) {
+  const target = e.target as HTMLInputElement;
+  if (offValue != null && onValue != null) {
+    value = target.checked ? onValue : offValue;
+  } else {
+    value = target.checked;
+  }
+}
 </script>
 
 <label class="checkbox-label" class:inline>
-  <input type="checkbox" bind:checked />
+  <input type="checkbox" {checked} {onchange}/>
 
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="checkmark" class:checked>
     <path d="M32 0 16 16 8.17 8.17" transform="translate(-4.08 8)"/>
   </svg>
 
-  {label}
+  {#if !description}
+    {label}
+  {:else}
+    <div class="checkbox-text">
+      <div>{label}</div>
+      <div class="checkbox-description">{description}</div>
+    </div>
+  {/if}
 </label>
 
 <style>
@@ -68,6 +97,11 @@ let {
 
 .checkmark.checked path {
     stroke-dashoffset: 0;
+}
+
+.checkbox-description {
+    font-size: 12px;
+    margin-top: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {

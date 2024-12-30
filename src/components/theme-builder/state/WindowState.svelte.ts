@@ -48,4 +48,11 @@ export class WindowState implements IState {
     <Style x:Key="WindowRadius" TargetType="{x:Type Border}" />
     `;
   }
+
+  toJSON(): Record<string, any> {
+    return {
+      border: this.border,
+      background: this.background,
+    };
+  }
 }

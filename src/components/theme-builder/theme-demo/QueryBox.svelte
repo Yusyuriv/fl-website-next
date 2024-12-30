@@ -130,13 +130,17 @@ onMount(() => {
 .date {
     color: var(--date-color);
     font-size: var(--date-size);
-    font-weight: var(--date-weight);
+    font-style: var(--date-font-style);
+    font-weight: var(--date-font-weight);
+    margin: var(--date-margins);
 }
 
 .time {
     color: var(--time-color);
     font-size: var(--time-size);
-    font-weight: var(--time-weight);
+    font-style: var(--time-font-style);
+    font-weight: var(--time-font-weight);
+    margin: var(--time-margins);
 }
 
 :global(.noProgressBar) .query-box::before {

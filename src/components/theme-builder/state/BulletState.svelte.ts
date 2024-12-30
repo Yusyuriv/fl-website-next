@@ -24,6 +24,7 @@ export class BulletState implements IState {
       '--bullet-regular-width': `${this.regular.width}px`,
       '--bullet-regular-height': `${this.regular.height}px`,
       '--bullet-regular-border-radius': `${this.regular.borderRadius}px`,
+
       '--bullet-active-color': this.active.color,
       '--bullet-active-width': `${this.active.width}px`,
       '--bullet-active-height': `${this.active.height}px`,
@@ -62,5 +63,12 @@ export class BulletState implements IState {
     return `
         <Setter Property="Visibility" Value="Collapsed" />
     `.trim();
+  }
+
+  toJSON(): Record<string, any> {
+    return {
+      regular: this.regular,
+      active: this.active,
+    }
   }
 }

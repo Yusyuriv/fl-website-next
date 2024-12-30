@@ -7,7 +7,7 @@ const {
   fileName,
   fileContent,
 }: {
-  children?: Snippet | Snippet[];
+  children?: Snippet;
   fileName: string;
   fileContent: () => string;
 } = $props();

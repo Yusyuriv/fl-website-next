@@ -5,7 +5,7 @@ const {
   children,
   onclick,
 }: {
-  children: Snippet | Snippet[];
+  children: Snippet;
   onclick: (e: MouseEvent) => void;
 } = $props();
 </script>

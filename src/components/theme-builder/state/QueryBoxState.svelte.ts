@@ -21,7 +21,8 @@ export class QueryBoxState implements IState {
   date = $state({
     color: "#79817F",
     size: 14,
-    weight: "Normal",
+    fontStyle: "Normal",
+    fontWeight: "Normal",
     margins: {
       top: 0,
       right: 0,
@@ -33,7 +34,8 @@ export class QueryBoxState implements IState {
   time = $state({
     color: "#79817F",
     size: 14,
-    weight: "Normal",
+    fontStyle: "Normal",
+    fontWeight: "Normal",
     margins: {
       top: 0,
       right: 0,
@@ -65,10 +67,14 @@ export class QueryBoxState implements IState {
       '--datetime-margins': `${this.datetimeMargins.top}px ${this.datetimeMargins.right}px ${this.datetimeMargins.bottom}px ${this.datetimeMargins.left}px`,
       '--date-color': this.date.color,
       '--date-size': `${this.date.size}px`,
-      '--date-weight': this.date.weight,
+      '--date-font-weight': this.date.fontWeight,
+      '--date-font-style': this.date.fontStyle,
+      '--date-margins': `${this.date.margins.top}px ${this.date.margins.right}px ${this.date.margins.bottom}px ${this.date.margins.left}px`,
       '--time-color': this.time.color,
       '--time-size': `${this.time.size}px`,
-      '--time-weight': this.time.weight,
+      '--time-font-weight': this.time.fontWeight,
+      '--time-font-style': this.time.fontStyle,
+      '--time-margins': `${this.time.margins.top}px ${this.time.margins.right}px ${this.time.margins.bottom}px ${this.time.margins.left}px`,
     };
   }
 
@@ -107,7 +113,8 @@ export class QueryBoxState implements IState {
         <Setter Property="Margin" Value="${normalizeMarginsForWpf(this.time.margins)}" />
         <Setter Property="Foreground" Value="${normalizeHexColorForWpf(this.time.color)}" />
         <Setter Property="FontSize" Value="${this.time.size}" />
-        <Setter Property="FontWeight" Value="${this.time.weight}" />
+        <Setter Property="FontStyle" Value="${this.time.fontStyle}" />
+        <Setter Property="FontWeight" Value="${this.time.fontWeight}" />
     </Style>
     
     <!-- Date text block -->
@@ -118,7 +125,8 @@ export class QueryBoxState implements IState {
         <Setter Property="Margin" Value="${normalizeMarginsForWpf(this.date.margins)}" />
         <Setter Property="Foreground" Value="${normalizeHexColorForWpf(this.date.color)}" />
         <Setter Property="FontSize" Value="${this.date.size}" />
-        <Setter Property="FontWeight" Value="${this.date.weight}" />
+        <Setter Property="FontStyle" Value="${this.date.fontStyle}" />
+        <Setter Property="FontWeight" Value="${this.date.fontWeight}" />
     </Style>
     
     <!-- Icon to the right of the query text box -->
@@ -134,7 +142,7 @@ export class QueryBoxState implements IState {
         x:Key="PendingLineStyle"
         BasedOn="{StaticResource BasePendingLineStyle}"
         TargetType="{x:Type Line}">
-        <Setter Property="Stroke" Value="${this.progressBar.color}" />
+        <Setter Property="Stroke" Value="${normalizeHexColorForWpf(this.progressBar.color)}" />
         <Setter Property="StrokeThickness" Value="${this.progressBar.height}" />
     </Style>
     `;
@@ -151,4 +159,17 @@ export class QueryBoxState implements IState {
         <Setter Property="Visibility" Value="Collapsed" />
       `.trim();
   }
+
+  toJSON(): Record<string, any> {
+    return {
+      suggestionColor: this.suggestionColor,
+      textColor: this.textColor,
+      caretColor: this.caretColor,
+      icon: this.icon,
+      progressBar: this.progressBar,
+      date: this.date,
+      time: this.time,
+      datetimeMargins: this.datetimeMargins,
+    }
+  };
 }

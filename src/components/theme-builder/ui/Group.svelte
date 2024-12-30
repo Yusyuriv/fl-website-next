@@ -6,7 +6,7 @@ const {
   children,
 }: {
   title: string;
-  children: Snippet | Snippet[];
+  children: Snippet;
 } = $props();
 </script>
 

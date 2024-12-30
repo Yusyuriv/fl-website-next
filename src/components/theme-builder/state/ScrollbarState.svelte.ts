@@ -44,4 +44,12 @@ export class ScrollbarState implements IState {
     </Style>
     `;
   }
+
+  toJSON(): Record<string, any> {
+    return {
+      width: this.width,
+      color: this.color,
+      borderRadius: this.borderRadius,
+    };
+  }
 }

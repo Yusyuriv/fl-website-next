@@ -1,7 +1,7 @@
 <script lang="ts">
 import ThemeDemo from "./theme-demo/ThemeDemo.svelte";
 import {state} from "./state/AllState.svelte.ts";
-import {setContext} from "svelte";
+import {onMount, setContext} from "svelte";
 import WindowSection from "@/components/theme-builder/sidebar/WindowSection.svelte";
 import PreviewSettingsSection from "@/components/theme-builder/sidebar/PreviewSettingsSection.svelte";
 import QueryBoxSection from "@/components/theme-builder/sidebar/QueryBoxSection.svelte";
@@ -13,19 +13,33 @@ import Checkbox from "@/components/theme-builder/ui/inputs/Checkbox.svelte";
 import Group from "@/components/theme-builder/ui/Group.svelte";
 import SaveFileButton from "@/components/theme-builder/ui/SaveFileButton.svelte";
 
-const FONT_WEIGHTS = ["Normal", "Bold"];
-const FONT_STYLES = ["Normal", "Italic"];
-
 const FILE_NAME_REGEXP = /[^a-z0-9_\-.() ]/gi;
-const fileName = $derived(state.settings.name.replace(FILE_NAME_REGEXP, "") + ".xaml");
+const fileName = $derived.by(() => {
+  let result = state.settings.name.replace(FILE_NAME_REGEXP, "") + ".xaml";
+  if (result === ".xaml") result = "theme.xaml";
+  return result;
+});
 
 function fileContent(): string {
   return state.toXamlString();
 }
 
 setContext("state", state);
-setContext("FONT_WEIGHTS", FONT_WEIGHTS);
-setContext("FONT_STYLES", FONT_STYLES);
+
+onMount(() => {
+  const hash = location.hash.slice(1);
+  if (!hash) return;
+
+  try {
+    state.fromEncodedJSON(hash);
+  } catch(e) {
+    console.error(e);
+  }
+})
+
+$effect(() => {
+  history.replaceState({}, "", location.pathname + `#${state.toEncodedJSON()}`);
+});
 </script>
 
 <div class="theme-builder">
@@ -34,10 +48,15 @@ setContext("FONT_STYLES", FONT_STYLES);
 
     <div class="theme-builder-theme-metadata">
       <Group title="Theme">
-        <div>
-          <Checkbox label="It's a dark theme" bind:value={state.settings.dark} />
-          <div class="checkbox-subtitle">This doesn't affect the actual styles, it just adds an icon next to your theme's name in settings.</div>
-        </div>
+        <p class="notice">
+          Please note that this preview is not a one-to-one recreation of the actual Flow Launcher window.
+          It might not always look exactly the same, but it should give you a very good idea of how your theme will look.
+        </p>
+        <Checkbox
+          label="It's a dark theme"
+          description="This doesn't affect the actual styles, it just adds an icon next to your theme's name in settings."
+          bind:value={state.settings.dark}
+        />
         <TextInput label="Name" bind:value={state.settings.name} />
         <SaveFileButton {fileName} {fileContent}/>
       </Group>
@@ -71,15 +90,16 @@ setContext("FONT_STYLES", FONT_STYLES);
     top: 88px;
 }
 
+.notice {
+    font-size: 14px;
+    line-height: 1.25;
+    margin-bottom: 8px;
+    opacity: 0.75;
+}
+
 .sections {
     display: flex;
     flex-direction: column;
     gap: 16px;
-}
-
-.checkbox-subtitle {
-    font-size: 12px;
-    margin-top: 2px;
-    margin-left: 38px;
 }
 </style>

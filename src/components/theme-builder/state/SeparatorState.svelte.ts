@@ -36,4 +36,13 @@ export class SeparatorState implements IState {
     </Style>
     `;
   }
+
+  toJSON(): Record<string, any> {
+    return {
+      visible: this.visible,
+      color: this.color,
+      margins: this.margins,
+      size: this.size,
+    };
+  }
 }

@@ -1,5 +1,5 @@
 import type {IState} from "./IState";
-import {normalizeHexColorForWpf} from "@/utils.ts";
+import {normalizeHexColorForWpf, normalizeMarginsForWpf} from "@/utils.ts";
 
 export class ResultState implements IState {
   regular = $state({
@@ -62,26 +62,16 @@ export class ResultState implements IState {
   highlightedText = $state({
     color: "#FFAA47",
     fontStyle: "Normal",
-    weight: "Normal",
+    fontWeight: "Normal",
   });
 
   toCssProperties(): Record<string, string> {
     return {
       '--result-title-color': this.regular.title,
-      // '--result-title-font-style': this.regular.shortcut.fontStyle,
-      // '--result-title-font-weight': this.regular.shortcut.fontWeight,
-
       '--result-title-active-color': this.active.title,
-      // '--result-title-active-font-style': this.active.shortcut.fontStyle,
-      // '--result-title-active-font-weight': this.active.shortcut.fontWeight,
 
       '--result-subtitle-color': this.regular.subtitle,
-      // '--result-subtitle-font-style': this.regular.shortcut.fontStyle,
-      // '--result-subtitle-font-weight': this.regular.shortcut.fontWeight,
-
       '--result-subtitle-active-color': this.active.subtitle,
-      // '--result-subtitle-active-font-style': this.active.shortcut.fontStyle,
-      // '--result-subtitle-active-font-weight': this.active.shortcut.fontWeight,
 
       '--result-glyph-color': this.regular.glyph.color,
       '--result-glyph-font-size': `${this.regular.glyph.fontSize}px`,
@@ -106,9 +96,10 @@ export class ResultState implements IState {
 
       '--result-highlighted-text-color': this.highlightedText.color,
       '--result-highlighted-text-font-style': this.highlightedText.fontStyle,
-      '--result-highlighted-text-weight': this.highlightedText.weight,
+      '--result-highlighted-text-font-weight': this.highlightedText.fontWeight,
 
       '--result-list-margins': `${this.resultListMargins.top}px ${this.resultListMargins.right}px ${this.resultListMargins.bottom}px ${this.resultListMargins.left}px`,
+      '--result-list-margin-right': `${this.resultListMargins.right}px`,
 
       '--result-bullet-color': this.regular.bullet.color,
       '--result-bullet-width': `${this.regular.bullet.width}px`,
@@ -124,6 +115,9 @@ export class ResultState implements IState {
 
   toXamlString(): string {
     return `
+    <!-- Margins for the list of results -->
+    <Thickness x:Key="ResultMargin">${normalizeMarginsForWpf(this.resultListMargins)}</Thickness>
+
     <!-- Result title -->
     <Style
         x:Key="ItemTitleStyle"
@@ -179,6 +173,29 @@ export class ResultState implements IState {
         <Setter Property="Height" Value="${this.active.glyph.fontSize}" />
         <Setter Property="FontSize" Value="${this.active.glyph.fontSize}" />
     </Style>
+    
+    <!-- Selected result styles -->
+    <SolidColorBrush x:Key="ItemSelectedBackgroundColor">${normalizeHexColorForWpf(this.active.background)}</SolidColorBrush>
+    <CornerRadius x:Key="ItemRadius">${this.borderRadius}</CornerRadius>
+    <Thickness x:Key="ItemMargin">${normalizeMarginsForWpf(this.margins)}</Thickness>
+    
+    <!-- Highlighted text -->
+    <Style x:Key="HighlightStyle">
+        <Setter Property="Inline.Foreground" Value="${normalizeHexColorForWpf(this.highlightedText.color)}" />
+        <Setter Property="Inline.FontStyle" Value="${this.highlightedText.fontStyle}" />
+        <Setter Property="Inline.FontWeight" Value="${this.highlightedText.fontWeight}" />
+    </Style>
     `;
+  }
+
+  toJSON(): Record<string, any> {
+    return {
+      regular: this.regular,
+      active: this.active,
+      resultListMargins: this.resultListMargins,
+      margins: this.margins,
+      borderRadius: this.borderRadius,
+      highlightedText: this.highlightedText,
+    }
   }
 }

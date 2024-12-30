@@ -51,7 +51,7 @@ const displayBullet = $derived(
     gap: 18px;
     align-items: center;
     height: 58px;
-    padding: 0 18px;
+    padding: 0 18px 0 calc(18px + var(--bullet-regular-width));
     margin-left: var(--result-margin-left);
     margin-right: var(--result-margin-right);
     border-radius: var(--result-border-radius);
@@ -72,6 +72,7 @@ const displayBullet = $derived(
     --result-shortcut-font-size: var(--result-shortcut-active-font-size);
     --result-shortcut-font-style: var(--result-shortcut-active-font-style);
     --result-shortcut-font-weight: var(--result-shortcut-active-font-weight);
+    --bullet-regular-width: var(--bullet-active-width);
 }
 
 .result-text {
@@ -82,7 +83,8 @@ const displayBullet = $derived(
 
 .result-text :global(i) {
     color: var(--result-highlighted-text-color);
-    font-weight: var(--result-highlighted-text-weight);
+    font-style: var(--result-highlighted-text-font-style);
+    font-weight: var(--result-highlighted-text-font-weight);
 }
 
 .result-title {
@@ -113,6 +115,7 @@ const displayBullet = $derived(
     font-size: var(--result-glyph-font-size);
     line-height: 1;
     color: var(--result-glyph-color);
+    text-align: center;
 }
 
 .result-shortcut {
@@ -131,6 +134,7 @@ const displayBullet = $derived(
     width: var(--bullet-regular-width);
     height: var(--bullet-regular-height);
     border-radius: var(--bullet-regular-border-radius);
+    max-height: 100%;
 }
 
 .result.active .bullet {

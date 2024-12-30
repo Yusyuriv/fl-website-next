@@ -86,6 +86,10 @@ const images = [
     transition: all 0.2s;
 }
 
+.demo {
+    position: relative;
+}
+
 .demo.hasBackgrounds {
     padding: 48px;
 }

@@ -17,6 +17,7 @@ const state: AllState = getContext("state");
       label="Size"
       bind:value1={state.bullet.regular.width}
       bind:value2={state.bullet.regular.height}
+      max1={22}
       line1="horizontal"
       line2="vertical"
     />
@@ -29,6 +30,7 @@ const state: AllState = getContext("state");
       label="Size"
       bind:value1={state.bullet.active.width}
       bind:value2={state.bullet.active.height}
+      max1={22}
       line1="horizontal"
       line2="vertical"
     />

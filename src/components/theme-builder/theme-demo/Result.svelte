@@ -1,6 +1,6 @@
 <script lang="ts">
 import {getContext} from "svelte";
-import type {AllState} from "../state/AllState.svelte.ts";
+import type {AllState} from "@/components/theme-builder/state/AllState.svelte.ts";
 
 const state: AllState = getContext("state");
 

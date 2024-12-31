@@ -12,6 +12,7 @@ import TextInput from "@/components/theme-builder/ui/inputs/TextInput.svelte";
 import Checkbox from "@/components/theme-builder/ui/inputs/Checkbox.svelte";
 import Group from "@/components/theme-builder/ui/Group.svelte";
 import SaveFileButton from "@/components/theme-builder/ui/SaveFileButton.svelte";
+import Button from "@/components/theme-builder/ui/Button.svelte";
 
 const FILE_NAME_REGEXP = /[^a-z0-9_\-.() ]/gi;
 const fileName = $derived.by(() => {
@@ -35,10 +36,17 @@ onMount(() => {
   } catch(e) {
     console.error(e);
   }
-})
+});
+
+let timeout: number | null = null;
 
 $effect(() => {
-  history.replaceState({}, "", location.pathname + `#${state.toEncodedJSON()}`);
+  if (timeout !== null) clearTimeout(timeout);
+  const newLocation = location.pathname + `#${state.toEncodedJSON()}`;
+  timeout = window.setTimeout(() => {
+    history.replaceState({}, "", newLocation);
+    timeout = null;
+  }, 300);
 });
 </script>
 
@@ -48,17 +56,20 @@ $effect(() => {
 
     <div class="theme-builder-theme-metadata">
       <Group title="Theme">
-        <p class="notice">
-          Please note that this preview is not a one-to-one recreation of the actual Flow Launcher window.
-          It might not always look exactly the same, but it should give you a very good idea of how your theme will look.
-        </p>
+        <TextInput label="Name" bind:value={state.settings.name} />
         <Checkbox
           label="It's a dark theme"
           description="This doesn't affect the actual styles, it just adds an icon next to your theme's name in settings."
           bind:value={state.settings.dark}
         />
-        <TextInput label="Name" bind:value={state.settings.name} />
-        <SaveFileButton {fileName} {fileContent}/>
+        <p class="notice">
+          Please note that this preview is not a one-to-one recreation of the actual Flow Launcher window.
+          It might not always look exactly the same, but it should give you a very good idea of how your theme will look.
+        </p>
+        <div class="actions">
+          <Button onclick={() => {}}>Reset</Button>
+          <SaveFileButton {fileName} {fileContent}/>
+        </div>
       </Group>
     </div>
   </div>
@@ -93,7 +104,7 @@ $effect(() => {
 .notice {
     font-size: 14px;
     line-height: 1.25;
-    margin-bottom: 8px;
+    margin: 8px 0;
     opacity: 0.75;
 }
 
@@ -101,5 +112,11 @@ $effect(() => {
     display: flex;
     flex-direction: column;
     gap: 16px;
+}
+
+.actions {
+    display: flex;
+    gap: 24px;
+    justify-content: flex-end;
 }
 </style>

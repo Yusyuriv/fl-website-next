@@ -100,6 +100,8 @@ export class ResultState implements IState {
 
       '--result-list-margins': `${this.resultListMargins.top}px ${this.resultListMargins.right}px ${this.resultListMargins.bottom}px ${this.resultListMargins.left}px`,
       '--result-list-margin-right': `${this.resultListMargins.right}px`,
+      '--result-list-margin-top': `${this.resultListMargins.top}px`,
+      '--result-list-margin-bottom': `${this.resultListMargins.bottom}px`,
 
       '--result-bullet-color': this.regular.bullet.color,
       '--result-bullet-width': `${this.regular.bullet.width}px`,

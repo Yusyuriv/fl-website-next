@@ -1,4 +1,4 @@
-import type {IState} from "./IState";
+import type {IState} from "@/components/theme-builder/state/IState";
 import {normalizeHexColorForWpf, normalizeMarginsForWpf} from "@/utils.ts";
 
 export class ResultState implements IState {
@@ -64,6 +64,55 @@ export class ResultState implements IState {
     fontStyle: "Normal",
     fontWeight: "Normal",
   });
+
+  reset(): void {
+    this.regular.shortcut.color = "#5BAFB0";
+    this.regular.shortcut.fontSize = 12;
+    this.regular.shortcut.fontStyle = "Normal";
+    this.regular.shortcut.fontWeight = "Normal";
+
+    this.regular.glyph.color = "#5BAFB0";
+    this.regular.glyph.fontSize = 20;
+
+    this.regular.title = "#5989B2";
+    this.regular.subtitle = "#7B858F";
+
+    this.regular.bullet.color = "transparent";
+    this.regular.bullet.width = 4;
+    this.regular.bullet.height = 10;
+    this.regular.bullet.borderRadius = 2;
+
+    this.active.shortcut.color = "#EA7354";
+    this.active.shortcut.fontSize = 12;
+    this.active.shortcut.fontStyle = "Normal";
+    this.active.shortcut.fontWeight = "Normal";
+
+    this.active.glyph.color = "#FFFFFF";
+    this.active.glyph.fontSize = 20;
+
+    this.active.title = "#5BAFB0";
+    this.active.subtitle = "#CC8EC8";
+    this.active.background = "#3C454E";
+
+    this.active.bullet.color = "#D0A23A";
+    this.active.bullet.width = 4;
+    this.active.bullet.height = 10;
+    this.active.bullet.borderRadius = 2;
+
+    this.resultListMargins.top = 0;
+    this.resultListMargins.right = 0;
+    this.resultListMargins.bottom = 0;
+    this.resultListMargins.left = 0;
+
+    this.margins.left = 0;
+    this.margins.right = 0;
+
+    this.borderRadius = 0;
+
+    this.highlightedText.color = "#FFAA47";
+    this.highlightedText.fontStyle = "Normal";
+    this.highlightedText.fontWeight = "Normal";
+  }
 
   toCssProperties(): Record<string, string> {
     return {

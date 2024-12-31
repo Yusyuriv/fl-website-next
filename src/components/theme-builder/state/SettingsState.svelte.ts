@@ -1,4 +1,6 @@
-export class SettingsState {
+import type {IState} from "@/components/theme-builder/state/IState.ts";
+
+export class SettingsState implements Omit<IState, "toCssProperties" | "toXamlString"> {
   name = $state("Hello World Theme");
   dark = $state(false);
   backgrounds = $state(false);
@@ -6,6 +8,16 @@ export class SettingsState {
   caret = $state(false);
   activeResults = $state([false, false, false, true, false]);
   datetime = $state(false);
+
+  reset(): void {
+    this.name = "Hello World Theme";
+    this.dark = false;
+    this.backgrounds = false;
+    this.progressBar = false;
+    this.caret = false;
+    this.activeResults = [false, false, false, true, false];
+    this.datetime = false;
+  }
 
   toJSON(): Record<string, any> {
     return {

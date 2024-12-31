@@ -1,10 +1,16 @@
-import type {IState} from "./IState";
+import type {IState} from "@/components/theme-builder/state/IState";
 import {normalizeHexColorForWpf} from "@/utils.ts";
 
 export class ScrollbarState implements IState {
   width = $state(5);
   color = $state("#3c454e");
   borderRadius = $state(5);
+
+  reset(): void {
+    this.width = 5;
+    this.color = "#3c454e";
+    this.borderRadius = 5;
+  }
 
   toCssProperties(): Record<string, string> {
     return {

@@ -45,7 +45,7 @@ const button = document.getElementById("theme-toggle-button") as HTMLButtonEleme
 const moon = button.querySelector("[data-moon]") as SVGSVGElement;
 const sun = button.querySelector("[data-sun]") as SVGSVGElement;
 
-function setTheme(theme) {
+function setTheme(theme: string): void {
   document.documentElement.setAttribute("data-theme", theme);
   localStorage.setItem("theme", theme);
   const isDark = theme === "dark";
@@ -53,7 +53,7 @@ function setTheme(theme) {
   sun.style.display = isDark ? "none" : "block";
 }
 
-function toggleTheme() {
+function toggleTheme(): void {
   const currentTheme = document.documentElement.getAttribute("data-theme");
   const newTheme = currentTheme === "light" ? "dark" : "light";
   setTheme(newTheme);

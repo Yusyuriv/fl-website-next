@@ -1,4 +1,4 @@
-import type {IState} from "./IState";
+import type {IState} from "@/components/theme-builder/state/IState";
 import {normalizeHexColorForWpf, normalizeMarginsForWpf} from "@/utils.ts";
 
 export class QueryBoxState implements IState {
@@ -51,7 +51,42 @@ export class QueryBoxState implements IState {
     left: 0,
   });
 
+  reset(): void {
+    this.suggestionColor = "#79817F";
+    this.textColor = "#D2D8E5";
+    this.caretColor = "#FFAA47";
 
+    this.icon.color = "#79817F";
+    this.icon.visible = true;
+    this.icon.width = 32;
+    this.icon.height = 32;
+
+    this.progressBar.color = "#D85E4F";
+    this.progressBar.height = 2;
+
+    this.date.color = "#79817F";
+    this.date.size = 14;
+    this.date.fontStyle = "Normal";
+    this.date.fontWeight = "Normal";
+    this.date.margins.top = 0;
+    this.date.margins.right = 0;
+    this.date.margins.bottom = 0;
+    this.date.margins.left = 0;
+
+    this.time.color = "#79817F";
+    this.time.size = 14;
+    this.time.fontStyle = "Normal";
+    this.time.fontWeight = "Normal";
+    this.time.margins.top = 0;
+    this.time.margins.right = 0;
+    this.time.margins.bottom = 0;
+    this.time.margins.left = 0;
+
+    this.datetimeMargins.top = 0;
+    this.datetimeMargins.right = 56;
+    this.datetimeMargins.bottom = 0;
+    this.datetimeMargins.left = 0;
+  }
 
   toCssProperties(): Record<string, string> {
     return {

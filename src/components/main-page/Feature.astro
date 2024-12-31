@@ -1,11 +1,11 @@
 ---
 import {Picture} from "astro:assets";
-import type {LocalImageProps} from "astro:assets";
+import type {ImageMetadata} from "astro";
 
 interface Props {
   title: string;
   subtitle: string;
-  image: LocalImageProps | Promise<LocalImageProps>;
+  image: ImageMetadata | Promise<{ default: ImageMetadata }>;
   color: string;
 }
 

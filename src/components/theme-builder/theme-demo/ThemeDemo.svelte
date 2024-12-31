@@ -1,10 +1,10 @@
 <script lang="ts">
 import { getContext } from "svelte";
-import Backgrounds from "./Backgrounds.svelte";
-import Result from "./Result.svelte";
-import QueryBox from "./QueryBox.svelte";
-import Collapsible from "../ui/Collapsible.svelte";
-import type { AllState } from "../state/AllState.svelte";
+import Backgrounds from "@/components/theme-builder/theme-demo/Backgrounds.svelte";
+import Result from "@/components/theme-builder/theme-demo/Result.svelte";
+import QueryBox from "@/components/theme-builder/theme-demo/QueryBox.svelte";
+import Collapsible from "@/components/theme-builder/ui/Collapsible.svelte";
+import type { AllState } from "@/components/theme-builder/state/AllState.svelte";
 import Scrollbar from "@/components/theme-builder/theme-demo/Scrollbar.svelte";
 
 const state: AllState = getContext("state");
@@ -52,7 +52,7 @@ const images = [
     <QueryBox settings={state.settings}/>
 
     <Collapsible visible={state.separator.visible}>
-      <div class="separator"/>
+      <div class="separator"></div>
     </Collapsible>
 
     <div class="results">

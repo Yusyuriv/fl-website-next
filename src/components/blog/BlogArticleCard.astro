@@ -1,11 +1,9 @@
 ---
-import {Picture} from "astro:assets";
-import Button from "@/components/Button.astro";
 import {formatDate, getBaseUrl} from "@/utils";
 interface Props {
   title: string;
   summary: string;
-  date: string;
+  date: string | Date;
   slug: string;
   pluginSlug?: string;
 }
@@ -17,9 +15,9 @@ const basePrefix = getBaseUrl(true);
 const path = basePrefix + (pluginSlug ? `/plugins/${pluginSlug}/blog/${slug}` : `/blog/${slug}`);
 ---
 <a class="blog-post" href={path}>
-  <h1 class="post-title" href={path}>{title}</h1>
+  <h1 class="post-title">{title}</h1>
   <p class="post-summary">{summary}</p>
-  <time class="post-date" datetime={date}>{formattedDate}</time>
+  <time class="post-date" datetime={date.toString()}>{formattedDate}</time>
 </a>
 
 <style>

@@ -1,20 +1,18 @@
 ---
-import {getCollection, getEntry, render} from "astro:content";
-import {GET} from "@/pages/plugins.json";
+import {getEntry, render} from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import Section from "@/components/Section.astro";
 import SectionHeader from "@/components/SectionHeader.astro";
 import {formatDate, getBaseUrl} from "@/utils";
 import Tags from "@/components/plugins/Tags.astro";
 import LabelValue from "@/components/plugins/LabelValue.astro";
-import path from "node:path";
-import process from "node:process";
-import {type LocalImageProps, Picture} from "astro:assets";
+import {Picture} from "astro:assets";
 import Swiper from "@/components/Swiper.astro";
 import YouTubeEmbed from "@/components/YouTubeEmbed.astro";
 import BlogArticleCard from "@/components/blog/BlogArticleCard.astro";
-import {ExtendedPlugin} from "@/pages/plugins/_types";
-import {getPluginBlogPosts} from "./_get-plugin-blog-posts";
+import type {ExtendedPlugin} from "@/pages/plugins/_types";
+import {getPluginBlogPosts} from "@/pages/plugins/[slug]/_get-plugin-blog-posts";
+import type {ImageMetadata} from "astro";
 
 export {getStaticPaths} from "@/pages/plugins/[slug]/_static-paths";
 
@@ -49,8 +47,8 @@ if (pluginLanguage === "javascript" || pluginLanguage === "javascript_v2") {
 
 const sourceCodeLabel = plugin.sourceCodeUrl.startsWith("https://github.com/") ? "GitHub" : "Source Code";
 
-const videos = pluginContent?.data?.videos ?? [];
-const images = pluginContent?.data?.images ?? [];
+const videos: string[] = pluginContent?.data?.videos ?? [];
+const images: ImageMetadata[] = pluginContent?.data?.images ?? [];
 
 const pluginBlog = await getPluginBlogPosts(pluginContent?.filePath);
 const latestPosts = pluginBlog.slice(0, 2).map(v => v.data);
@@ -75,7 +73,7 @@ const hasCarousel = videos.length > 0 || images.length > 0;
         </a>
       </div>)}
       {images.map(v => <div class="swiper-slide">
-        <a data-fslightbox="plugin-carousel" href={v.src}>
+        <a data-fslightbox="plugin-carousel" href={v.src as unknown as string}>
           <Picture alt="" src={v} formats={["avif", "webp"]}/>
         </a>
       </div>)}

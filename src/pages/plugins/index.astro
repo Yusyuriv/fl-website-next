@@ -8,7 +8,6 @@ import SectionSubheader from "@/components/SectionSubheader.astro";
 import LabelValue from "@/components/plugins/LabelValue.astro";
 import {TAGS} from "@/constants";
 import featuredPluginIds from "@/data/featured-plugins.yml";
-import builtInPluginIds from "@/data/built-in-plugins.yml";
 import type { ExtendedPlugin } from "@/pages/plugins/_types";
 
 const plugins = await GET().then(v => v.json()) as ExtendedPlugin[];

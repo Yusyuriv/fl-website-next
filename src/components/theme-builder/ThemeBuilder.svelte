@@ -1,6 +1,6 @@
 <script lang="ts">
-import ThemeDemo from "./theme-demo/ThemeDemo.svelte";
-import {state} from "./state/AllState.svelte.ts";
+import ThemeDemo from "@/components/theme-builder/theme-demo/ThemeDemo.svelte";
+import {state} from "@/components/theme-builder/state/AllState.svelte.ts";
 import {onMount, setContext} from "svelte";
 import WindowSection from "@/components/theme-builder/sidebar/WindowSection.svelte";
 import PreviewSettingsSection from "@/components/theme-builder/sidebar/PreviewSettingsSection.svelte";
@@ -23,6 +23,11 @@ const fileName = $derived.by(() => {
 
 function fileContent(): string {
   return state.toXamlString();
+}
+
+function resetState(): void {
+  if (!confirm("Are you sure you want to reset your theme?")) return;
+  state.reset();
 }
 
 setContext("state", state);
@@ -67,7 +72,7 @@ $effect(() => {
           It might not always look exactly the same, but it should give you a very good idea of how your theme will look.
         </p>
         <div class="actions">
-          <Button onclick={() => {}}>Reset</Button>
+          <Button onclick={resetState}>Reset</Button>
           <SaveFileButton {fileName} {fileContent}/>
         </div>
       </Group>

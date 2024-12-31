@@ -1,4 +1,4 @@
-import type {IState} from "./IState";
+import type {IState} from "@/components/theme-builder/state/IState";
 import {normalizeHexColorForWpf, normalizeMarginsForWpf} from "@/utils.ts";
 
 export class SeparatorState implements IState {
@@ -11,6 +11,18 @@ export class SeparatorState implements IState {
     left: 0,
   });
   size = $state(2);
+
+  reset(): void {
+    this.visible = true;
+    this.color = "#3c454e";
+    this.margins = {
+      top: 1,
+      right: 0,
+      bottom: 8,
+      left: 0,
+    };
+    this.size = 2;
+  }
 
   toCssProperties(): Record<string, string> {
     return {

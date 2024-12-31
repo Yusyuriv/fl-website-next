@@ -1,4 +1,4 @@
-import type {IState} from "./IState";
+import type {IState} from "@/components/theme-builder/state/IState";
 import {normalizeHexColorForWpf} from "@/utils.ts";
 
 export class BulletState implements IState {
@@ -17,6 +17,20 @@ export class BulletState implements IState {
     height: 10,
     borderRadius: 2,
   });
+
+  reset(): void {
+    this.regular.visible = false;
+    this.regular.color = "#ffffff00";
+    this.regular.width = 4;
+    this.regular.height = 10;
+    this.regular.borderRadius = 2;
+
+    this.active.visible = false;
+    this.active.color = "#D0A23A";
+    this.active.width = 4;
+    this.active.height = 10;
+    this.active.borderRadius = 2;
+  }
 
   toCssProperties(): Record<string, string> {
     return {

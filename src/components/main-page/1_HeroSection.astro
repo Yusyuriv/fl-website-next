@@ -3,7 +3,6 @@ import {Picture, getImage} from "astro:assets";
 import SectionHeader from "@/components/SectionHeader.astro";
 import Button from "@/components/Button.astro";
 import Sponsor from "@/components/main-page/Sponsor.astro";
-import Header from "@/components/Header.astro";
 import Section from "@/components/Section.astro";
 import SectionSubheader from "@/components/SectionSubheader.astro";
 import SmallText from "@/components/SmallText.astro";
@@ -11,7 +10,6 @@ import ScreenshotDark from "@/assets/main-page/dark_screenshot.png";
 import ScreenshotLight from "@/assets/main-page/light_screenshot.png";
 import ScreenshotBackground from "@/assets/main-page/screenshot_bg.png";
 import IconDownload from "@/components/icons/Download.svg";
-import {formatDate} from "@/utils";
 import {getGitHubReleaseData} from "@/data/github-release";
 
 const screenshotBackground = await getImage({

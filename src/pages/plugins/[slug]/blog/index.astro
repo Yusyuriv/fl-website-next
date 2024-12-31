@@ -1,18 +1,14 @@
 ---
-import {GET} from "@/pages/plugins.json";
-import Plugin from "@/components/plugins/Plugin.astro";
 import Layout from "@/layouts/Layout.astro";
 import Section from "@/components/Section.astro";
 import SectionHeader from "@/components/SectionHeader.astro";
 import SectionSubheader from "@/components/SectionSubheader.astro";
-import {getCollection, getEntry} from "astro:content";
 import BlogArticleCard from "@/components/blog/BlogArticleCard.astro";
 import {getBaseUrl} from "@/utils";
 import {getPluginBlogPosts} from "../_get-plugin-blog-posts";
 
 export {getStaticPaths} from "@/pages/plugins/[slug]/_static-paths";
 
-const {slug} = Astro.params;
 const {plugin} = Astro.props;
 const pluginBlogs = await getPluginBlogPosts(plugin.slug, true);
 

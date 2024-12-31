@@ -1,11 +1,11 @@
-import type {IState} from "./IState.ts";
-import {SettingsState} from "./SettingsState.svelte.ts";
-import {WindowState} from "./WindowState.svelte.ts";
-import {QueryBoxState} from "./QueryBoxState.svelte.ts";
-import {SeparatorState} from "./SeparatorState.svelte.ts";
-import {ResultState} from "./ResultState.svelte.ts";
-import {ScrollbarState} from "./ScrollbarState.svelte.ts";
-import {BulletState} from "./BulletState.svelte.ts";
+import type {IState} from "@/components/theme-builder/state/IState.ts";
+import {SettingsState} from "@/components/theme-builder/state/SettingsState.svelte.ts";
+import {WindowState} from "@/components/theme-builder/state/WindowState.svelte.ts";
+import {QueryBoxState} from "@/components/theme-builder/state/QueryBoxState.svelte.ts";
+import {SeparatorState} from "@/components/theme-builder/state/SeparatorState.svelte.ts";
+import {ResultState} from "@/components/theme-builder/state/ResultState.svelte.ts";
+import {ScrollbarState} from "@/components/theme-builder/state/ScrollbarState.svelte.ts";
+import {BulletState} from "@/components/theme-builder/state/BulletState.svelte.ts";
 import {normalizeBooleanForWpf} from "@/utils.ts";
 import {compressSync, decompressSync} from "fflate";
 
@@ -17,6 +17,16 @@ export class AllState implements IState {
   separator = new SeparatorState();
   result = new ResultState();
   bullet = new BulletState();
+
+  reset(): void {
+    this.settings.reset();
+    this.window.reset();
+    this.queryBox.reset();
+    this.scrollbar.reset();
+    this.separator.reset();
+    this.result.reset();
+    this.bullet.reset();
+  }
 
   toCssProperties(): Record<string, string> {
     return {
@@ -92,7 +102,7 @@ export class AllState implements IState {
 
   toJSON(): Record<string, any> {
     return {
-      settings: this.settings,
+      settings: this.settings.toJSON(),
       window: this.window,
       queryBox: this.queryBox,
       scrollbar: this.scrollbar,

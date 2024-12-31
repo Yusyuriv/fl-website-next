@@ -1,9 +1,8 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import {GET} from "@/pages/plugins.json";
-import {ExtendedPlugin} from "@/pages/plugins/_types";
-import {getCollection, getEntry, render} from "astro:content";
-import SectionSubheader from "@/components/SectionSubheader.astro";
+import type {ExtendedPlugin} from "@/pages/plugins/_types";
+import {getCollection, render} from "astro:content";
 import SectionHeader from "@/components/SectionHeader.astro";
 import Section from "@/components/Section.astro";
 import {formatDate, getBaseUrl} from "@/utils";
@@ -21,15 +20,15 @@ export async function getStaticPaths() {
   const data = await getCollection("pluginBlog");
   return data.map((v: any) => {
     const plugin = plugins.find(p => {
-      const pluginPath = path.resolve(p.filePath, "..", "blog");
+      const pluginPath = path.resolve(p.filePath!, "..", "blog");
       const postPath = path.resolve(v.filePath, "..");
 
       return pluginPath === postPath;
     });
-    const pluginManifest = pluginsManifest.find(p => p.slug === plugin.data.slug);
+    const pluginManifest = pluginsManifest.find(p => p.slug === plugin!.data.slug);
     return {
       params: {
-        slug: plugin.data.slug,
+        slug: plugin!.data.slug,
         postSlug: v.data.slug,
       },
       props: {

@@ -1,4 +1,4 @@
-import type {IState} from "./IState";
+import type {IState} from "@/components/theme-builder/state/IState";
 import {normalizeBooleanForWpf, normalizeHexColorForWpf} from "@/utils.ts";
 
 export class WindowState implements IState {
@@ -12,6 +12,15 @@ export class WindowState implements IState {
     color: "#303840",
     blur: false,
   });
+
+  reset(): void {
+    this.border.thickness = 2;
+    this.border.color = "#6C7279";
+    this.border.radius = 5;
+
+    this.background.color = "#303840";
+    this.background.blur = false
+  }
 
   toCssProperties(): Record<string, string> {
     return {

@@ -17,12 +17,12 @@ function toggleCollapse() {
 </script>
 
 <div class="section" class:isCollapsed>
-  <div class="section-header" onclick={toggleCollapse} role="button">
-    <div class="section-title">
+  <button class="section-header" onclick={toggleCollapse}>
+    <span class="section-title">
       <span class="chevron">▼</span>
       {title}
-    </div>
-  </div>
+    </span>
+  </button>
 
   <div class="section-content-container">
     <div class="section-content">{@render children()}</div>
@@ -41,9 +41,15 @@ function toggleCollapse() {
     font-size: 20px;
     font-weight: bold;
     border-bottom: 1px solid var(--sep);
+    border-radius: 0;
+    display: block;
     padding: 16px;
     cursor: pointer;
     transition: border-bottom-color var(--duration);
+    background-color: transparent;
+    color: var(--text);
+    width: 100%;
+    text-align: left;
 }
 
 .chevron {

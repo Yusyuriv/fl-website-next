@@ -1,5 +1,5 @@
 <script lang="ts">
-import {getContext} from "svelte";
+import {getContext, type Snippet} from "svelte";
 import type {AllState} from "@/components/theme-builder/state/AllState.svelte.ts";
 
 const state: AllState = getContext("state");
@@ -14,8 +14,8 @@ const {
 }: {
   image?: string;
   glyph?: string;
-  title?: unknown;
-  subtitle?: unknown;
+  title?: Snippet;
+  subtitle?: Snippet;
   shortcut: number;
   active?: boolean;
 } = $props();
@@ -32,10 +32,10 @@ const displayBullet = $derived(
   {:else if glyph}
     <div class="result-glyph">{glyph}</div>
   {:else}
-    <div />
+    <div></div>
   {/if}
   {#if displayBullet}
-    <div class="bullet" />
+    <div class="bullet"></div>
   {/if}
   <div class="result-text">
     <div class="result-title">{@render title?.()}</div>

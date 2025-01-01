@@ -50,11 +50,10 @@ let {
 const hasLines = $derived(line1 || line2 || line3 || line4);
 </script>
 
-<div class="quadruple-number-input">
+<div class="quadruple-number-input" class:hasLines>
   {#if label}
     <div class="label">{label}</div>
   {/if}
-  <div class="inputs" class:hasLines>
     <input
       type="number"
       bind:value={value1}
@@ -99,23 +98,22 @@ const hasLines = $derived(line1 || line2 || line3 || line4);
       class:right-line={line4 === "right" || line4 === "vertical"}
       class:bottom-line={line4 === "bottom" || line4 === "horizontal"}
     />
-  </div>
 </div>
 
 <style>
 .quadruple-number-input {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.inputs {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 25%);
     gap: 8px;
+    /** Hardcoded width, otherwise layout breaks in Chrome */
+    width: 318px;
 }
 
-.inputs input {
+.label {
+    grid-column: 1 / -1;
+}
+
+input {
     background-color: var(--input-bg);
     border: 2px solid transparent;
     border-radius: 8px;
@@ -126,27 +124,27 @@ const hasLines = $derived(line1 || line2 || line3 || line4);
     font-size: 16px;
 }
 
-.inputs input:focus {
+input:focus {
     background-color: var(--input-bg-focus);
 }
 
-.inputs.hasLines input {
+.hasLines input {
     border-radius: 0;
 }
 
-.inputs input.top-line {
+.hasLines input.top-line {
     border-top: 2px solid var(--text);
 }
 
-.inputs input.left-line {
+.hasLines input.left-line {
     border-left: 2px solid var(--text);
 }
 
-.inputs input.right-line {
+.hasLines input.right-line {
     border-right: 2px solid var(--text);
 }
 
-.inputs input.bottom-line {
+.hasLines input.bottom-line {
     border-bottom: 2px solid var(--text);
 }
 </style>

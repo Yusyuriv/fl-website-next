@@ -3,10 +3,10 @@ import Result from "@/components/theme-builder/theme-demo/Result.svelte";
 import type {AllState} from "@/components/theme-builder/state/AllState.svelte.js";
 import Scrollbar from "@/components/theme-builder/theme-demo/Scrollbar.svelte";
 import {getContext} from "svelte";
-import {getBaseUrl} from "@/utils.ts";
+import {getBaseUrlFromHtml} from "@/utils.ts";
 
 const state: AllState = getContext("state");
-const baseUrl = getBaseUrl(true);
+const baseUrl = getBaseUrlFromHtml(true);
 const image = `${baseUrl}/favicon.ico`;
 </script>
 

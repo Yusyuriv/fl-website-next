@@ -43,6 +43,11 @@ export function getBaseUrl(emptyRoot = false): string {
   return emptyRoot && path === "/" ? "" : path;
 }
 
+export function getBaseUrlFromHtml(emptyRoot = false): string {
+  const path = document.querySelector('base')?.getAttribute('href') ?? "/";
+  return emptyRoot && path === "/" ? "" : path;
+}
+
 const cache = new Map();
 
 export function setCache(key: string, value: any): void {

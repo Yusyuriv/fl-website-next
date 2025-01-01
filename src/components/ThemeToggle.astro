@@ -3,7 +3,7 @@ import IconMoon from "@/components/icons/Moon.svg";
 import IconSun from "@/components/icons/Sun.svg";
 ---
 
-<button id="theme-toggle-button">
+<button id="theme-toggle-button" aria-label="Toggle theme">
   <IconMoon data-moon />
   <IconSun data-sun />
 </button>
@@ -23,6 +23,7 @@ import IconSun from "@/components/icons/Sun.svg";
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 #theme-toggle-button:hover {

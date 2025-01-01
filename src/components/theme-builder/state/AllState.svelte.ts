@@ -8,6 +8,7 @@ import {ScrollbarState} from "@/components/theme-builder/state/ScrollbarState.sv
 import {BulletState} from "@/components/theme-builder/state/BulletState.svelte.ts";
 import {normalizeBooleanForWpf} from "@/utils.ts";
 import {compressSync, decompressSync} from "fflate";
+import {PreviewPanelState} from "@/components/theme-builder/state/PreviewPanel.svelte.ts";
 
 export class AllState implements IState {
   settings = new SettingsState();
@@ -17,6 +18,7 @@ export class AllState implements IState {
   separator = new SeparatorState();
   result = new ResultState();
   bullet = new BulletState();
+  previewPanel = new PreviewPanelState();
 
   reset(): void {
     this.settings.reset();
@@ -26,6 +28,7 @@ export class AllState implements IState {
     this.separator.reset();
     this.result.reset();
     this.bullet.reset();
+    this.previewPanel.reset();
   }
 
   toCssProperties(): Record<string, string> {
@@ -36,6 +39,7 @@ export class AllState implements IState {
       ...this.separator.toCssProperties(),
       ...this.result.toCssProperties(),
       ...this.bullet.toCssProperties(),
+      ...this.previewPanel.toCssProperties(),
     };
   }
 
@@ -68,6 +72,7 @@ export class AllState implements IState {
     ${this.result.toXamlString()}
     ${this.bullet.toXamlString()}
     ${this.scrollbar.toXamlString()}
+    ${this.previewPanel.toXamlString()}
     
 </ResourceDictionary>
     `.trim();
@@ -109,6 +114,7 @@ export class AllState implements IState {
       separator: this.separator,
       result: this.result,
       bullet: this.bullet,
+      previewPanel: this.previewPanel,
     };
   }
 

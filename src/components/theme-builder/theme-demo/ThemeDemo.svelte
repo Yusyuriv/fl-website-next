@@ -1,13 +1,15 @@
 <script lang="ts">
 import { getContext } from "svelte";
 import Backgrounds from "@/components/theme-builder/theme-demo/Backgrounds.svelte";
-import Result from "@/components/theme-builder/theme-demo/Result.svelte";
+import Results from "@/components/theme-builder/theme-demo/Results.svelte";
 import QueryBox from "@/components/theme-builder/theme-demo/QueryBox.svelte";
 import Collapsible from "@/components/theme-builder/ui/Collapsible.svelte";
 import type { AllState } from "@/components/theme-builder/state/AllState.svelte";
-import Scrollbar from "@/components/theme-builder/theme-demo/Scrollbar.svelte";
+import PreviewPanel from "@/components/theme-builder/theme-demo/PreviewPanel.svelte";
 
 const state: AllState = getContext("state");
+
+console.log(JSON.stringify(state.toJSON()))
 
 const images = [
   {
@@ -55,27 +57,9 @@ const images = [
       <div class="separator"></div>
     </Collapsible>
 
-    <div class="results">
-      <Result shortcut={1} image="/favicon.ico" active={state.settings.activeResults[0]}>
-        {#snippet title()}<i>Hel</i>lo world plugin{/snippet}
-      </Result>
-      <Result shortcut={2} image="/favicon.ico" active={state.settings.activeResults[1]}>
-        {#snippet title()}Hi{/snippet}
-        {#snippet subtitle()}Say <i>Hel</i>lo to Flow Launcher{/snippet}
-      </Result>
-      <Result shortcut={3} image="/favicon.ico" active={state.settings.activeResults[2]}>
-        {#snippet title()}<i>Hel</i>lo from the theme creator :){/snippet}
-      </Result>
-      <Result shortcut={4} glyph="W" active={state.settings.activeResults[3]}>
-        {#snippet title()}<i>Hel</i>lo everyone{/snippet}
-        {#snippet subtitle()}This result has a glyph{/snippet}
-      </Result>
-      <Result shortcut={5} glyph="H" active={state.settings.activeResults[4]}>
-        {#snippet title()}<i>Hel</i>lo everyone again{/snippet}
-        {#snippet subtitle()}This result also has a glyph{/snippet}
-      </Result>
-
-      <Scrollbar />
+    <div class="results-wrapper" class:no-preview={!state.settings.previewPanel}>
+      <Results />
+      <PreviewPanel />
     </div>
   </div>
 </div>
@@ -111,15 +95,19 @@ const images = [
     z-index: -1;
 }
 
-.results {
-    position: relative;
-    padding: var(--result-list-margins);
-}
-
 .separator {
     height: var(--separator-size);
     background-color: var(--separator-color);
     margin: var(--separator-margins);
+}
+
+.results-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 35%;
+}
+
+.results-wrapper.no-preview {
+    grid-template-columns: 1fr 0;
 }
 
 @media (prefers-reduced-motion: reduce) {

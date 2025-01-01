@@ -8,6 +8,7 @@ export class SettingsState implements Omit<IState, "toCssProperties" | "toXamlSt
   caret = $state(false);
   activeResults = $state([false, false, false, true, false]);
   datetime = $state(false);
+  previewPanel = $state(false);
 
   reset(): void {
     this.name = "Hello World Theme";
@@ -17,6 +18,7 @@ export class SettingsState implements Omit<IState, "toCssProperties" | "toXamlSt
     this.caret = false;
     this.activeResults = [false, false, false, true, false];
     this.datetime = false;
+    this.previewPanel = false;
   }
 
   toJSON(): Record<string, any> {
@@ -28,6 +30,7 @@ export class SettingsState implements Omit<IState, "toCssProperties" | "toXamlSt
       caret: this.caret,
       activeResults: this.activeResults,
       datetime: this.datetime,
+      previewPanel: this.previewPanel,
     };
   }
 }

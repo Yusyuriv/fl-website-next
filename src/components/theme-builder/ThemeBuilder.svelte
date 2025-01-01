@@ -13,6 +13,7 @@ import Checkbox from "@/components/theme-builder/ui/inputs/Checkbox.svelte";
 import Group from "@/components/theme-builder/ui/Group.svelte";
 import SaveFileButton from "@/components/theme-builder/ui/SaveFileButton.svelte";
 import Button from "@/components/theme-builder/ui/Button.svelte";
+import PreviewPanelSection from "@/components/theme-builder/sidebar/PreviewPanelSection.svelte";
 
 const FILE_NAME_REGEXP = /[^a-z0-9_\-.() ]/gi;
 const fileName = $derived.by(() => {
@@ -86,6 +87,7 @@ $effect(() => {
     <ResultsSection />
     <ScrollbarSection />
     <BulletSection />
+    <PreviewPanelSection />
   </div>
 </div>
 

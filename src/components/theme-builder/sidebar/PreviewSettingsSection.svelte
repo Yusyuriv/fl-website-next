@@ -13,11 +13,12 @@ const state: AllState = getContext("state");
   <Checkbox label="Progress Bar" bind:value={state.settings.progressBar}/>
   <Checkbox label="Caret" bind:value={state.settings.caret}/>
   <Checkbox label="Date and time" bind:value={state.settings.datetime}/>
+  <Checkbox label="Preview Panel" bind:value={state.settings.previewPanel}/>
 
   <Group title="Active Results">
     <div class="active-results-checkboxes">
       {#each state.settings.activeResults as _, i}
-        <Checkbox label={i + 1} bind:value={state.settings.activeResults[i]} inline/>
+        <Checkbox label={(i + 1).toString()} bind:value={state.settings.activeResults[i]} inline/>
       {/each}
     </div>
   </Group>

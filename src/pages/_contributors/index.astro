@@ -2,25 +2,27 @@
 import Layout from "@/layouts/Layout.astro";
 import Section from "@/components/Section.astro";
 import SectionHeader from "@/components/SectionHeader.astro";
+import Contributor from "@/components/contributors/Contributor.astro";
 import {getCache, setCache} from "@/utils";
+import SectionSubheader from "../../components/SectionSubheader.astro";
 
-interface Contributor {
+interface IContributor {
   id: number;
   login: string;
   avatar_url: string;
-  count?: number;
+  count: number;
 }
 
 interface PullRequest {
   state: "locked" | string & {};
   merged_at: string;
-  user: Contributor;
+  user: IContributor;
 }
 
-let contributors: Contributor[] = getCache("contributors") ?? [];
+let contributors: IContributor[] = getCache("contributors") ?? [];
 if (contributors.length === 0) {
   let prs: PullRequest[] = [];
-  const contributorMap: Map<number, Contributor> = new Map();
+  const contributorMap: Map<number, IContributor> = new Map();
 
   let page = 1;
   while (true) {
@@ -49,8 +51,20 @@ if (contributors.length === 0) {
 <Layout title="Contributors" description="Meet the contributors of Flow Launcher.">
   <Section>
     <SectionHeader>Contributors</SectionHeader>
-    <ul>
-      {contributors.map(contributor => <li>@{contributor.login} — {contributor.count} PR{contributor.count > 1 ? 's' : ''}</li>)}
-    </ul>
+    <SectionSubheader>
+      Big thank you to all these people for making Flow Launcher better
+    </SectionSubheader>
+    <div class="contributors">
+      {contributors.map(contributor => <Contributor contributor={contributor} />)}
+    </div>
   </Section>
 </Layout>
+
+<style>
+.contributors {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 12px;
+    margin-top: 32px;
+}
+</style>

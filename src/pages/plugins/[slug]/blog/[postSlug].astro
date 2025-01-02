@@ -44,8 +44,11 @@ const {Content} = await render(post);
 
 const pluginLink = getBaseUrl(true) + `/plugins/${plugin.slug}`;
 const pluginBlogLink = pluginLink + "/blog";
+
+const title = `${post.data.title} | ${plugin.name} | Plugin Blog | Flow Launcher`;
+const description = post.data.summary;
 ---
-<Layout>
+<Layout {title} {description}>
   <Section padding="16">
     <div class="header">
       <a href={pluginLink}>

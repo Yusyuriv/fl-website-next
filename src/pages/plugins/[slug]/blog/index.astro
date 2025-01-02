@@ -6,19 +6,23 @@ import SectionSubheader from "@/components/SectionSubheader.astro";
 import BlogArticleCard from "@/components/blog/BlogArticleCard.astro";
 import {getBaseUrl} from "@/utils";
 import {getPluginBlogPosts} from "@/pages/plugins/[slug]/_get-plugin-blog-posts";
+import type {ExtendedPlugin} from "@/pages/plugins/_types";
 
 export {getStaticPaths} from "@/pages/plugins/[slug]/_static-paths";
 
+interface Props {
+  plugin: ExtendedPlugin;
+}
 const {plugin} = Astro.props;
 const pluginBlogs = await getPluginBlogPosts(plugin.slug, true);
 
 const pluginLink = getBaseUrl(true) + `/plugins/${plugin.slug}`;
+
+const title = `${plugin.name} | Plugin Blog | Flow Launcher`;
+const description = plugin.description;
 ---
 
-<Layout
-  title="Flow Launcher Plugins"
-  description="Explore and discover a variety of plugins for Flow Launcher, enhancing your productivity and customizing your experience."
->
+<Layout {title} {description}>
   <Section padding="16">
     <div class="header">
       <a href={pluginLink}>

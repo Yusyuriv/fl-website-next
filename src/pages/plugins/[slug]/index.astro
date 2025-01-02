@@ -23,7 +23,7 @@ interface Props {
 const {slug} = Astro.params;
 const {plugin} = Astro.props;
 
-const title = `${plugin.name} | Flow Launcher Plugin`;
+const title = `${plugin.name} | Plugins | Flow Launcher`;
 const description = plugin.description;
 
 const pluginContent = await getEntry("plugins", slug);

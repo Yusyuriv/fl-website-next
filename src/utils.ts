@@ -38,6 +38,40 @@ export function addLightboxToBlogPostImages(): void {
   refreshFsLightbox();
 }
 
+let themeToggleButton: HTMLButtonElement | null = null;
+let themeToggleButtonIconMoon: SVGSVGElement | null = null;
+let themeToggleButtonIconSun: SVGSVGElement | null = null;
+
+export function setTheme(theme: string): void {
+  if (!themeToggleButton) {
+    themeToggleButton = document.querySelector("#theme-toggle-button") as HTMLButtonElement;
+  }
+  if (!themeToggleButtonIconMoon) {
+    themeToggleButtonIconMoon = themeToggleButton.querySelector("[data-moon]") as SVGSVGElement;
+  }
+  if (!themeToggleButtonIconSun) {
+    themeToggleButtonIconSun = themeToggleButton.querySelector("[data-sun]") as SVGSVGElement;
+  }
+
+  document.documentElement.setAttribute("data-theme", theme);
+  localStorage.setItem("theme", theme);
+  const isDark = theme === "dark";
+  themeToggleButtonIconMoon.style.display = isDark ? "block" : "none";
+  themeToggleButtonIconSun.style.display = isDark ? "none" : "block";
+}
+
+export function toggleTheme(e?: Event): void {
+  e?.preventDefault();
+  const currentTheme = document.documentElement.getAttribute("data-theme");
+  const newTheme = currentTheme === "light" ? "dark" : "light";
+  setTheme(newTheme);
+}
+
+export function setUpThemeToggleButton(buttonSelector: string): void {
+  const button = document.querySelector(buttonSelector) as HTMLElement;
+  button.addEventListener("click", toggleTheme);
+}
+
 export function getBaseUrl(emptyRoot = false): string {
   const path = "/" + (process.env.WEBSITE_BASE?.split('/')?.slice(1)?.join('/') ?? "");
   return emptyRoot && path === "/" ? "" : path;
@@ -71,7 +105,8 @@ export function formatBytes(bytes: number): string {
 export function setupButtonToOpenDownloadDialog(buttonSelector: string): void {
   const dialog = document.querySelector('#download-dialog') as HTMLDialogElement;
 
-  document.querySelector(buttonSelector)?.addEventListener('click', () => {
+  document.querySelector(buttonSelector)?.addEventListener('click', (e: Event) => {
+    e.preventDefault();
     dialog.showModal();
     dialog.focus();
   });

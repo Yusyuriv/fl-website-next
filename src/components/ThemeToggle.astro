@@ -42,23 +42,7 @@ import IconSun from "@/components/icons/Sun.svg";
 </style>
 
 <script>
-const button = document.getElementById("theme-toggle-button") as HTMLButtonElement;
-const moon = button.querySelector("[data-moon]") as SVGSVGElement;
-const sun = button.querySelector("[data-sun]") as SVGSVGElement;
-
-function setTheme(theme: string): void {
-  document.documentElement.setAttribute("data-theme", theme);
-  localStorage.setItem("theme", theme);
-  const isDark = theme === "dark";
-  moon.style.display = isDark ? "block" : "none";
-  sun.style.display = isDark ? "none" : "block";
-}
-
-function toggleTheme(): void {
-  const currentTheme = document.documentElement.getAttribute("data-theme");
-  const newTheme = currentTheme === "light" ? "dark" : "light";
-  setTheme(newTheme);
-}
+import {setTheme, setUpThemeToggleButton} from "@/utils";
 
 if (import.meta.env.SSR === false) {
   const storedTheme = localStorage.getItem("theme");
@@ -70,7 +54,7 @@ if (import.meta.env.SSR === false) {
     setTheme(prefersDark.matches ? "dark" : "light");
   }
 
-  button.addEventListener("click", toggleTheme);
+  setUpThemeToggleButton("#theme-toggle-button");
 }
 
 setTimeout(() => {

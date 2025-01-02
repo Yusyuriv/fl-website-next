@@ -2,6 +2,7 @@
 import ThemeToggle from '@/components/ThemeToggle.astro';
 import { Picture } from 'astro:assets';
 import Logo from '@/assets/logo.png';
+import IconMenu from '@/components/icons/Menu.astro';
 import Button from '@/components/Button.astro';
 import Section from '@/components/Section.astro';
 import {getBaseUrl} from "@/utils";
@@ -17,7 +18,7 @@ const navLinks = [
 ];
 ---
 
-<Section class="header" containerClass="inner" padding="0">
+<Section class="header desktop" containerClass="inner" padding="0">
   <a href="/">
     <Picture src={Logo} formats={['avif', 'webp']} densities={[1, 1.5, 2]} alt="Flow Launcher logo" height="18"/>
   </a>
@@ -29,15 +30,50 @@ const navLinks = [
   </nav>
 </Section>
 
-<style>
+<Section class="header mobile" containerClass="inner" padding="0">
+  <a href="/">
+    <Picture src={Logo} formats={['avif', 'webp']} densities={[1, 1.5, 2]} alt="Flow Launcher logo" height="18"/>
+  </a>
+
+  <button id="menu-icon-button" class="menu-icon-button">
+    <IconMenu class="menu-icon" />
+  </button>
+
+  <nav class="nav-mobile">
+    <a id="download-button-mobile" href="#">Download</a>
+    {navLinks.map(navLink => <a href={navLink.href}>{navLink.text}</a>)}
+    <a id="toggle-theme-mobile" href="#">Toggle Theme</a>
+  </nav>
+</Section>
+
+<style lang="scss">
+@use "$styles/breakpoints";
+
 .header {
     height: 72px;
     background-color: var(--bg-alternate);
-    transition: background-color 0.2s;
     position: sticky;
     top: 0;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
     z-index: 100;
+}
+
+.mobile {
+    display: none;
+}
+
+@include breakpoints.sm {
+    .header {
+        height: 60px;
+    }
+
+    .desktop {
+        display: none;
+    }
+
+    .mobile {
+        display: block;
+    }
 }
 
 .inner {
@@ -68,10 +104,88 @@ const navLinks = [
 #download-button {
     margin-left: 10px;
 }
+
+.menu-icon-button {
+  border: none;
+  background-color: transparent;
+  color: var(--theme-toggle-button-icon);
+  padding: 8px;
+  font-size: 1px;
+  line-height: 1;
+  transition: background-color 0.2s;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.menu-icon-button:hover {
+  background-color: var(--theme-toggle-button-hover);
+}
+
+.menu-icon-button:active {
+  background-color: var(--theme-toggle-button-active);
+}
+
+.menu-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.nav-mobile {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  transform: translateY(-30px);
+  opacity: 0;
+  transition: transform 0.2s, opacity 0.2s;
+  pointer-events: none;
+}
+
+.nav-mobile.open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.nav-mobile a {
+  border-top: 1px solid var(--card-sep);
+  display: flex;
+  align-items: center;
+  padding: 8px 20px;
+  font-size: 16px;
+  font-weight: 500;
+  height: 53px;
+  background-color: var(--bg-alternate);
+  text-decoration: underline solid 2px transparent;
+  transition: background-color 0.2s, text-decoration-color 0.2s;
+}
+
+.nav-mobile a:hover {
+  background-color: var(--bg-alternate-hover);
+  text-decoration-color: var(--text);
+}
+
+.nav-mobile a:last-child {
+  border-bottom: 1px solid var(--card-sep);
+}
 </style>
 
 <script>
 import {setupButtonToOpenDownloadDialog} from "@/utils";
+import {setUpThemeToggleButton} from "../utils";
 
 setupButtonToOpenDownloadDialog("#download-button");
+setupButtonToOpenDownloadDialog("#download-button-mobile");
+
+setUpThemeToggleButton("#toggle-theme-mobile");
+
+const mobileNav = document.querySelector('.nav-mobile') as HTMLElement;
+const menuButton = document.querySelector('#menu-icon-button') as HTMLElement;
+const menuButtonIcon = menuButton.querySelector('.menu-icon') as HTMLElement;
+
+menuButton.addEventListener('click', (e: Event) => {
+  if (!e.currentTarget) return;
+  menuButtonIcon.classList.toggle('open');
+  mobileNav.classList.toggle('open');
+});
 </script>

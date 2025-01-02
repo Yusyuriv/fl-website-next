@@ -9,8 +9,6 @@ import PreviewPanel from "@/components/theme-builder/theme-demo/PreviewPanel.sve
 
 const state: AllState = getContext("state");
 
-console.log(JSON.stringify(state.toJSON()))
-
 const images = [
   {
     imagePath: "florian-van-duyn-Dm-qxdynoEc-unsplash.jpg",

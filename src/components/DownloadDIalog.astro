@@ -90,8 +90,8 @@ const data = await getGitHubReleaseData();
 
 #close-dialog-btn {
     border: none;
-    color: var(--theme-toggle-button-icon);
-    background-color: transparent;
+    color: var(--dialog-button-text);
+    background-color: var(--dialog-button-bg);
     padding: 8px;
     cursor: pointer;
     border-radius: 50%;
@@ -102,11 +102,11 @@ const data = await getGitHubReleaseData();
 }
 
 #close-dialog-btn:hover {
-    background-color: var(--bg-alternate-hover);
+    background-color: var(--dialog-button-bg-hover);
 }
 
 #close-dialog-btn:active {
-    background-color: var(--bg-alternate);
+    background-color: var(--dialog-button-bg-active);
 }
 
 .close-dialog-icon {

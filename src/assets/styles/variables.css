@@ -6,6 +6,7 @@
     --link: var(--text);
     --sep: #cecece;
     --card-sep: #cecece;
+    --mobile-menu-sep: #cecece;
     --card: #fff;
     --package-manager-name: #5A4AB2;
     --dialog-backdrop: rgba(255, 255, 255, 0.2);
@@ -35,6 +36,10 @@
     --button-copy: #ccc;
     --button-copy-hover: #ddd;
     --button-copy-active: #bbb;
+    --dialog-button-text: #333;
+    --dialog-button-bg: transparent;
+    --dialog-button-bg-hover: #edf2f5;
+    --dialog-button-bg-active: #ddd;
     --theme-toggle-button: #fff;
     --theme-toggle-button-hover: #ddd;
     --theme-toggle-button-active: #bbb;
@@ -56,6 +61,7 @@
     --link: var(--text);
     --sep: #0f1115;
     --card-sep: #242933;
+    --mobile-menu-sep: #242933;
     --card: #161b22;
     --package-manager-name: #FCFF9B;
     --dialog-backdrop: rgba(0, 0, 0, 0.2);
@@ -81,6 +87,10 @@
     --button-copy: #444;
     --button-copy-hover: #555;
     --button-copy-active: #333;
+    --dialog-button-text: #d8d8d8;
+    --dialog-button-bg: transparent;
+    --dialog-button-bg-hover: #161b22;
+    --dialog-button-bg-active: #1b2029;
     --theme-toggle-button: transparent;
     --theme-toggle-button-hover: #262f3b;
     --theme-toggle-button-active: #364354;

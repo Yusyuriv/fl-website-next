@@ -87,7 +87,7 @@ $effect(() => {
 
     .theme-builder-preview-container {
         background-color: var(--bg);
-        top: 72px;
+        top: 60px;
         padding-top: 16px;
         padding-bottom: 16px;
     }

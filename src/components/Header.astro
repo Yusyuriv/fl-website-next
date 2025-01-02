@@ -11,6 +11,7 @@ const urlPrefix = getBaseUrl(true);
 
 const navLinks = [
   { href: urlPrefix + '/plugins', text: 'Plugins' },
+  { href: urlPrefix + '/theme-builder', text: 'Theme Builder' },
   { href: 'https://www.flowlauncher.com/docs/', text: 'Docs' },
   // Disable the blog for now. Maybe sometime in the future, when we have more time.
   // { href: '/blog', text: 'Blog' },
@@ -62,7 +63,7 @@ const navLinks = [
     display: none;
 }
 
-@include breakpoints.sm {
+@include breakpoints.md {
     .header {
         height: 60px;
     }

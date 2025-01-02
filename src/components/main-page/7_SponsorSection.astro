@@ -4,7 +4,7 @@ import SectionHeader from "@/components/SectionHeader.astro";
 import SectionSubheader from "@/components/SectionSubheader.astro";
 import Button from "@/components/Button.astro";
 ---
-<Section padding="130" class="sponsor-section">
+<Section padding="130" class="sponsor-section" even>
   <SectionHeader>Flow Launcher is a free and open-source software</SectionHeader>
   <SectionSubheader>Support this project.</SectionSubheader>
   <Button variant="black" href="https://github.com/sponsors/Flow-Launcher?frequency=one-time"
@@ -13,7 +13,9 @@ import Button from "@/components/Button.astro";
   </Button>
 </Section>
 
-<style>
+<style lang="scss">
+@use "$styles/breakpoints";
+
 .sponsor-section {
     text-align: center;
 }
@@ -23,5 +25,12 @@ import Button from "@/components/Button.astro";
     margin-top: 40px;
     font-weight: 700;
     font-size: 15px;
+}
+
+@include breakpoints.sm {
+    .sponsor-section {
+      padding-top: 60px;
+      padding-bottom: 60px;
+    }
 }
 </style>

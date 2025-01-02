@@ -115,7 +115,9 @@ const hasCarousel = videos.length > 0 || images.length > 0;
   </Section>
 </Layout>
 
-<style>
+<style lang="scss">
+@use "$styles/breakpoints";
+
 .plugin-title {
     display: flex;
     gap: 20px;
@@ -164,6 +166,21 @@ const hasCarousel = videos.length > 0 || images.length > 0;
     margin-top: 10px;
     display: block;
     text-align: right;
+}
+
+@include breakpoints.sm {
+  .blog-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .blog-content {
+    order: 2;
+  }
+
+  .plugin-info {
+    order: 1;
+  }
 }
 </style>
 

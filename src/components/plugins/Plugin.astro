@@ -5,13 +5,22 @@ import {getBaseUrl} from "@/utils";
 
 interface Props {
   plugin: ExtendedPlugin;
+  class?: string;
+  minHeight?: boolean;
 }
 
-const {plugin} = Astro.props;
+const {
+  plugin,
+  class: className,
+  minHeight,
+  ...rest
+} = Astro.props;
 const href = getBaseUrl(true) + `/plugins/${plugin.slug}`;
+
+
 ---
 
-<a class="plugin" {href}>
+<a class:list={["plugin", className, {minHeight}]} {href} {...rest}>
   <div class="header">
     <img alt="" src={plugin.icon} class="icon" loading="lazy"/>
     <div class="title">
@@ -47,6 +56,10 @@ const href = getBaseUrl(true) + `/plugins/${plugin.slug}`;
 
 .plugin:hover {
     background-color: var(--bg-alternate-hover);
+}
+
+.plugin.minHeight {
+    min-height: 200px;
 }
 
 .header {

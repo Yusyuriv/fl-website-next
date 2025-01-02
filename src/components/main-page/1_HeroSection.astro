@@ -78,7 +78,9 @@ const latestVersion = await getGitHubReleaseData();
   </div>
 </Section>
 
-<style define:vars={{ screenshotBackground: `url(${screenshotBackground.src})` }}>
+<style define:vars={{ screenshotBackground: `url(${screenshotBackground.src})` }} lang="scss">
+@use "$styles/breakpoints";
+
 .grid {
     display: grid;
     align-items: center;
@@ -131,6 +133,22 @@ html[data-theme="light"] .light {
     justify-content: center;
     gap: 6px;
     flex-wrap: wrap;
+}
+
+@include breakpoints.sm {
+    .grid {
+        grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+  .left-column {
+        align-items: center;
+        text-align: center;
+  }
+
+    .screenshot-container {
+        padding: 10px;
+    }
 }
 </style>
 

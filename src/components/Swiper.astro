@@ -24,7 +24,9 @@ const {
   <div class="swiper-pagination"/>
 </div>
 
-<style>
+<style lang="scss">
+@use "$styles/breakpoints";
+
 .swiper-container {
     position: relative;
     padding: 10px 50px 40px;
@@ -32,6 +34,17 @@ const {
 
 .swiper {
     border-radius: 8px;
+}
+
+@include breakpoints.sm {
+  .swiper-container {
+    padding: 10px 0 40px;
+
+    .swiper-button-prev,
+    .swiper-button-next {
+      display: none !important;
+    }
+  }
 }
 </style>
 
@@ -50,7 +63,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-const swipers = document.querySelectorAll(`.swiper`);
+const swipers = document.querySelectorAll(`.swiper`) as unknown as HTMLElement[];
 
 for (const swiper of swipers) {
   new Swiper(swiper, {
@@ -74,13 +87,13 @@ for (const swiper of swipers) {
     modules: [Navigation, Pagination],
 
     pagination: {
-      el: swiper.parentNode.querySelector('.swiper-pagination'),
+      el: swiper.parentNode!.querySelector('.swiper-pagination'),
       bulletClass: 'swiper-pagination-bullet',
     },
 
     navigation: {
-      nextEl: swiper.parentNode.querySelector('.swiper-button-next'),
-      prevEl: swiper.parentNode.querySelector('.swiper-button-prev'),
+      nextEl: swiper.parentNode!.querySelector('.swiper-button-next'),
+      prevEl: swiper.parentNode!.querySelector('.swiper-button-prev'),
     },
   } as SwiperOptions);
 }

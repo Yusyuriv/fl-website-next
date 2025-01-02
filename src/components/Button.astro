@@ -1,5 +1,6 @@
 ---
 interface Props {
+  id?: string;
   variant?: "default" | "black" | "secondary";
   shape?: "pill" | "rounded" | "rectangle";
   centered?: boolean;
@@ -8,6 +9,7 @@ interface Props {
 }
 
 const {
+  id,
   variant = "default",
   shape = "pill",
   centered = false,
@@ -18,7 +20,7 @@ const {
 ---
 
 {!href
-  ? <button class:list={["primary-button", `variant-${variant}`, `shape-${shape}`, {centered}, className]} {...rest}>
+  ? <button {id} class:list={["primary-button", `variant-${variant}`, `shape-${shape}`, {centered}, className]} {...rest}>
     {!Astro.slots.has("second-line")
       ?
       <slot/>

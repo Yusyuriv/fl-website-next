@@ -9,7 +9,9 @@ const { bigger } = Astro.props;
   <slot />
 </h1>
 
-<style>
+<style lang="scss">
+@use "$styles/breakpoints";
+
 .section-header {
     font-size: 35px;
     line-height: 1.33;
@@ -18,5 +20,15 @@ const { bigger } = Astro.props;
 
 .bigger {
     font-size: 44px;
+}
+
+@include breakpoints.sm {
+    .section-header {
+        font-size: 25px;
+    }
+
+    .bigger {
+        font-size: 31px;
+    }
 }
 </style>

@@ -9,6 +9,7 @@ import LabelValue from "@/components/plugins/LabelValue.astro";
 import {TAGS} from "@/constants";
 import featuredPluginIds from "@/data/featured-plugins.yml";
 import type { ExtendedPlugin } from "@/pages/plugins/_types";
+import Swiper from "@/components/Swiper.astro";
 
 const plugins = await GET().then(v => v.json()) as ExtendedPlugin[];
 const featured = plugins
@@ -28,9 +29,9 @@ const hasFeaturedPlugins = featured.length > 0;
   </Section>
   {hasFeaturedPlugins && <Section even>
     <SectionHeader>Featured plugins</SectionHeader>
-    <div class="plugin-grid">
-      {featured.map(v => <Plugin plugin={v}/>)}
-    </div>
+    <Swiper>
+      {featured.map(v => <Plugin plugin={v} class="swiper-slide" minHeight/>)}
+    </Swiper>
   </Section>}
   <Section>
     {hasFeaturedPlugins && <SectionHeader>All plugins</SectionHeader>}
@@ -55,7 +56,9 @@ const hasFeaturedPlugins = featured.length > 0;
   </Section>
 </Layout>
 
-<style>
+<style lang="scss">
+@use "$styles/breakpoints";
+
 .controls {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -80,6 +83,12 @@ const hasFeaturedPlugins = featured.length > 0;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
     margin-top: 24px;
+}
+
+@include breakpoints.sm {
+    .controls {
+        grid-template-columns: 1fr;
+    }
 }
 </style>
 

@@ -47,11 +47,10 @@ const pluginLink = getBaseUrl(true) + `/plugins/${plugin.slug}`;
 </Layout>
 
 <style>
-.plugin-grid {
+.blog-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
-    margin-top: 24px;
 }
 
 .header {
@@ -70,11 +69,5 @@ const pluginLink = getBaseUrl(true) + `/plugins/${plugin.slug}`;
     display: flex;
     flex-direction: column;
     gap: 4px;
-}
-
-.blog-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
 }
 </style>

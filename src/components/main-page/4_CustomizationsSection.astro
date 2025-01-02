@@ -20,7 +20,9 @@ import ImageModern from "@/assets/main-page/cm_modern.png";
   </div>
 </Section>
 
-<style>
+<style lang="scss">
+@use "$styles/breakpoints";
+
 .customizations-section {
     text-align: center;
 }
@@ -37,5 +39,12 @@ import ImageModern from "@/assets/main-page/cm_modern.png";
     height: auto;
     aspect-ratio: 992 / 632;
     object-fit: contain;
+}
+
+@include breakpoints.sm {
+    .grid {
+        grid-template-columns: 1fr;
+      gap: 20px;
+    }
 }
 </style>

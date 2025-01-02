@@ -13,8 +13,16 @@ const {
   <slot />
 </div>
 
-<style>
+<style lang="scss">
+@use "$styles/breakpoints";
+
 .padding {
   padding: 0 30px;
+}
+
+@include breakpoints.sm {
+  .padding {
+    padding: 0 10px;
+  }
 }
 </style>

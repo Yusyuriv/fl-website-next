@@ -29,7 +29,9 @@ const gif = base + "/flow-launcher.gif";
   </div>
 </Section>
 
-<style>
+<style lang="scss">
+@use "$styles/breakpoints";
+
 .grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -58,5 +60,20 @@ const gif = base + "/flow-launcher.gif";
 
 .margin {
     margin-top: 20px;
+}
+
+@include breakpoints.sm {
+    .grid {
+        grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .gif-container {
+        order: 2;
+    }
+
+    .text {
+        order: 1;
+    }
 }
 </style>

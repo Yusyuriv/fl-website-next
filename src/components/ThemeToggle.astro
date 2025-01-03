@@ -3,13 +3,13 @@ import IconMoon from "@/components/icons/Moon.svg";
 import IconSun from "@/components/icons/Sun.svg";
 ---
 
-<button id="theme-toggle-button" aria-label="Toggle theme">
+<button class="theme-toggle-button" aria-label="Toggle theme" data-theme-toggle-button>
   <IconMoon data-moon />
   <IconSun data-sun />
 </button>
 
 <style>
-#theme-toggle-button {
+.theme-toggle-button {
     font-size: 20px;
     width: 36px;
     aspect-ratio: 1;
@@ -26,15 +26,15 @@ import IconSun from "@/components/icons/Sun.svg";
     cursor: pointer;
 }
 
-#theme-toggle-button:hover {
+.theme-toggle-button:hover {
     background-color: var(--theme-toggle-button-hover);
 }
 
-#theme-toggle-button:active {
+.theme-toggle-button:active {
     background-color: var(--theme-toggle-button-active);
 }
 
-#theme-toggle-button svg {
+.theme-toggle-button svg {
     display: none;
     width: calc(100% - 12px);
     aspect-ratio: 1;
@@ -54,7 +54,7 @@ if (import.meta.env.SSR === false) {
     setTheme(prefersDark.matches ? "dark" : "light");
   }
 
-  setUpThemeToggleButton("#theme-toggle-button");
+  setUpThemeToggleButton(".theme-toggle-button[data-theme-toggle-button]");
 }
 
 setTimeout(() => {

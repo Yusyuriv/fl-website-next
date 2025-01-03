@@ -38,26 +38,28 @@ export function addLightboxToBlogPostImages(): void {
   refreshFsLightbox();
 }
 
-let themeToggleButton: HTMLButtonElement | null = null;
-let themeToggleButtonIconMoon: SVGSVGElement | null = null;
-let themeToggleButtonIconSun: SVGSVGElement | null = null;
+let themeToggleButtons: NodeListOf<HTMLElement> | null = null;
+let themeToggleButtonsIconMoon: NodeListOf<SVGSVGElement> | null = null;
+let themeToggleButtonsIconSun: NodeListOf<SVGSVGElement> | null = null;
 
 export function setTheme(theme: string): void {
-  if (!themeToggleButton) {
-    themeToggleButton = document.querySelector("#theme-toggle-button") as HTMLButtonElement;
+  if (!themeToggleButtons) {
+    themeToggleButtons = document.querySelectorAll(".theme-toggle-button[data-theme-toggle-button]") as NodeListOf<HTMLElement>;
   }
-  if (!themeToggleButtonIconMoon) {
-    themeToggleButtonIconMoon = themeToggleButton.querySelector("[data-moon]") as SVGSVGElement;
+  if (!themeToggleButtonsIconMoon) {
+    themeToggleButtonsIconMoon = document.querySelectorAll(".theme-toggle-button[data-theme-toggle-button] [data-moon]") as NodeListOf<SVGSVGElement>;
   }
-  if (!themeToggleButtonIconSun) {
-    themeToggleButtonIconSun = themeToggleButton.querySelector("[data-sun]") as SVGSVGElement;
+  if (!themeToggleButtonsIconSun) {
+    themeToggleButtonsIconSun = document.querySelectorAll(".theme-toggle-button[data-theme-toggle-button] [data-sun]") as NodeListOf<SVGSVGElement>;
   }
 
   document.documentElement.setAttribute("data-theme", theme);
   localStorage.setItem("theme", theme);
   const isDark = theme === "dark";
-  themeToggleButtonIconMoon.style.display = isDark ? "block" : "none";
-  themeToggleButtonIconSun.style.display = isDark ? "none" : "block";
+  const displayMoon = isDark ? "block" : "none";
+  const displaySun = isDark ? "none" : "block";
+  themeToggleButtonsIconMoon.forEach(icon => icon.style.display = displayMoon);
+  themeToggleButtonsIconSun.forEach(icon => icon.style.display = displaySun);
 }
 
 export function toggleTheme(e?: Event): void {
@@ -68,8 +70,8 @@ export function toggleTheme(e?: Event): void {
 }
 
 export function setUpThemeToggleButton(buttonSelector: string): void {
-  const button = document.querySelector(buttonSelector) as HTMLElement;
-  button.addEventListener("click", toggleTheme);
+  const buttons = document.querySelectorAll(buttonSelector) as NodeListOf<HTMLElement>;
+  buttons.forEach(button => button.addEventListener("click", toggleTheme));
 }
 
 export function getBaseUrl(emptyRoot = false): string {

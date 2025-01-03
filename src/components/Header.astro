@@ -36,14 +36,17 @@ const navLinks = [
     <Picture src={Logo} formats={['avif', 'webp']} densities={[1, 1.5, 2]} alt="Flow Launcher logo" height="18"/>
   </a>
 
-  <button id="menu-icon-button" class="menu-icon-button">
-    <IconMenu class="menu-icon" />
-  </button>
+  <div class="mobile-buttons">
+    <ThemeToggle />
+
+    <button id="menu-icon-button" class="menu-icon-button">
+      <IconMenu class="menu-icon" />
+    </button>
+  </div>
 
   <nav class="nav-mobile">
     <a id="download-button-mobile" href="#">Download</a>
     {navLinks.map(navLink => <a href={navLink.href}>{navLink.text}</a>)}
-    <a id="toggle-theme-mobile" href="#">Toggle Theme</a>
   </nav>
 </Section>
 
@@ -117,6 +120,12 @@ const navLinks = [
     height: 24px;
 }
 
+.mobile-buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
 .nav-mobile {
   position: absolute;
   top: 100%;
@@ -187,12 +196,9 @@ const navLinks = [
 
 <script>
 import {setupButtonToOpenDownloadDialog} from "@/utils";
-import {setUpThemeToggleButton} from "../utils";
 
 setupButtonToOpenDownloadDialog("#download-button");
 setupButtonToOpenDownloadDialog("#download-button-mobile");
-
-setUpThemeToggleButton("#toggle-theme-mobile");
 
 const mobileNav = document.querySelector('.nav-mobile') as HTMLElement;
 const menuButton = document.querySelector('#menu-icon-button') as HTMLElement;

@@ -33,10 +33,6 @@ export class SettingsState implements Omit<IState, "toCssProperties" | "toXamlSt
       "number",
       "number",
       "number",
-      "number",
-      "number",
-      "number",
-      "number",
     ))
       return;
 
@@ -45,23 +41,29 @@ export class SettingsState implements Omit<IState, "toCssProperties" | "toXamlSt
     this.backgrounds = !!data[2];
     this.progressBar = !!data[3];
     this.caret = !!data[4];
-    this.activeResults[0] = !!data[5];
-    this.activeResults[1] = !!data[6];
-    this.activeResults[2] = !!data[7];
-    this.activeResults[3] = !!data[8];
-    this.activeResults[4] = !!data[9];
-    this.datetime = !!data[10];
-    this.previewPanel = !!data[11];
+    this.activeResults[0] = !!(data[5] & 1 << 0);
+    this.activeResults[1] = !!(data[5] & 1 << 1);
+    this.activeResults[2] = !!(data[5] & 1 << 2);
+    this.activeResults[3] = !!(data[5] & 1 << 3);
+    this.activeResults[4] = !!(data[5] & 1 << 4);
+    this.datetime = !!data[6];
+    this.previewPanel = !!data[7];
   }
 
   toJSON(): any[] {
+    let activeResults = 0;
+
+    for (let i = 0; i < this.activeResults.length; i++) {
+      activeResults |= +this.activeResults[i] << i;
+    }
+
     return [
       this.name,
       +this.dark,
       +this.backgrounds,
       +this.progressBar,
       +this.caret,
-      this.activeResults.map(v => +v),
+      activeResults,
       +this.datetime,
       +this.previewPanel
     ].flat();

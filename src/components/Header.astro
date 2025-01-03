@@ -63,20 +63,6 @@ const navLinks = [
     display: none;
 }
 
-@include breakpoints.md {
-    .header {
-        height: 60px;
-    }
-
-    .desktop {
-        display: none;
-    }
-
-    .mobile {
-        display: block;
-    }
-}
-
 .inner {
     display: flex;
     align-items: center;
@@ -168,6 +154,34 @@ const navLinks = [
 
 .nav-mobile a:last-child {
   border-bottom: 1px solid var(--mobile-menu-sep);
+}
+
+@include breakpoints.md {
+  .desktop .nav {
+    gap: 16px;
+  }
+
+  .desktop .nav a {
+    font-size: 15px;
+  }
+
+  #download-button {
+    margin-left: 4px;
+  }
+}
+
+@include breakpoints.sm {
+  .header {
+    height: 60px;
+  }
+
+  .desktop {
+    display: none;
+  }
+
+  .mobile {
+    display: block;
+  }
 }
 </style>
 

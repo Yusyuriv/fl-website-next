@@ -1,6 +1,7 @@
 import {getCollection} from "astro:content";
 import {slugify} from "@/utils.ts";
 import builtInPluginIds from "@/data/built-in-plugins.yml";
+import {dirname, basename} from "node:path";
 
 interface FP {
   ID: string;
@@ -23,6 +24,9 @@ export async function GET() {
 
   const result = data.map(v => {
     const plugin = plugins.find(p => p.data.id === v.ID);
+    if (plugin && !plugin.data.slug) {
+      plugin.data.slug = basename(dirname(plugin.filePath!));
+    }
 
     return {
       id: v.ID,

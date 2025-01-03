@@ -21,38 +21,34 @@ following these steps:
 > We might have pre-created the folder and the file for you in order to add tags for your plugin. If you'd like to
 > change it, feel free to rename the folder, the file, and the slug field in the file.
 
-2. Create a new file in the `src/data/plugins/YOUR_SLUG/` directory, call the file `YOUR_SLUG.md` and fill it with the
+2. Create a new file in the `src/data/plugins/YOUR_SLUG/` directory, call the file `plugin.md` and fill it with the
    following information:
    ```markdown
    ---
    # This should match the ID in the plugin manifest
    id: 7fbfd61f-0b9c-480d-93e8-59e3451bbbdf # Replace this with the ID of your plugin
 
-   # This should be a unique readable string. It will be used in the URL, e.g.,
-   # `/plugins/my-cool-plugin`
-   slug: my-cool-plugin # Replace this with the slug you've chosen
-
    # Optional array of videos to display on your plugin's page. Only YouTube links are
    # supported. Videos are always displayed before images.
    videos:
-     - https://www.youtube.com/watch?v=VIDEO_ID
-     - https://www.youtube.com/watch?v=ANOTHER_VIDEO_ID
+   - https://www.youtube.com/watch?v=VIDEO_ID
+   - https://www.youtube.com/watch?v=ANOTHER_VIDEO_ID
 
    # Optional array of images to display on your plugin's page. Images should be stored near 
    # YOUR_SLUG.md, for example, in src/data/plugins/YOUR_SLUG/images/
    images:
-     # The path to the images is relative. If it's in the same directory as the .md file,
-     # you don't need to specify a path, just the file name. If it's in a subdirectory,
-     # you need to specify the path.
-     - image1.png
-     - images/image2.png
+   # The path to the images is relative. If it's in the same directory as the .md file,
+   # you don't need to specify a path, just the file name. If it's in a subdirectory,
+   # you need to specify the path.
+   - image1.png
+   - images/image2.png
 
    # Optional array of tags to display on your plugin's page. These should be relevant to your
    # plugin. Allowed values are: Automation, Development Tools, Documentation, Gaming, 
    # Multimedia, Programming, Search, System, Utilities
    tags:
-     - Automation
-     - Programming
+   - Automation
+   - Programming
    ---
    ```
 3. Add a new line after this block. Now you can write a description of your plugin using Markdown. You can also display
@@ -89,8 +85,10 @@ following these steps:
    # A short summary of your blog post
    summary: A short summary of your blog post
 
-   # The date of your blog post
-   date: YYYY-MM-DD
+   # The date of your blog post in ISO 8601 format. A few examples:
+   # 2024-12-30T12:55:34Z
+   # 2024-12-30T12:55:34+06:00
+   date: YYYY-MM-DDTHH:mm:ssZ
 
    # The author of your blog post
    author: John Doe

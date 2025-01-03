@@ -1,16 +1,15 @@
 ---
 id: 8BE6E623BC294D4684F86A47CA797742
-slug: fake-data
 videos:
-  - https://www.youtube.com/watch?v=E2Rj2gQAyPA
+- https://www.youtube.com/watch?v=E2Rj2gQAyPA
 images:
-  - categories.png
-  - date-past.png
-  - lorem.png
-  - random.png
+- categories.png
+- date-past.png
+- lorem.png
+- random.png
 tags:
-  - Development Tools
-  - Utilities
+- Development Tools
+- Utilities
 ---
 
 This plugin lets you generate a wide variety of data types for testing purposes. It can be useful when you need to fill a database with placeholder data, test an API, or create a sample dataset for a project.

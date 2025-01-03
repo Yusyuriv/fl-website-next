@@ -17,10 +17,10 @@ const blog = defineCollection({
 });
 
 const plugins = defineCollection({
-  loader: glob({ pattern: ["*/*.md"], base: "./src/data/plugins" }),
+  loader: glob({ pattern: ["*/plugin.md"], base: "./src/data/plugins" }),
   schema: ({ image }) => z.object({
     id: z.string().min(10),
-    slug: z.string().min(1),
+    slug: z.string().min(1).optional(),
     videos: z.array(
       z.string()
         .refine(v =>

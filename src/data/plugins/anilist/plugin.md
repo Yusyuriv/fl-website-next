@@ -1,13 +1,12 @@
 ---
 id: 08AF784C-A014-4A03-822F-6C2F3665A843
-slug: anilist
 images:
-  - QueryPresentation.png
-  - AnimePresentation.png
-  - MangaPresentation.png
+- QueryPresentation.png
+- AnimePresentation.png
+- MangaPresentation.png
 tags:
-  - Utilities
-  - Search
+- Utilities
+- Search
 ---
 # Flow.Launcher.Plugin.Anilist
 An Anilist plugin for FlowLauncher 

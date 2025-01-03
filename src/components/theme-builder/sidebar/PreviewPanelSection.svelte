@@ -7,6 +7,7 @@ import ColorPicker from "@/components/theme-builder/ui/inputs/ColorPicker.svelte
 import NumberInput from "@/components/theme-builder/ui/inputs/NumberInput.svelte";
 import QuadrupleNumberInput from "@/components/theme-builder/ui/inputs/QuadrupleNumberInput.svelte";
 import Checkbox from "@/components/theme-builder/ui/inputs/Checkbox.svelte";
+import UniformGrid from "@/components/theme-builder/ui/UniformGrid.svelte";
 
 const state: AllState = getContext("state");
 </script>
@@ -31,15 +32,19 @@ const state: AllState = getContext("state");
   <Group title="Title">
     <ColorPicker label="Color" bind:value={state.previewPanel.title.color} alpha />
     <NumberInput label="Font Size" bind:value={state.previewPanel.title.size} />
-    <Checkbox label="Italic" bind:value={state.previewPanel.title.style} offValue="Normal" onValue="Italic" />
-    <Checkbox label="Bold" bind:value={state.previewPanel.title.weight} offValue="Normal" onValue="Bold" />
+    <UniformGrid>
+      <Checkbox label="Italic" bind:value={state.previewPanel.title.style} offValue="Normal" onValue="Italic" />
+      <Checkbox label="Bold" bind:value={state.previewPanel.title.weight} offValue="Normal" onValue="Bold" />
+    </UniformGrid>
   </Group>
 
   <Group title="Subtitle">
     <ColorPicker label="Color" bind:value={state.previewPanel.subtitle.color} alpha />
     <NumberInput label="Font Size" bind:value={state.previewPanel.subtitle.size} />
-    <Checkbox label="Italic" bind:value={state.previewPanel.subtitle.style} offValue="Normal" onValue="Italic" />
-    <Checkbox label="Bold" bind:value={state.previewPanel.subtitle.weight} offValue="Normal" onValue="Bold" />
+    <UniformGrid>
+      <Checkbox label="Italic" bind:value={state.previewPanel.subtitle.style} offValue="Normal" onValue="Italic" />
+      <Checkbox label="Bold" bind:value={state.previewPanel.subtitle.weight} offValue="Normal" onValue="Bold" />
+    </UniformGrid>
   </Group>
 
   <Group title="Glyph">

@@ -43,21 +43,21 @@ const state: AllState = getContext("state");
   <ColorPicker label="Active Background Color" bind:value={state.result.active.background} alpha/>
 
   <Group title="Shortcut">
+    <ColorPicker label="Color" bind:value={state.result.regular.shortcut.color} alpha/>
     <NumberInput label="Font Size" bind:value={state.result.regular.shortcut.fontSize}/>
     <UniformGrid>
       <Checkbox label="Italic" bind:value={state.result.regular.shortcut.fontStyle} offValue="Normal" onValue="Italic"/>
       <Checkbox label="Bold" bind:value={state.result.regular.shortcut.fontWeight} offValue="Normal" onValue="Bold"/>
     </UniformGrid>
-    <ColorPicker label="Color" bind:value={state.result.regular.shortcut.color} alpha/>
   </Group>
 
   <Group title="Active Shortcut">
+    <ColorPicker label="Color" bind:value={state.result.active.shortcut.color} alpha/>
     <NumberInput label="Font Size" bind:value={state.result.active.shortcut.fontSize}/>
     <UniformGrid>
       <Checkbox label="Italic" bind:value={state.result.active.shortcut.fontStyle} offValue="Normal" onValue="Italic"/>
       <Checkbox label="Bold" bind:value={state.result.active.shortcut.fontWeight} offValue="Normal" onValue="Bold"/>
     </UniformGrid>
-    <ColorPicker label="Color" bind:value={state.result.active.shortcut.color} alpha/>
   </Group>
 
   <Group title="Title">

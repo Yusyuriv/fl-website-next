@@ -146,3 +146,10 @@ export function normalizeMarginsForWpf({top = 0, right = 0, bottom = 0, left = 0
 export function normalizeBooleanForWpf(value: boolean): string {
   return value ? "True" : "False";
 }
+
+export function verifyArrayTypes(array: any[] | undefined, ...types: string[]): boolean {
+  if (array?.length !== types.length) {
+    return false;
+  }
+  return array.every((item, index) => typeof item === types[index]);
+}

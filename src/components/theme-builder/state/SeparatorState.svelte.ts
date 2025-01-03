@@ -1,5 +1,5 @@
 import type {IState} from "@/components/theme-builder/state/IState";
-import {normalizeHexColorForWpf, normalizeMarginsForWpf} from "@/utils.ts";
+import {normalizeHexColorForWpf, normalizeMarginsForWpf, verifyArrayTypes} from "@/utils.ts";
 
 export class SeparatorState implements IState {
   visible = $state(true);
@@ -49,12 +49,28 @@ export class SeparatorState implements IState {
     `;
   }
 
-  toJSON(): Record<string, any> {
-    return {
-      visible: this.visible,
-      color: this.color,
-      margins: this.margins,
-      size: this.size,
-    };
+  fromJSON(data: any[]): void {
+    if (!verifyArrayTypes(data, "number", "string", "number", "number", "number", "number", "number"))
+      return;
+
+    this.visible = !!data[0];
+    this.color = data[1];
+    this.margins.top = data[2];
+    this.margins.right = data[3];
+    this.margins.bottom = data[4];
+    this.margins.left = data[5];
+    this.size = data[6];
+  }
+
+  toJSON(): any[] {
+    return [
+      +this.visible,
+      this.color,
+      this.margins.top,
+      this.margins.right,
+      this.margins.bottom,
+      this.margins.left,
+      this.size,
+    ];
   }
 }

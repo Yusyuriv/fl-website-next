@@ -1,5 +1,5 @@
 import type {IState} from "@/components/theme-builder/state/IState";
-import {normalizeBooleanForWpf, normalizeHexColorForWpf} from "@/utils.ts";
+import {normalizeBooleanForWpf, normalizeHexColorForWpf, verifyArrayTypes} from "@/utils.ts";
 
 export class WindowState implements IState {
   border = $state({
@@ -58,10 +58,24 @@ export class WindowState implements IState {
     `;
   }
 
-  toJSON(): Record<string, any> {
-    return {
-      border: this.border,
-      background: this.background,
-    };
+  fromJSON(data: any[]): void {
+    if (!verifyArrayTypes(data, "number", "string", "number", "string", "number"))
+      return;
+
+    this.border.thickness = data[0];
+    this.border.color = data[1];
+    this.border.radius = data[2];
+    this.background.color = data[3];
+    this.background.blur = !!data[4];
+  }
+
+  toJSON(): any[] {
+    return [
+      this.border.thickness,
+      this.border.color,
+      this.border.radius,
+      this.background.color,
+      +this.background.blur,
+    ];
   }
 }

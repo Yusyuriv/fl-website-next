@@ -78,20 +78,30 @@ export class AllState implements IState {
     `.trim();
   }
 
-  fromJSON(json: Record<any, any>): void {
-    const sectionKeys = Object.getOwnPropertyNames(state.toJSON());
+  fromJSON(data: Record<any, any>): void {
+    if (data.s)
+      this.settings.fromJSON(data.s);
 
-    for (const sectionKey of sectionKeys) {
-      const section = (state as any)[sectionKey];
+    if (data.w)
+      this.window.fromJSON(data.w);
 
-      const subsectionKeys = Object.getOwnPropertyNames(Object.getPrototypeOf(section));
+    if (data.qb)
+      this.queryBox.fromJSON(data.qb);
 
-      for (const subsectionKey of subsectionKeys) {
-        if (json[sectionKey]?.[subsectionKey] != null) {
-          section[subsectionKey] = json[sectionKey][subsectionKey];
-        }
-      }
-    }
+    if (data.sb)
+      this.scrollbar.fromJSON(data.sb);
+
+    if (data.se)
+      this.separator.fromJSON(data.se);
+
+    if (data.r)
+      this.result.fromJSON(data.r);
+
+    if (data.b)
+      this.bullet.fromJSON(data.b);
+
+    if (data.pp)
+      this.previewPanel.fromJSON(data.pp);
   }
 
   fromEncodedJSON(encodedJson: string): void {
@@ -107,14 +117,14 @@ export class AllState implements IState {
 
   toJSON(): Record<string, any> {
     return {
-      settings: this.settings.toJSON(),
-      window: this.window,
-      queryBox: this.queryBox,
-      scrollbar: this.scrollbar,
-      separator: this.separator,
-      result: this.result,
-      bullet: this.bullet,
-      previewPanel: this.previewPanel,
+      s: this.settings.toJSON(),
+      w: this.window,
+      qb: this.queryBox,
+      sb: this.scrollbar,
+      se: this.separator,
+      r: this.result,
+      b: this.bullet,
+      pp: this.previewPanel,
     };
   }
 

@@ -1,5 +1,5 @@
 import type {IState} from "@/components/theme-builder/state/IState";
-import {normalizeHexColorForWpf} from "@/utils.ts";
+import {normalizeHexColorForWpf, verifyArrayTypes} from "@/utils.ts";
 
 export class ScrollbarState implements IState {
   width = $state(5);
@@ -51,11 +51,20 @@ export class ScrollbarState implements IState {
     `;
   }
 
-  toJSON(): Record<string, any> {
-    return {
-      width: this.width,
-      color: this.color,
-      borderRadius: this.borderRadius,
-    };
+  fromJSON(data: any[]): void {
+    if (!verifyArrayTypes(data, "number", "string", "number"))
+      return;
+
+    this.width = data[0];
+    this.color = data[1];
+    this.borderRadius = data[2];
+  }
+
+  toJSON(): any[] {
+    return [
+      this.width,
+      this.color,
+      this.borderRadius,
+    ];
   }
 }

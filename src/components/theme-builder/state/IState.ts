@@ -1,6 +1,7 @@
 export interface IState {
   toCssProperties(): Record<string, string>;
   toXamlString(): string;
-  toJSON(): Record<string, any>;
+  fromJSON(data: Record<string, any> | any[]): void;
+  toJSON(): Record<string, any> | any[];
   reset(): void;
 }

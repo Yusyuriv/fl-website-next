@@ -1,5 +1,5 @@
 import type {IState} from "@/components/theme-builder/state/IState";
-import {normalizeHexColorForWpf, normalizeMarginsForWpf} from "@/utils.ts";
+import {normalizeHexColorForWpf, normalizeMarginsForWpf, verifyArrayTypes} from "@/utils.ts";
 
 export class QueryBoxState implements IState {
   suggestionColor = $state("#79817F");
@@ -195,16 +195,99 @@ export class QueryBoxState implements IState {
       `.trim();
   }
 
+  fromJSON(data: Record<string, any>): void {
+    if (typeof data.sc === "string")
+      this.suggestionColor = data.sc;
+
+    if (typeof data.tc === "string")
+      this.textColor = data.tc;
+
+    if (typeof data.cc === "string")
+      this.caretColor = data.cc;
+
+    if (verifyArrayTypes(data.i, "string", "number", "number", "number")) {
+      this.icon.color = data.i[0];
+      this.icon.visible = !!data.i[1];
+      this.icon.width = data.i[2];
+      this.icon.height = data.i[3];
+    }
+
+    if (verifyArrayTypes(data.pb, "string", "number")) {
+      this.progressBar.color = data.pb[0];
+      this.progressBar.height = data.pb[1];
+    }
+
+    if (verifyArrayTypes(data.d, "string", "number", "number", "number", "number", "number", "number", "number")) {
+      this.date.color = data.d[0];
+      this.date.size = data.d[1];
+      this.date.fontStyle = data.d[2] === 0 ? "Normal" : "Italic";
+      this.date.fontWeight = data.d[3] === 0 ? "Normal" : "Bold";
+      this.date.margins.top = data.d[4];
+      this.date.margins.right = data.d[5];
+      this.date.margins.bottom = data.d[6];
+      this.date.margins.left = data.d[7];
+    }
+
+    if (verifyArrayTypes(data.t, "string", "number", "number", "number", "number", "number", "number", "number")) {
+      this.time.color = data.t[0];
+      this.time.size = data.t[1];
+      this.time.fontStyle = data.t[2] === 0 ? "Normal" : "Italic";
+      this.time.fontWeight = data.t[3] === 0 ? "Normal" : "Bold";
+      this.time.margins.top = data.t[4];
+      this.time.margins.right = data.t[5];
+      this.time.margins.bottom = data.t[6];
+      this.time.margins.left = data.t[7];
+    }
+
+    if (verifyArrayTypes(data.dm, "number", "number", "number", "number")) {
+      this.datetimeMargins.top = data.dm[0];
+      this.datetimeMargins.right = data.dm[1];
+      this.datetimeMargins.bottom = data.dm[2];
+      this.datetimeMargins.left = data.dm[3];
+    }
+  }
+
   toJSON(): Record<string, any> {
     return {
-      suggestionColor: this.suggestionColor,
-      textColor: this.textColor,
-      caretColor: this.caretColor,
-      icon: this.icon,
-      progressBar: this.progressBar,
-      date: this.date,
-      time: this.time,
-      datetimeMargins: this.datetimeMargins,
+      sc: this.suggestionColor,
+      tc: this.textColor,
+      cc: this.caretColor,
+      i: [
+        this.icon.color,
+        +this.icon.visible,
+        this.icon.width,
+        this.icon.height,
+      ],
+      pb: [
+        this.progressBar.color,
+        this.progressBar.height,
+      ],
+      d: [
+        this.date.color,
+        this.date.size,
+        this.date.fontStyle === "Normal" ? 0 : 1,
+        this.date.fontWeight === "Normal" ? 0 : 1,
+        this.date.margins.top,
+        this.date.margins.right,
+        this.date.margins.bottom,
+        this.date.margins.left,
+      ],
+      t: [
+        this.time.color,
+        this.time.size,
+        this.time.fontStyle === "Normal" ? 0 : 1,
+        this.time.fontWeight === "Normal" ? 0 : 1,
+        this.time.margins.top,
+        this.time.margins.right,
+        this.time.margins.bottom,
+        this.time.margins.left,
+      ],
+      dm: [
+        this.datetimeMargins.top,
+        this.datetimeMargins.right,
+        this.datetimeMargins.bottom,
+        this.datetimeMargins.left,
+      ],
     }
   };
 }

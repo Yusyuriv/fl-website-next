@@ -1,5 +1,5 @@
 import type {IState} from "@/components/theme-builder/state/IState";
-import {normalizeHexColorForWpf} from "@/utils.ts";
+import {normalizeHexColorForWpf, verifyArrayTypes} from "@/utils.ts";
 
 export class BulletState implements IState {
   regular = $state({
@@ -79,10 +79,49 @@ export class BulletState implements IState {
     `.trim();
   }
 
-  toJSON(): Record<string, any> {
-    return {
-      regular: this.regular,
-      active: this.active,
-    }
+  fromJSON(data: any[]): void {
+    if (!verifyArrayTypes(
+      data,
+      "number",
+      "string",
+      "number",
+      "number",
+      "number",
+
+      "number",
+      "string",
+      "number",
+      "number",
+      "number")
+    )
+      return;
+
+    this.regular.visible = !!data[0];
+    this.regular.color = data[1];
+    this.regular.width = data[2];
+    this.regular.height = data[3];
+    this.regular.borderRadius = data[4];
+
+    this.active.visible = !!data[5];
+    this.active.color = data[6];
+    this.active.width = data[7];
+    this.active.height = data[8];
+    this.active.borderRadius = data[9];
+  }
+
+  toJSON(): any[] {
+    return [
+      +this.regular.visible,
+      this.regular.color,
+      this.regular.width,
+      this.regular.height,
+      this.regular.borderRadius,
+
+      +this.active.visible,
+      this.active.color,
+      this.active.width,
+      this.active.height,
+      this.active.borderRadius,
+    ];
   }
 }

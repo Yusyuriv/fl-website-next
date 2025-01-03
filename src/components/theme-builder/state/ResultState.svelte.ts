@@ -1,5 +1,5 @@
 import type {IState} from "@/components/theme-builder/state/IState";
-import {normalizeHexColorForWpf, normalizeMarginsForWpf} from "@/utils.ts";
+import {normalizeHexColorForWpf, normalizeMarginsForWpf, verifyArrayTypes} from "@/utils.ts";
 
 export class ResultState implements IState {
   regular = $state({
@@ -239,14 +239,150 @@ export class ResultState implements IState {
     `;
   }
 
+  fromJSON(data: Record<string, any>): void {
+    if (verifyArrayTypes(
+      data.r,
+      "string",
+      "number",
+      "number",
+      "number",
+
+      "string",
+      "number",
+
+      "string",
+      "string",
+
+      "string",
+      "number",
+      "number",
+      "number",
+    )) {
+      this.regular.shortcut.color = data.r[0];
+      this.regular.shortcut.fontSize = data.r[1];
+      this.regular.shortcut.fontStyle = data.r[2] === 0 ? "Normal" : "Italic";
+      this.regular.shortcut.fontWeight = data.r[3] === 0 ? "Normal" : "Bold";
+
+      this.regular.glyph.color = data.r[4];
+      this.regular.glyph.fontSize = data.r[5];
+
+      this.regular.title = data.r[6];
+      this.regular.subtitle = data.r[7];
+
+      this.regular.bullet.color = data.r[8];
+      this.regular.bullet.width = data.r[9];
+      this.regular.bullet.height = data.r[10];
+      this.regular.bullet.borderRadius = data.r[11];
+    }
+
+    if (verifyArrayTypes(
+      data.a,
+      "string",
+      "number",
+      "number",
+      "number",
+
+      "string",
+      "number",
+
+      "string",
+      "string",
+
+      "string",
+
+      "string",
+      "number",
+      "number",
+      "number",
+    )) {
+      this.active.shortcut.color = data.a[0];
+      this.active.shortcut.fontSize = data.a[1];
+      this.active.shortcut.fontStyle = data.a[2] === 0 ? "Normal" : "Italic";
+      this.active.shortcut.fontWeight = data.a[3] === 0 ? "Normal" : "Bold";
+
+      this.active.glyph.color = data.a[4];
+      this.active.glyph.fontSize = data.a[5];
+
+      this.active.title = data.a[6];
+      this.active.subtitle = data.a[7];
+
+      this.active.background = data.a[8];
+
+      this.active.bullet.color = data.a[9];
+      this.active.bullet.width = data.a[10];
+      this.active.bullet.height = data.a[11];
+      this.active.bullet.borderRadius = data.a[12];
+    }
+
+    if (verifyArrayTypes(data.rlm, "number", "number", "number", "number")) {
+      this.resultListMargins.top = data.rlm[0];
+      this.resultListMargins.right = data.rlm[1];
+      this.resultListMargins.bottom = data.rlm[2];
+      this.resultListMargins.left = data.rlm[3];
+    }
+
+    if (verifyArrayTypes(data.margins, "number", "number")) {
+      this.margins.left = data.margins[0];
+      this.margins.right = data.margins[1];
+    }
+
+    if (typeof data.br === "number")
+      this.borderRadius = data.br;
+
+    if (verifyArrayTypes(data.ht, "string", "number", "number")) {
+      this.highlightedText.color = data.ht[0];
+      this.highlightedText.fontStyle = data.ht[1] === 0 ? "Normal" : "Italic";
+      this.highlightedText.fontWeight = data.ht[2] === 0 ? "Normal" : "Bold";
+    }
+  }
+
   toJSON(): Record<string, any> {
     return {
-      regular: this.regular,
-      active: this.active,
-      resultListMargins: this.resultListMargins,
-      margins: this.margins,
-      borderRadius: this.borderRadius,
-      highlightedText: this.highlightedText,
+      r: [
+        this.regular.shortcut.color,
+        this.regular.shortcut.fontSize,
+        this.regular.shortcut.fontStyle === "Normal" ? 0 : 1,
+        this.regular.shortcut.fontWeight === "Normal" ? 0 : 1,
+        this.regular.glyph.color,
+        this.regular.glyph.fontSize,
+        this.regular.title,
+        this.regular.subtitle,
+        this.regular.bullet.color,
+        this.regular.bullet.width,
+        this.regular.bullet.height,
+        this.regular.bullet.borderRadius,
+      ],
+      a: [
+        this.active.shortcut.color,
+        this.active.shortcut.fontSize,
+        this.active.shortcut.fontStyle === "Normal" ? 0 : 1,
+        this.active.shortcut.fontWeight === "Normal" ? 0 : 1,
+        this.active.glyph.color,
+        this.active.glyph.fontSize,
+        this.active.title,
+        this.active.subtitle,
+        this.active.background,
+        this.active.bullet.color,
+        this.active.bullet.width,
+        this.active.bullet.height,
+        this.active.bullet.borderRadius,
+      ],
+      rlm: [
+        this.resultListMargins.top,
+        this.resultListMargins.right,
+        this.resultListMargins.bottom,
+        this.resultListMargins.left,
+      ],
+      m: [
+        this.margins.left,
+        this.margins.right,
+      ],
+      br: this.borderRadius,
+      ht: [
+        this.highlightedText.color,
+        this.highlightedText.fontStyle === "Normal" ? 0 : 1,
+        this.highlightedText.fontWeight === "Normal" ? 0 : 1,
+      ],
     }
   }
 }

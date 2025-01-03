@@ -1,5 +1,5 @@
 import type {IState} from "@/components/theme-builder/state/IState.ts";
-import {normalizeHexColorForWpf} from "@/utils.ts";
+import {normalizeHexColorForWpf, verifyArrayTypes} from "@/utils.ts";
 
 export class PreviewPanelState implements IState {
   separator = $state({
@@ -73,12 +73,57 @@ export class PreviewPanelState implements IState {
     };
   }
 
+  fromJSON(data: Record<string, any>): void {
+    if (verifyArrayTypes(data.s, "string", "number", "number", "number", "number", "number")) {
+      this.separator.color = data.s[0];
+      this.separator.width = data.s[1];
+      this.separator.margins.top = data.s[2];
+      this.separator.margins.right = data.s[3];
+      this.separator.margins.bottom = data.s[4];
+      this.separator.margins.left = data.s[5];
+    }
+
+    if (verifyArrayTypes(data.t, "string", "number", "number", "number")) {
+      this.title.color = data.t[0];
+      this.title.size = data.t[1];
+      this.title.style = data.t[2] === 0 ? "Normal" : "Italic";
+      this.title.weight = data.t[3] === 0 ? "Normal" : "Bold";
+    }
+
+    if (verifyArrayTypes(data.st, "string", "number", "number", "number")) {
+      this.subtitle.color = data.st[0];
+      this.subtitle.size = data.st[1];
+      this.subtitle.style = data.st[2] === 0 ? "Normal" : "Italic";
+      this.subtitle.weight = data.st[3] === 0 ? "Normal" : "Bold";
+    }
+
+    if (typeof data.gc === "string")
+      this.glyphColor = data.gc;
+  }
+
   toJSON(): Record<string, any> {
     return {
-      separator: this.separator,
-      title: this.title,
-      subtitle: this.subtitle,
-      glyphColor: this.glyphColor,
+      s: [
+        this.separator.color,
+        this.separator.width,
+        this.separator.margins.top,
+        this.separator.margins.right,
+        this.separator.margins.bottom,
+        this.separator.margins.left,
+      ],
+      t: [
+        this.title.color,
+        this.title.size,
+        this.title.style === "Normal" ? 0 : 1,
+        this.title.weight === "Normal" ? 0 : 1,
+      ],
+      st: [
+        this.subtitle.color,
+        this.subtitle.size,
+        this.subtitle.style === "Normal" ? 0 : 1,
+        this.subtitle.weight === "Normal" ? 0 : 1,
+      ],
+      gc: this.glyphColor,
     };
   }
 

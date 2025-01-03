@@ -14,7 +14,7 @@ interface Props {
   plugin: ExtendedPlugin;
 }
 const {plugin} = Astro.props;
-const pluginBlogs = await getPluginBlogPosts(plugin.slug, true);
+const pluginBlogs = await getPluginBlogPosts(plugin.id);
 
 const pluginLink = getBaseUrl(true) + `/plugins/${plugin.slug}`;
 

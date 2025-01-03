@@ -25,10 +25,10 @@ export async function getStaticPaths() {
 
       return pluginPath === postPath;
     });
-    const pluginManifest = pluginsManifest.find(p => p.slug === plugin!.data.slug);
+    const pluginManifest = pluginsManifest.find(p => p.id === plugin!.data.id);
     return {
       params: {
-        slug: plugin!.data.slug,
+        slug: pluginManifest!.slug,
         postSlug: v.data.slug,
       },
       props: {

@@ -22,6 +22,17 @@ const favIconLink = `${base === '/' ? '' : base}/favicon.ico`;
 <!doctype html>
 <html lang="en" class="no-transition">
 	<head>
+		<script is:inline>
+		let theme = localStorage.getItem('theme');
+		const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+		if (!theme) {
+			theme = prefersDark ? 'dark' : 'light';
+		}
+
+		document.documentElement.setAttribute('data-theme', theme);
+		</script>
+
 		<!-- Meta -->
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />

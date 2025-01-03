@@ -44,18 +44,16 @@ import IconSun from "@/components/icons/Sun.svg";
 <script>
 import {setTheme, setUpThemeToggleButton} from "@/utils";
 
-if (import.meta.env.SSR === false) {
-  const storedTheme = localStorage.getItem("theme");
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+const storedTheme = localStorage.getItem("theme");
+const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
 
-  if (storedTheme) {
-    setTheme(storedTheme);
-  } else {
-    setTheme(prefersDark.matches ? "dark" : "light");
-  }
-
-  setUpThemeToggleButton(".theme-toggle-button[data-theme-toggle-button]");
+if (storedTheme) {
+  setTheme(storedTheme);
+} else {
+  setTheme(prefersDark.matches ? "dark" : "light");
 }
+
+setUpThemeToggleButton(".theme-toggle-button[data-theme-toggle-button]");
 
 setTimeout(() => {
   document.documentElement.classList.remove("no-transition");

@@ -57,8 +57,20 @@ const latestVersion = await getGitHubReleaseData();
       </Button>
     </div>
     <div class="screenshot-container">
-      <Picture src={ScreenshotDark} alt="Flow Launcher screenshot" formats={["avif", "webp"]} class="dark screenshot"/>
-      <Picture src={ScreenshotLight} alt="Flow Launcher screenshot" formats={["avif", "webp"]} class="light screenshot"/>
+      <Picture
+        src={ScreenshotDark}
+        alt="Flow Launcher screenshot"
+        formats={["avif", "webp"]}
+        class="dark screenshot"
+        loading="eager"
+      />
+      <Picture
+        src={ScreenshotLight}
+        alt="Flow Launcher screenshot"
+        formats={["avif", "webp"]}
+        class="light screenshot"
+        loading="eager"
+      />
     </div>
   </div>
 

@@ -35,9 +35,16 @@ import IconSun from "@/components/icons/Sun.svg";
 }
 
 .theme-toggle-button svg {
-    display: none;
     width: calc(100% - 12px);
     aspect-ratio: 1;
+}
+
+:global(html[data-theme="dark"]) [data-moon] {
+    display: none;
+}
+
+:global(html[data-theme="light"]) [data-sun] {
+    display: none;
 }
 </style>
 

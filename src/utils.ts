@@ -39,27 +39,14 @@ export function addLightboxToBlogPostImages(): void {
 }
 
 let themeToggleButtons: NodeListOf<HTMLElement> | null = null;
-let themeToggleButtonsIconMoon: NodeListOf<SVGSVGElement> | null = null;
-let themeToggleButtonsIconSun: NodeListOf<SVGSVGElement> | null = null;
 
 export function setTheme(theme: string): void {
   if (!themeToggleButtons) {
     themeToggleButtons = document.querySelectorAll(".theme-toggle-button[data-theme-toggle-button]") as NodeListOf<HTMLElement>;
   }
-  if (!themeToggleButtonsIconMoon) {
-    themeToggleButtonsIconMoon = document.querySelectorAll(".theme-toggle-button[data-theme-toggle-button] [data-moon]") as NodeListOf<SVGSVGElement>;
-  }
-  if (!themeToggleButtonsIconSun) {
-    themeToggleButtonsIconSun = document.querySelectorAll(".theme-toggle-button[data-theme-toggle-button] [data-sun]") as NodeListOf<SVGSVGElement>;
-  }
 
   document.documentElement.setAttribute("data-theme", theme);
   localStorage.setItem("theme", theme);
-  const isDark = theme === "dark";
-  const displayMoon = isDark ? "block" : "none";
-  const displaySun = isDark ? "none" : "block";
-  themeToggleButtonsIconMoon.forEach(icon => icon.style.display = displayMoon);
-  themeToggleButtonsIconSun.forEach(icon => icon.style.display = displaySun);
 }
 
 export function toggleTheme(e?: Event): void {

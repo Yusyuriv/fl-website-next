@@ -8,7 +8,7 @@ images:
 - lorem.png
 - random.png
 tags:
-- Development Tools
+- Text Tools
 - Utilities
 ---
 

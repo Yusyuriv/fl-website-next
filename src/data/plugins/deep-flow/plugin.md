@@ -1,5 +1,5 @@
 ---
-id: 467A8D7E-0DC6-F0C8-347C-BC4B315C397F
+id: 963cdb07-9143-41e6-b77b-14391e8344d8
 # Uncomment and fill in relevant sections if you provide videos and/or images
 #videos:
 #- https://youtu.be/dQw4w9WgXcQ
@@ -8,7 +8,6 @@ id: 467A8D7E-0DC6-F0C8-347C-BC4B315C397F
 #- image2.png
 #- image3.png
 tags:
-- Development Tools
-- Programming
-- Utilities
+- Translation
+- Text Tools
 ---

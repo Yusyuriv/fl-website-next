@@ -3,6 +3,7 @@ import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import {getBaseUrl} from "@/utils";
 import DownloadDialog from "@/components/DownloadDIalog.astro";
+import CopyButtonsScript from "../components/CopyButtonsScript.astro";
 
 interface Props {
 	title?: string;
@@ -75,6 +76,7 @@ const favIconLink = `${base === '/' ? '' : base}/favicon.ico`;
 		</main>
 		<Footer />
 		<DownloadDialog />
+	  <CopyButtonsScript />
 	</body>
 </html>
 

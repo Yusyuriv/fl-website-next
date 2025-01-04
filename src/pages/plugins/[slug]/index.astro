@@ -13,6 +13,7 @@ import BlogArticleCard from "@/components/blog/BlogArticleCard.astro";
 import type {ExtendedPlugin} from "@/pages/plugins/_types";
 import {getPluginBlogPosts} from "@/pages/plugins/[slug]/_get-plugin-blog-posts";
 import type {ImageMetadata} from "astro";
+import InstallPlugin from "@/components/plugins/InstallPlugin.astro";
 
 export {getStaticPaths} from "@/pages/plugins/[slug]/_static-paths";
 
@@ -85,6 +86,9 @@ const hasCarousel = videos.length > 0 || images.length > 0;
     </div>
 
     <aside class="plugin-info">
+      <LabelValue label="Install">
+        <InstallPlugin plugin={plugin}/>
+      </LabelValue>
       <LabelValue label="Version" value={plugin.version}/>
       <LabelValue label="Plugin type" value={pluginType}/>
       <LabelValue label="Latest release date" value={formatDate(plugin.latestReleaseDate)}/>

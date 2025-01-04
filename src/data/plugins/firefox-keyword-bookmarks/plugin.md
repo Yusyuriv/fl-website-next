@@ -1,5 +1,5 @@
 ---
-id: 1b7c732781f94b748ed08351f8200894
+id: bb3ca236-f416-46d5-b88b-597748c33dce
 # Uncomment and fill in relevant sections if you provide videos and/or images
 #videos:
 #- https://youtu.be/dQw4w9WgXcQ
@@ -8,6 +8,7 @@ id: 1b7c732781f94b748ed08351f8200894
 #- image2.png
 #- image3.png
 tags:
-- Translation
-- Text Tools
+- Browser Tools
+- Search
+- Productivity
 ---

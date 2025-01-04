@@ -1,10 +1,10 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Section from "../components/Section.astro";
-import SectionHeader from "../components/SectionHeader.astro";
-import Contributor from "../components/contributors/Contributor.astro";
-import {getCache, setCache} from "../utils";
-import SectionSubheader from "../components/SectionSubheader.astro";
+import Layout from "@/layouts/Layout.astro";
+import Section from "@/components/Section.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import Contributor from "@/components/contributors/Contributor.astro";
+import {getCache, setCache} from "@/utils";
+import SectionSubheader from "@/components/SectionSubheader.astro";
 
 interface IContributor {
   id: number;
@@ -28,7 +28,7 @@ if (contributors.length === 0) {
   while (true) {
     const response: PullRequest[] = await fetch(`https://api.github.com/repos/Flow-Launcher/Flow.Launcher/pulls?state=closed&per_page=100&page=${page}`)
       .then(v => v.json());
-    prs.push(...response.filter(pr => pr.merged_at));
+    prs.push(...response.filter(pr => pr.merged_at && pr.user.login));
     if (response.length < 100) {
       break;
     }

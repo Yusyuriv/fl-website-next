@@ -63,7 +63,7 @@ const fullCommand = `${packageManager} ${command}`;
 </style>
 
 <script>
-const buttons = document.querySelectorAll(".copy-package-manager-command") as HTMLButtonElement[];
+const buttons = document.querySelectorAll(".copy-package-manager-command") as NodeListOf<HTMLElement>;
 
 for (const button of buttons) {
   button.addEventListener("click", copyCommand);

@@ -1,4 +1,6 @@
 ---
+import IconPlay from "@/components/icons/Play.svg";
+
 interface Props {
   video: string;
   imageOnly?: boolean;
@@ -20,7 +22,7 @@ const src = !imageOnly ? `https://www.youtube.com/embed/${id}` : `https://i.ytim
 ---
 {imageOnly ? <div class="yt-thumbnail-container">
   <img src={src} alt="" class:list={{fullWidth}}/>
-  <div class="yt-thumbnail-play-icon-container" style="">▶️</div>
+  <IconPlay class="yt-thumbnail-play-icon" />
 </div> : <iframe
   {src}
   class:list={{fullWidth}}
@@ -35,12 +37,21 @@ const src = !imageOnly ? `https://www.youtube.com/embed/${id}` : `https://i.ytim
     position: relative;
 }
 
-.yt-thumbnail-play-icon-container {
+.yt-thumbnail-play-icon {
+    width: 48px;
+    aspect-ratio: 1;
+    fill: #0008;
     position: absolute;
-    inset: 0;
-    display: grid;
-    place-items: center;
-    font-size: 48px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, fill 0.2s;
+}
+
+.yt-thumbnail-container:hover .yt-thumbnail-play-icon {
+    width: 64px;
+    height: 64px;
+    fill: #000B;
 }
 
 .fullWidth {

@@ -8,8 +8,12 @@ Once your plugin has been approved and added to
 the [Flow.Launcher.PluginsManifest](https://github.com/Flow-Launcher/Flow.Launcher.PluginsManifest/) repository, you can
 add more data about your plugin to the website. If you don't, only the information from the PluginsManifest will be
 displayed on the website, i.e., icon, title, short description, version, author, and the programming language. You can
-add additional information, such as detailed information about the plugin, videos, screenshots, or blog posts, by
-following these steps:
+add additional information, such as detailed information about the plugin, videos, screenshots, or blog posts.
+
+> [!NOTE]
+> Please don't use .gif files. Use .png or .jpg for static images and use YouTube for videos.
+
+To add more information about your plugin, follow these steps:
 
 1. Think of a "slug," a unique readable string based on the name of your plugin. This will be used in the URL. If your
    plugin is called "Cool Feature+," you might use `cool-feature-plus` as the slug. This will be used in the URL, e.g.,

@@ -7,12 +7,14 @@ interface Props {
   plugin: ExtendedPlugin;
   class?: string;
   minHeight?: boolean;
+  loading?: "lazy" | "eager";
 }
 
 const {
   plugin,
   class: className,
   minHeight,
+  loading = "lazy",
   ...rest
 } = Astro.props;
 const href = getBaseUrl(true) + `/plugins/${plugin.slug}`;
@@ -22,7 +24,7 @@ const href = getBaseUrl(true) + `/plugins/${plugin.slug}`;
 
 <a class:list={["plugin", className, {minHeight}]} {href} {...rest}>
   <div class="header">
-    <img alt="" src={plugin.icon} class="icon" loading="lazy"/>
+    <img alt="" src={plugin.icon} class="icon" loading={loading}/>
     <div class="title">
       <div class="name">
         {plugin.name}

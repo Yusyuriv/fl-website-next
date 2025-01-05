@@ -30,7 +30,7 @@ const hasFeaturedPlugins = featured.length > 0;
   {hasFeaturedPlugins && <Section even>
     <SectionHeader>Featured plugins</SectionHeader>
     <Swiper>
-      {featured.map(v => <Plugin plugin={v} class="swiper-slide" minHeight/>)}
+      {featured.map(v => <Plugin plugin={v} class="swiper-slide" minHeight loading="eager"/>)}
     </Swiper>
   </Section>}
   <Section>

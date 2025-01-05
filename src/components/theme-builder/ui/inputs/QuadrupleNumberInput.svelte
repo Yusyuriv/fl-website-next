@@ -100,7 +100,9 @@ const hasLines = $derived(line1 || line2 || line3 || line4);
     />
 </div>
 
-<style>
+<style lang="scss">
+@use "$styles/breakpoints";
+
 .quadruple-number-input {
     display: grid;
     grid-template-columns: repeat(4, 25%);
@@ -146,5 +148,12 @@ input:focus {
 
 .hasLines input.bottom-line {
     border-bottom: 2px solid var(--text);
+}
+
+@include breakpoints.sm {
+    .quadruple-number-input {
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+    }
 }
 </style>

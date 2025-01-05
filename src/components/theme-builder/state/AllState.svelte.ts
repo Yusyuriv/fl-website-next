@@ -136,5 +136,3 @@ export class AllState implements IState {
     return btoa(String.fromCharCode(...compressed));
   }
 }
-
-export const state = new AllState();

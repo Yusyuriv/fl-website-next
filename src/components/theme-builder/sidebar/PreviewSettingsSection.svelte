@@ -27,7 +27,7 @@ const state: AllState = getContext("state");
 <style>
 .active-results-checkboxes {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 8px;
 }
 </style>

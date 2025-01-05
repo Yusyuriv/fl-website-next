@@ -29,7 +29,9 @@ function toggleCollapse() {
   </div>
 </div>
 
-<style>
+<style lang="scss">
+@use "$styles/breakpoints";
+
 .section {
     background-color: var(--group-bg);
     border-radius: 8px;
@@ -84,6 +86,12 @@ function toggleCollapse() {
 
 .isCollapsed .chevron {
     transform: rotateZ(61deg);
+}
+
+@include breakpoints.sm {
+    .section {
+        border-radius: 0;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {

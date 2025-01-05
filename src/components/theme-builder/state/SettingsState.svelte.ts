@@ -7,7 +7,7 @@ export class SettingsState implements Omit<IState, "toCssProperties" | "toXamlSt
   backgrounds = $state(false);
   progressBar = $state(false);
   caret = $state(false);
-  activeResults = $state([false, false, false, true, false]);
+  activeResults = $state([false, false, true, false]);
   datetime = $state(false);
   previewPanel = $state(false);
 
@@ -17,7 +17,7 @@ export class SettingsState implements Omit<IState, "toCssProperties" | "toXamlSt
     this.backgrounds = false;
     this.progressBar = false;
     this.caret = false;
-    this.activeResults = [false, false, false, true, false];
+    this.activeResults = [false, false, true, false];
     this.datetime = false;
     this.previewPanel = false;
   }
@@ -45,7 +45,6 @@ export class SettingsState implements Omit<IState, "toCssProperties" | "toXamlSt
     this.activeResults[1] = !!(data[5] & 1 << 1);
     this.activeResults[2] = !!(data[5] & 1 << 2);
     this.activeResults[3] = !!(data[5] & 1 << 3);
-    this.activeResults[4] = !!(data[5] & 1 << 4);
     this.datetime = !!data[6];
     this.previewPanel = !!data[7];
   }

@@ -8,6 +8,7 @@ id: 129ae526-b5c7-4ba5-9f94-d60dffd68b98
 #- image2.png
 #- image3.png
 tags:
+- AI
 - Productivity
 - Text Tools
 - Utilities

@@ -10,4 +10,5 @@ id: 506B2EE8-4117-4BDF-8F00-DF58498DF922
 tags:
 - Search
 - Productivity
+- Notes
 ---

@@ -1,5 +1,5 @@
 import type {IState} from "@/components/theme-builder/state/IState";
-import {normalizeHexColorForWpf, normalizeMarginsForWpf, verifyArrayTypes} from "@/utils.ts";
+import {getFontSizeSetterForWpf, normalizeHexColorForWpf, normalizeMarginsForWpf, verifyArrayTypes} from "@/utils.ts";
 
 export class ResultState implements IState {
   regular = $state({
@@ -201,12 +201,12 @@ export class ResultState implements IState {
     
     <!-- Result hotkey (Alt+1, Alt+2, etc.) -->
     <Style x:Key="ItemHotkeyStyle" TargetType="{x:Type TextBlock}">
-        <Setter Property="FontSize" Value="${this.regular.shortcut.fontSize}" />
+        ${getFontSizeSetterForWpf(this.regular.shortcut.fontSize)}
         <Setter Property="Foreground" Value="${this.regular.shortcut.color}" />
     </Style>
     
     <Style x:Key="ItemHotkeySelectedStyle" TargetType="{x:Type TextBlock}">
-        <Setter Property="FontSize" Value="${this.active.shortcut.fontSize}" />
+        ${getFontSizeSetterForWpf(this.active.shortcut.fontSize)}
         <Setter Property="Foreground" Value="${this.active.shortcut.color}" />
     </Style>
     
@@ -215,14 +215,14 @@ export class ResultState implements IState {
         <Setter Property="Foreground" Value="${normalizeHexColorForWpf(this.regular.glyph.color)}" />
         <Setter Property="Width" Value="${this.regular.glyph.fontSize}" />
         <Setter Property="Height" Value="${this.regular.glyph.fontSize}" />
-        <Setter Property="FontSize" Value="${this.regular.glyph.fontSize}" />
+        ${getFontSizeSetterForWpf(this.regular.glyph.fontSize)}
     </Style>
     
     <Style x:Key="ItemGlyphSelectedStyle" TargetType="{x:Type TextBlock}">
         <Setter Property="Foreground" Value="${normalizeHexColorForWpf(this.active.glyph.color)}" />
         <Setter Property="Width" Value="${this.active.glyph.fontSize}" />
         <Setter Property="Height" Value="${this.active.glyph.fontSize}" />
-        <Setter Property="FontSize" Value="${this.active.glyph.fontSize}" />
+        ${getFontSizeSetterForWpf(this.active.glyph.fontSize)}
     </Style>
     
     <!-- Selected result styles -->

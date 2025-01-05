@@ -136,6 +136,17 @@ export function normalizeBooleanForWpf(value: boolean): string {
   return value ? "True" : "False";
 }
 
+export function getFontSizeSetterForWpf(size: number): string {
+  if (size > 0) {
+    return `<Setter Property="FontSize" Value="${size}" />`;
+  }
+
+  return `
+        <Setter Property="FontSize" Value="6" />
+        <Setter Property="Visibility" Value="Collapsed" />
+  `.trim();
+}
+
 export function verifyArrayTypes(array: any[] | undefined, ...types: string[]): boolean {
   if (array?.length !== types.length) {
     return false;

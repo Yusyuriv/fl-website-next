@@ -1,5 +1,5 @@
 import type {IState} from "@/components/theme-builder/state/IState";
-import {normalizeHexColorForWpf, normalizeMarginsForWpf, verifyArrayTypes} from "@/utils.ts";
+import {getFontSizeSetterForWpf, normalizeHexColorForWpf, normalizeMarginsForWpf, verifyArrayTypes} from "@/utils.ts";
 
 export class QueryBoxState implements IState {
   suggestionColor = $state("#79817F");
@@ -147,7 +147,7 @@ export class QueryBoxState implements IState {
         TargetType="{x:Type TextBlock}">
         <Setter Property="Margin" Value="${normalizeMarginsForWpf(this.time.margins)}" />
         <Setter Property="Foreground" Value="${normalizeHexColorForWpf(this.time.color)}" />
-        <Setter Property="FontSize" Value="${this.time.size}" />
+        ${getFontSizeSetterForWpf(this.time.size)}
         <Setter Property="FontStyle" Value="${this.time.fontStyle}" />
         <Setter Property="FontWeight" Value="${this.time.fontWeight}" />
     </Style>
@@ -159,7 +159,7 @@ export class QueryBoxState implements IState {
         TargetType="{x:Type TextBlock}">
         <Setter Property="Margin" Value="${normalizeMarginsForWpf(this.date.margins)}" />
         <Setter Property="Foreground" Value="${normalizeHexColorForWpf(this.date.color)}" />
-        <Setter Property="FontSize" Value="${this.date.size}" />
+        ${getFontSizeSetterForWpf(this.date.size)}
         <Setter Property="FontStyle" Value="${this.date.fontStyle}" />
         <Setter Property="FontWeight" Value="${this.date.fontWeight}" />
     </Style>

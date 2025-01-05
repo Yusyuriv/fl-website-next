@@ -1,5 +1,5 @@
 import type {IState} from "@/components/theme-builder/state/IState.ts";
-import {normalizeHexColorForWpf, verifyArrayTypes} from "@/utils.ts";
+import {getFontSizeSetterForWpf, normalizeHexColorForWpf, verifyArrayTypes} from "@/utils.ts";
 
 export class PreviewPanelState implements IState {
   separator = $state({
@@ -144,7 +144,7 @@ export class PreviewPanelState implements IState {
         BasedOn="{StaticResource BasePreviewItemTitleStyle}"
         TargetType="{x:Type TextBlock}">
         <Setter Property="Foreground" Value="${normalizeHexColorForWpf(this.title.color)}" />
-        <Setter Property="FontSize" Value="${this.title.size}" />
+        ${getFontSizeSetterForWpf(this.title.size)}
         <Setter Property="FontStyle" Value="${this.title.style}" />
         <Setter Property="FontWeight" Value="${this.title.weight}" />
         <Setter Property="LineHeight" Value="${Math.floor(this.title.size * 1.5)}" />
@@ -155,7 +155,7 @@ export class PreviewPanelState implements IState {
         BasedOn="{StaticResource BasePreviewItemSubTitleStyle}"
         TargetType="{x:Type TextBlock}">
         <Setter Property="Foreground" Value="${normalizeHexColorForWpf(this.subtitle.color)}" />
-        <Setter Property="FontSize" Value="${this.subtitle.size}" />
+        ${getFontSizeSetterForWpf(this.subtitle.size)}
         <Setter Property="FontStyle" Value="${this.subtitle.style}" />
         <Setter Property="FontWeight" Value="${this.subtitle.weight}" />
         <Setter Property="LineHeight" Value="${Math.floor(this.subtitle.size * 1.5)}" />

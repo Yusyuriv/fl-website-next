@@ -12,13 +12,21 @@ interface Props {
   color: string;
 }
 
-const {title, subtitle, image, color, icon, iconBackground = "var(--plugin-icon-background)", author} = Astro.props;
+const {
+  title,
+  subtitle,
+  image,
+  color,
+  icon,
+  iconBackground = "var(--plugin-icon-background)",
+  author,
+} = Astro.props;
 ---
 <div class="plugin swiper-slide">
   <div class="img-container">
-    <Picture alt="" src={image} formats={["avif", "webp"]} class="img"/>
+    <Picture alt="" src={image} formats={["avif", "webp"]} class="img" loading="eager"/>
     <div class="icon-container">
-      <Picture src={icon} alt="" class="icon" formats={["avif", "webp"]}/>
+      <Picture src={icon} alt="" class="icon" formats={["avif", "webp"]} loading="eager"/>
     </div>
   </div>
   <div class="title">

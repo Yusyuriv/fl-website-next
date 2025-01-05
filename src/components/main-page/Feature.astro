@@ -9,11 +9,16 @@ interface Props {
   color: string;
 }
 
-const {title, subtitle, image, color} = Astro.props;
+const {
+  title,
+  subtitle,
+  image,
+  color,
+} = Astro.props;
 ---
 <div class="feature swiper-slide">
   <div class="img-container">
-    <Picture alt="" src={image} formats={['avif', 'webp']} class="img"/>
+    <Picture alt="" src={image} formats={['avif', 'webp']} class="img" loading="eager"/>
   </div>
   <div class="title">{title}</div>
   <div class="subtitle">{subtitle}</div>

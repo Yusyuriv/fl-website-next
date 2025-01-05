@@ -18,7 +18,7 @@ const {
 ---
 
 <a {href} target="_blank" class="sponsor">
-  <Picture {src} {alt} class:list={["img", {square: !!label}]} formats={["avif", "webp"]} />
+  <Picture {src} {alt} class:list={["img", {square: !!label}]} formats={["avif", "webp"]} loading="eager" />
   {label ? <span>{label}</span> : null}
 </a>
 

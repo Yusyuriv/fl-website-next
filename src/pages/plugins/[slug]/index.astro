@@ -74,7 +74,7 @@ const hasCarousel = videos.length > 0 || images.length > 0;
       </div>)}
       {images.map(v => <div class="swiper-slide">
         <a data-fslightbox="plugin-carousel" href={v.src as unknown as string}>
-          <Picture alt="" src={v} formats={["avif", "webp"]}/>
+          <Picture alt="" src={v} formats={["avif", "webp"]} width="320" height="180" loading="eager"/>
         </a>
       </div>)}
     </Swiper>}

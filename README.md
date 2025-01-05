@@ -48,8 +48,9 @@ To add more information about your plugin, follow these steps:
    - images/image2.png
 
    # Optional array of tags to display on your plugin's page. These should be relevant to your
-   # plugin. Allowed values are: Automation, Development Tools, Documentation, Gaming, 
-   # Multimedia, Programming, Search, System, Utilities
+   # plugin. Allowed values are: AI, Automation, Browser Tools, Calculators & Converters, Date & Time,
+   # Development Tools, Dictionaries, Documentation, Examples, File Management, Gaming, Multimedia, Networking,
+   # Notes, Productivity, Programming, Search, System, Text Tools, Translation, Social Media, Utilities
    tags:
    - Automation
    - Programming

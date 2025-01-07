@@ -8,14 +8,11 @@ import SectionSubheader from "@/components/SectionSubheader.astro";
 import SmallText from "@/components/SmallText.astro";
 import ScreenshotDark from "@/assets/main-page/dark_screenshot.png";
 import ScreenshotLight from "@/assets/main-page/light_screenshot.png";
-import ScreenshotBackground from "@/assets/main-page/screenshot_bg.png";
 import IconDownload from "@/components/icons/Download.svg";
 import {getGitHubReleaseData} from "@/data/github-release";
+import {getBaseUrl} from "@/utils";
 
-const screenshotBackground = await getImage({
-  src: ScreenshotBackground,
-  format: 'webp',
-} as any);
+const screenshotBackground = getBaseUrl(true) + "/screenshot_bg.png";
 
 const sponsors = [
   {
@@ -90,7 +87,7 @@ const latestVersion = await getGitHubReleaseData();
   </div>
 </Section>
 
-<style define:vars={{ screenshotBackground: `url(${screenshotBackground.src})` }} lang="scss">
+<style define:vars={{ screenshotBackground: `url("${screenshotBackground}")` }} lang="scss">
 @use "$styles/breakpoints";
 
 .grid {

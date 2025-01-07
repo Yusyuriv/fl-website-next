@@ -2,18 +2,38 @@
 
 This repository contains the source code for the Flow Launcher website. It also contains the extended plugin store.
 
+## What is Flow Launcher?
+
+Flow Launcher is a free, open-source productivity tool for Windows that helps you access your files and applications
+quickly, run system commands, do mathematical calculations, and more. Learn
+more [on the website](https://www.flowlauncher.com/)
+or [in the GitHub repository](https://github.com/Flow-Launcher/Flow.Launcher).
+
 ## Adding plugin data
 
-Once your plugin has been approved and added to
-the [Flow.Launcher.PluginsManifest](https://github.com/Flow-Launcher/Flow.Launcher.PluginsManifest/) repository, you can
-add more data about your plugin to the website. If you don't, only the information from the PluginsManifest will be
-displayed on the website, i.e., icon, title, short description, version, author, and the programming language. You can
-add additional information, such as detailed information about the plugin, videos, screenshots, or blog posts.
+### Why add plugin data to the website?
 
-> [!NOTE]
-> Please don't use .gif files. Use .png or .jpg for static images and use YouTube for videos.
+You can completely ignore the website, and your plugin will still be visible there and in the plugin store inside Flow
+Launcher. However, adding more data to the website can help users learn more about your plugin, see images and videos of
+it in action, and read blog posts about it. This can help users decide whether to install your plugin and can help you
+communicate updates and new features to your users. If you don't want to add more data to the website, that's completely
+fine, the website will still display the following information about your plugin:
 
-To add more information about your plugin, follow these steps:
+- Icon
+- Name
+- Author
+- Description
+- Version
+- Programming language
+- Latest release date
+- Source code link
+
+### Prerequisites
+- Your plugin must be approved and added to the
+  [Flow.Launcher.PluginsManifest](https://github.com/Flow-Launcher/Flow.Launcher.PluginsManifest/) repository.
+- Use .png or .jpg for images. Videos should be YouTube links only.
+
+### Steps to add more information about your plugin
 
 1. Think of a "slug," a unique readable string based on the name of your plugin. This will be used in the URL. If your
    plugin is called "Cool Feature+," you might use `cool-feature-plus` as the slug. This will be used in the URL, e.g.,

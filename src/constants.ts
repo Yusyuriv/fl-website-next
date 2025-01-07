@@ -21,4 +21,5 @@ export const TAGS = [
   "Translation",
   "Social Media",
   "Utilities",
+  "Untagged",
 ] as const;

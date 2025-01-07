@@ -154,7 +154,7 @@ function filterPlugins(): void {
       title.includes(searchValue) ||
       author.includes(searchValue) ||
       description.includes(searchValue)
-    ) && (!tagsValue || tags?.includes(tagsValue));
+    ) && (!tagsValue || tags?.includes(tagsValue) || (tagsValue === "Untagged" && !tags));
 
     if (found) {
       foundAtLeastOnePlugin = true;

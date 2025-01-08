@@ -2,16 +2,18 @@
 interface Props {
   class?: string;
   noLoop?: boolean;
+  containsPlugins?: boolean;
 }
 
 const {
   class: className = "",
   noLoop = false,
+  containsPlugins = false,
   ...rest
 } = Astro.props;
 ---
 
-<div class:list={["swiper-container", className]} {...rest}>
+<div class:list={["swiper-container", className, {containsPlugins}]} {...rest}>
   <div class="swiper" data-no-loop={noLoop}>
     <div class="swiper-wrapper">
       <slot/>
@@ -34,6 +36,12 @@ const {
 
 .swiper {
     border-radius: 8px;
+}
+
+.swiper-container.containsPlugins .swiper {
+  padding: 4px 24px 32px;
+  overflow-x: hidden;
+  overflow-y: visible;
 }
 
 @include breakpoints.sm {
@@ -66,17 +74,18 @@ import 'swiper/css/pagination';
 const swipers = document.querySelectorAll(`.swiper`) as unknown as HTMLElement[];
 
 for (const swiper of swipers) {
+  const containsPlugins = swiper.parentElement!.classList.contains("containsPlugins");
   new Swiper(swiper, {
     loop: swiper.dataset.noLoop !== "true",
 
     grabCursor: true,
 
     slidesPerView: 1,
-    spaceBetween: 10,
+    spaceBetween: containsPlugins ? 30 : 10,
     breakpoints: {
       640: {
         slidesPerView: 2,
-        spaceBetween: 20,
+        spaceBetween: containsPlugins ? 30 : 20,
       },
       1024: {
         slidesPerView: 3,

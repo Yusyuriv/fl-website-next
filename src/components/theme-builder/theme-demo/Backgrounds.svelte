@@ -1,5 +1,6 @@
 <script lang="ts">
 import {onMount} from "svelte";
+import {getBaseUrlFromHtml} from "@/utils.ts";
 
 const { images }: {
   images: {
@@ -18,18 +19,20 @@ function nextBackground() {
   currentBackgroundIndex = (currentBackgroundIndex + 1) % images.length;
 }
 
+const base = getBaseUrlFromHtml(true);
+
 onMount(() => {
-  interval = setInterval(nextBackground, 5000);
+  interval = window.setInterval(nextBackground, 5000);
 
   return () => {
-    clearInterval(interval);
+    window.clearInterval(interval);
   };
 });
 </script>
 
 <div class="backgrounds">
   {#each images as { imagePath, authorUsername, authorName, photoId }, i}
-    <div class="background" class:visible={currentBackgroundIndex === i} style:--img={`url('/theme-builder/${imagePath}')`}>
+    <div class="background" class:visible={currentBackgroundIndex === i} style:--img={`url('${base}/theme-builder/${imagePath}')`}>
       <div class="credit">
         Photo by <a href={`https://unsplash.com/@${authorUsername}`} target="_blank">{authorName}</a>
         on <a href={`https://unsplash.com/photos/${photoId}`} target="_blank">Unsplash</a>

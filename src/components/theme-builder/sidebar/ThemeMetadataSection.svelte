@@ -84,4 +84,14 @@ function resetState(): void {
     display: block;
   }
 }
+
+@media (max-height: 750px) {
+  .hidden-on-mobile {
+    display: none;
+  }
+
+  .hidden-on-desktop {
+    display: block;
+  }
+}
 </style>

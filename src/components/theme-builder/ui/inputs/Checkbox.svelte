@@ -51,7 +51,8 @@ function onchange(e: Event) {
 
 <style>
 .checkbox-label {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr;
     align-items: center;
     gap: 12px;
     padding: 0 6px;

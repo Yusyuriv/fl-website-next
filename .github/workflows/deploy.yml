@@ -11,6 +11,9 @@ on:
       - .gitignore
   # Allows you to run this workflow manually from the Actions tab on GitHub.
   workflow_dispatch:
+  # Allows you to trigger this workflow via a webhook.
+  repository_dispatch:
+    types: [deploy]
 
 # Allow this job to clone the repo and create a page deployment
 permissions:

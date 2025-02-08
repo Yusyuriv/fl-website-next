@@ -3,7 +3,7 @@ import {slugify} from "@/utils.ts";
 import builtInPluginIds from "@/data/built-in-plugins.yml";
 import {dirname, basename} from "node:path";
 
-interface FP {
+interface FlowPlugin {
   ID: string;
   Name: string;
   Description: string;
@@ -22,7 +22,7 @@ let cachedData: any = null;
 
 export async function GET() {
   if (!cachedData) {
-    const data: FP[] = await fetch("https://fastly.jsdelivr.net/gh/Flow-Launcher/Flow.Launcher.PluginsManifest@plugin_api_v2/plugins.json").then(v => v.json());
+    const data: FlowPlugin[] = await fetch("https://fastly.jsdelivr.net/gh/Flow-Launcher/Flow.Launcher.PluginsManifest@plugin_api_v2/plugins.json").then(v => v.json());
     const plugins = await getCollection("plugins");
 
     cachedData = data.map(v => {

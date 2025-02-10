@@ -15,6 +15,10 @@ on:
   repository_dispatch:
     types: [deploy]
 
+concurrency:
+  group: ${{ github.workflow }}-deploy
+  cancel-in-progress: true
+
 # Allow this job to clone the repo and create a page deployment
 permissions:
   contents: read

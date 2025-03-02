@@ -8,7 +8,6 @@ id: 54545DC7B3A542DBB6C7DA50DEAD455B
 #- image2.png
 #- image3.png
 tags:
+- Application Launchers
 - Gaming
-- Search
-- Utilities
 ---

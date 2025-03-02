@@ -7,7 +7,6 @@ id: 747F1A93B6D24CCFBC433BA2455B3BEA
 #- image2.png
 #- image3.png
 tags:
-- System
-- Utilities
 - Automation
+- System
 ---

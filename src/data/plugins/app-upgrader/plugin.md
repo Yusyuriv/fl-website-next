@@ -9,5 +9,4 @@ id: c11d8b37-9967-4af3-b134-a22171d0dba8
 #- image3.png
 tags:
 - System
-- Utilities
 ---

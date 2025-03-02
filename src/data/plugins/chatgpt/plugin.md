@@ -9,5 +9,6 @@ id: df432fe0-9ff7-4ba1-b0fd-5ffd26efbf86
 #- image3.png
 tags:
 - AI
-- Utilities
+- Productivity
+- Text Tools
 ---

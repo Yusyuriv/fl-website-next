@@ -10,5 +10,4 @@ id: a9b5753e-21a6-420f-9dc9-b67ce94ae1e8
 tags:
 - File Management
 - System
-- Utilities
 ---

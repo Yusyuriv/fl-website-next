@@ -9,5 +9,4 @@ id: E5E5A4BD-39C7-4B41-93F8-0D4850BC317C
 #- image3.png
 tags:
 - Calculators & Converters
-- Utilities
 ---

@@ -9,5 +9,5 @@ id: 18892B7863AC43ABA27859A5A2866DD8
 #- image3.png
 tags:
 - Calculators & Converters
-- Utilities
+- Finance
 ---

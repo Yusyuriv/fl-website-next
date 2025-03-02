@@ -7,7 +7,6 @@ images:
 - random.png
 tags:
 - Text Tools
-- Utilities
 ---
 
 This plugin lets you generate a wide variety of data types for testing purposes. It can be useful when you need to fill a database with placeholder data, test an API, or create a sample dataset for a project.

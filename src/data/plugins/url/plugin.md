@@ -8,5 +8,4 @@ id: 0308FD86DE0A4DEE8D62B9B535370992
 #- image3.png
 tags:
 - Browser Tools
-- Utilities
 ---

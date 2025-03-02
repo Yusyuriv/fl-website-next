@@ -1,5 +1,6 @@
 export const TAGS = [
   "AI",
+  "Application Launchers",
   "Automation",
   "Browser Tools",
   "Calculators & Converters",
@@ -9,6 +10,7 @@ export const TAGS = [
   "Documentation",
   "Examples",
   "File Management",
+  "Finance",
   "Gaming",
   "Multimedia",
   "Networking",
@@ -16,6 +18,7 @@ export const TAGS = [
   "Productivity",
   "Programming",
   "Search",
+  "Security",
   "System",
   "Text Tools",
   "Translation",

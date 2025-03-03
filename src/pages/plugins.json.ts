@@ -33,7 +33,7 @@ export async function GET() {
 
       return {
         id: v.ID,
-        slug: slugify(v.Name),
+        slug: `${slugify(v.Name)}-${v.ID}`,
         name: v.Name,
         description: v.Description,
         tags: [],
